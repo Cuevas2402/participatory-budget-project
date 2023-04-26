@@ -14,7 +14,9 @@
                 /* Generar expection en caso de errores, configuariocn para que las consultas no sean emuladas */
                 $options = [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, PDO::ATTR_EMULATE_PREPARES => false ];
                 $pdo = new PDO ($connection, $this->user, $this->password, $options);
+                /* Devolver la conexion*/
                 return $pdo;
+                
             }catch(PDOException $e){
                 echo 'Error'.$e->getMessage();
                 exit;
