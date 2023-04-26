@@ -1,3 +1,8 @@
+<?php
+  require 'config/db.php';
+  
+?>
+
 <?php 
 include 'procedures/procedures.php'
 ?>
