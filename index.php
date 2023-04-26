@@ -1,10 +1,10 @@
 <?php
   require 'config/db.php';
-  
-?>
-
-<?php 
-include 'procedures/procedures.php'
+  $db = new Database();
+  $pdo = $db -> connect();
+  $stmt = $pdo->prepare("SELECT titulo_proceso, subtitulo_proceso, titulo_fase, descripcion_proceso, COUNT(participaciones.pid) as total FROM procesos, participaciones, fases WHERE procesos.pid = participaciones.pid and fases.pid = procesos.pid and fase_actual = n_fase GROUP BY procesos.pid ORDER BY total DESC LIMIT 1");
+  $stmt->execute();
+  $row = $stmt->fetch();
 ?>
 
 <!DOCTYPE html>
@@ -149,35 +149,35 @@ include 'procedures/procedures.php'
               <div class="my-5">
                   <?php
                     
-                    $procesosDestacados = "SELECT titulo_proceso, subtitulo_proceso, titulo_fase, descripcion_proceso, COUNT(participaciones.pid) as total FROM procesos, participaciones, fases WHERE procesos.pid = participaciones.pid and fases.pid = procesos.pid and fase_actual = n_fase GROUP BY procesos.pid ORDER BY total DESC";
+                    //$procesosDestacados = "SELECT titulo_proceso, subtitulo_proceso, titulo_fase, descripcion_proceso, COUNT(participaciones.pid) as total FROM procesos, participaciones, fases WHERE procesos.pid = participaciones.pid and fases.pid = procesos.pid and fase_actual = n_fase GROUP BY procesos.pid ORDER BY total DESC";
                     //$procesos = "SELECT * FROM procesos";
-                    $result = mysqli_query($connection, $procesosDestacados);
-                    $cont = 0;
-                    while($row = mysqli_fetch_row($result)){
-                      if($cont>0){
-                        break;
-                      }
+                    //$result = mysqli_query($connection, $procesosDestacados);
+                    //$cont = 0;
+                    //while($row = mysqli_fetch_row($result)){
+                      //if($cont>0){
+                        //break;
+                      //}
                   ?>
                     <h2 class="process-featured-title">
                       <?php
-                        echo $row[0];
+                        echo $row['titulo_proceso'];
                       ?>
                     </h2>
                     <h3 class="process-featured-title2">
                       <?php
-                        echo $row[1];
+                        echo $row['subtitulo_proceso'];
                       ?>
                     </h3>
                     <p class="process-featured-title2">Fase Actual:  </p> 
                     <center><button class="process-featured-button-3">
                       <?php
-                        echo $row[2];
+                        echo $row['titulo_fase'];
                       ?> 
                     </button></center>
                   <?php
-                        echo $row[3];
-                        $cont++;
-                      }
+                      echo $row['descripcion_proceso'];
+                      //  $cont++;
+                      //  }
                   ?>
                     <center>
                         <button class="process-featured-button-1">Más información</button>

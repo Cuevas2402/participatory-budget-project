@@ -1,0 +1,6 @@
+DELIMITER $$
+CREATE PROCEDURE get_process_featured_1()
+BEGIN
+  SELECT * FROM your_table_name;
+END$$
+DELIMITER ;
