@@ -5,6 +5,7 @@
   $stmt = $pdo->prepare("CALL get_process_featured_1()");
   $stmt->execute();
   $row = $stmt->fetch();
+  $cont = 0;
 ?>
 
 <!DOCTYPE html>
