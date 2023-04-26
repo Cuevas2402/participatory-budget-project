@@ -2,7 +2,7 @@
   require 'config/db.php';
   $db = new Database();
   $pdo = $db -> connect();
-  $stmt = $pdo->prepare("SELECT titulo_proceso, subtitulo_proceso, titulo_fase, descripcion_proceso, COUNT(participaciones.pid) as total FROM procesos, participaciones, fases WHERE procesos.pid = participaciones.pid and fases.pid = procesos.pid and fase_actual = n_fase GROUP BY procesos.pid ORDER BY total DESC LIMIT 1");
+  $stmt = $pdo->prepare("CALL get_process_featured_1()");
   $stmt->execute();
   $row = $stmt->fetch();
 ?>

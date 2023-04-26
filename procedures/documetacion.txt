@@ -1,6 +1,17 @@
+/* Procidimiento para regersar el proceso con mayor participaciones*/
+
 DELIMITER $$
 CREATE PROCEDURE get_process_featured_1()
 BEGIN
-  SELECT * FROM your_table_name;
+  SELECT titulo_proceso, subtitulo_proceso, titulo_fase, descripcion_proceso, COUNT(participaciones.pid) as total FROM procesos, participaciones, fases WHERE procesos.pid = participaciones.pid and fases.pid = procesos.pid and fase_actual = n_fase GROUP BY procesos.pid ORDER BY total DESC LIMIT 1;
+END$$
+DELIMITER ;
+
+/* Procidimiento para regersar los 2 procesos con mayor participaciones*/
+
+DELIMITER $$
+CREATE PROCEDURE get_process_featured_2()
+BEGIN
+  SELECT titulo_proceso, subtitulo_proceso, titulo_fase, descripcion_proceso, COUNT(participaciones.pid) as total FROM procesos, participaciones, fases WHERE procesos.pid = participaciones.pid and fases.pid = procesos.pid and fase_actual = n_fase GROUP BY procesos.pid ORDER BY total DESC LIMIT 2;
 END$$
 DELIMITER ;
