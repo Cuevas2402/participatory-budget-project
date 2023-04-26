@@ -1,0 +1,96 @@
+/** TEXTO */
+h1 {
+    font-size: 48px;
+}
+h2 {
+    font-size: 24px !important;
+    margin-bottom: 3% !important;
+    text-align: center !important;
+}
+h3 {
+    font-size: 28px;
+}
+h4 {
+    font-size: 18px !important;
+    margin-top: 5% !important;
+    padding-bottom: 0% !important;
+    margin-bottom: 1% !important;
+}
+.tabcontent p {
+    font-size: 16px !important;
+}
+
+/** CONTENIDO DE LA PAGINA */
+.contenido {
+    margin-top: 2.5%;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 5%;
+}
+
+/* OPCIONES DE INFO */
+.tabs-ayuda { /* cuadro */
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    display: grid;
+    grid-template-columns: 33% 67%;
+    border: 1px solid #989898;
+    background-color: #E6E6E6;
+
+}
+.tabs {
+    min-height: 50%;
+}
+.tabs button{ /* boton de opcion */
+    background-color: #E6E6E6;
+    border: 0.5px solid #989898;
+    border-right: none;
+    width: 100%;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+}
+.tabs button:hover { /* boton - hover */
+    background-color: #ddd;
+}
+.tabs button.active { /* boton - activo */
+    background-color: #D9D9D9;
+    font-weight: bold;
+}
+
+/** TABLAS */
+.tabcontent > table td, table th { /* contenido de la tabla */
+    border: 1px solid #B9B9B9;
+    padding: 0.5%;
+}
+.tabcontent > table th { /* estilo de table header */
+    text-align: center;
+    background-color: #F0F0F0;
+}
+
+/** INFO DE CADA OPCION */
+.info { /* estilo general */
+    background-color: white;
+    width: 100%;
+    border-left: 0.5px solid #989898;
+}
+.tabcontent { /* contenido de cada categoria */
+    display: none;
+    padding: 6px 12px;
+    /* border: 1px solid #989898; */
+    border: none;
+    text-align: justify;
+    padding: 5%;
+    padding-bottom: max-content ;
+    
+}
+select {
+    width: 100%;
+    padding: 1%;
+}
+input {
+    padding: 0.5% 2% 0.5% 2%;
+}
