@@ -15,3 +15,21 @@ BEGIN
   SELECT titulo_proceso, subtitulo_proceso, titulo_fase, descripcion_proceso, COUNT(participaciones.pid) as total FROM procesos, participaciones, fases WHERE procesos.pid = participaciones.pid and fases.pid = procesos.pid and fase_actual = n_fase GROUP BY procesos.pid ORDER BY total DESC LIMIT 2;
 END$$
 DELIMITER ;
+
+/* Procedimiento para conseguir los nombres de los distritos */
+
+DELIMITER $$
+CREATE PROCEDURE get_distritos()
+BEGIN
+  SELECT nombre_distrito FROM distritos;
+END$$
+DELIMITER ;
+
+/* Procedimiento para conseguir los nombres de los ambitos */
+
+DELIMITER $$
+CREATE PROCEDURE get_ambitos()
+BEGIN
+  SELECT nombre_ambito FROM ambitos;
+END$$
+DELIMITER ;
