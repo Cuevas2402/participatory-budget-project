@@ -40,7 +40,6 @@
     <h4><strong><i class="fa fa-square" aria-hidden="true"></i> PROCESOS DESTACADOS</strong></h4>
   </div>
     <?php
-        
         foreach($rows as $row){
     ?>
         <div class="container process-featured-container">
@@ -78,40 +77,7 @@
                         <div class="container" style="margin-top: 0.5%;">
                             <h2 style="text-align: center; font-weight: normal; font-size: 32px; font-weight: bold;">FASES </h2>
                         </div>  
-                    
-                    <!--<div class="timeline">
-                        <div class="vertical-line3"></div>
-                        <div class="vertical-line4"></div>
-                        <div class="c-off-animate right-container">
-                            <div class="circulo active"></div>
-                            <div class="t c2">
-                                <div class="innerc">
-                                    <small>21 de marzo - 9 de abril</small>
-                                    <h4>Registro de Participantes y Propuestas</h4>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="c-off-animate right-container">
-                            <div class="circulo active"></div>
-                            <div class="t c2">
-                                <div class="innerActive">
-                                    <small>10 a 23 de abril</small>
-                                    <h4>Validación de Registro de Participantes Y Propuestas</h4>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="c-off-animate right-container">
-                            <div class="circulo down"></div>
-                                <div class="t c2">
-                                    <div class="innerDown">
-                                        <small>5 de junio - 19 de junio</small>
-                                        <h4>Publicación de Resultados ✨🤩</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->  
+                        <!-- Imagen -->
                     </div>
                 </div>
             
