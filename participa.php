@@ -72,7 +72,7 @@ include 'procedures/procedures.php'
     <h4><strong><i class="fa fa-square" aria-hidden="true"></i> PROCESOS DESTACADOS</strong></h4>
   </div>
     <?php
-         $procesosDestacados = "SELECT procesos.titulo as titulo1, procesos.subtitulo, fases.titulo as titulo2, procesos.descripcion, COUNT(participaciones.pid) as total FROM procesos, participaciones, fases WHERE procesos.pid = participaciones.pid and fases.pid = procesos.pid and fase_actual = n_fase GROUP BY procesos.pid ORDER BY total DESC";
+         $procesosDestacados = "SELECT titulo_proceso, subtitulo_proceso, titulo_fase, descripcion_proceso, COUNT(participaciones.pid) as total FROM procesos, participaciones, fases WHERE procesos.pid = participaciones.pid and fases.pid = procesos.pid and fase_actual = n_fase GROUP BY procesos.pid ORDER BY total DESC";
         //$procesos = "SELECT * FROM procesos";
         
         $result = mysqli_query($connection, $procesosDestacados);
@@ -89,22 +89,22 @@ include 'procedures/procedures.php'
                     <div class="my-5">
                         <h2 class="process-featured-title">
                             <?php
-                                echo $row['titulo1'];
+                                echo $row['titulo_proceso'];
                             ?>
                         </h2>
                         <h3 class="process-featured-title2">
                             <?php
-                                echo $row['subtitulo'];
+                                echo $row['subtitulo_proceso'];
                             ?>
                         </h3>
                         <p class="process-featured-title2">Fase Actual:  </p> 
                         <center><button class="process-featured-button-3">
                             <?php
-                                echo $row['titulo2'];
+                                echo $row['titulo_fase'];
                             ?>
                         </button></center>
                             <?php
-                                echo $row['descripcion'];
+                                echo $row['descripcion_proceso'];
                             ?>
                         <center>
                             <button class="process-featured-button-1">Más información</button>

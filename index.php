@@ -180,7 +180,7 @@ include 'procedures/procedures.php'
               <div class="my-5">
                   <?php
                     
-                    $procesosDestacados = "SELECT procesos.titulo, procesos.subtitulo, fases.titulo, procesos.descripcion, COUNT(participaciones.pid) as total FROM procesos, participaciones, fases WHERE procesos.pid = participaciones.pid and fases.pid = procesos.pid and fase_actual = n_fase GROUP BY procesos.pid ORDER BY total DESC";
+                    $procesosDestacados = "SELECT titulo_proceso, subtitulo_proceso, titulo_fase, descripcion_proceso, COUNT(participaciones.pid) as total FROM procesos, participaciones, fases WHERE procesos.pid = participaciones.pid and fases.pid = procesos.pid and fase_actual = n_fase GROUP BY procesos.pid ORDER BY total DESC";
                     //$procesos = "SELECT * FROM procesos";
                     $result = mysqli_query($connection, $procesosDestacados);
                     $cont = 0;
