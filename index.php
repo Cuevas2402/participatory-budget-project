@@ -185,8 +185,8 @@
                     </center>
               </div>
           </div>
-          <div class="col border d-flex justify-content-center align-items-center" style="padding: 0 0;">
-              <img class="card-img" src="img/img4.jpg" alt="">
+          <div class="col border d-flex justify-content-center align-items-center" style="padding: 0 0; background-image: url(img/img4.jpg); background-repeat: no-repeat; background-size: 100% 100%; background-position: center;">
+              <img class="card-img" src="img/img4.jpg" alt="" style="filter: opacity(0);">
           </div>
       </div>
     </div>
