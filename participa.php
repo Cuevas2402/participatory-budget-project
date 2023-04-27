@@ -59,12 +59,15 @@
                                     echo $row['subtitulo_proceso'];
                                 ?>
                             </h3>
-                            <p class="process-featured-title2">Fase Actual:  </p> 
-                            <center><button class="process-featured-button-3">
-                                <?php
-                                    echo $row['titulo_fase'];
-                                ?>
-                            </button></center>
+                            <center>
+                            <p class="process-featured-text"><i>Fase Actual:</i>
+                                <button disabled class="process-featured-button-3">
+                                    <?php
+                                        echo $row['titulo_fase'];
+                                    ?>
+                                </button>
+                            </p>
+                            </center>
                                 <?php
                                     echo $row['descripcion_proceso'];
                                 ?>
@@ -74,14 +77,8 @@
                             </center>
                         </div>
                     </div>
-                    <div class="col border d-flex justify-content-center align-items-center" style="padding-right: 0; padding-left: 0; padding-top: 0; padding-bottom: 0;">
-                        <!-- Start Fetured process timeline-->
-                        <div style="background-color: #F0F0F0; width: 100%; height: 100% ;padding: 2%;">
-                            <div class="container" style="margin-top: 0.5%;">
-                                <h2 style="text-align: center; font-weight: normal; font-size: 32px; font-weight: bold;">FASES </h2>
-                            </div>  
-                            <!-- Imagen -->
-                        </div>
+                    <div class="col border d-flex justify-content-center align-items-center" style="padding: 0 0;  background-image: url(img/img4.jpg); background-position: center; background-repeat: no-repeat; background-size: 100% 100%;">
+                        <img class="card-img" src="img/img4.jpg" alt="" style="filter: opacity(0)">
                     </div>
                 
                 </div>
@@ -152,10 +149,10 @@
                 </div>
                 
             </div>
-
-            <div class="container text-center" style="margin-top: 1rem;">
-                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4">
-
+            <!-- START CARDS NUEVO -->
+            <div class="container text-center" style="margin-top: 4rem; margin-bottom: 8rem;">
+                <div class="filter row row-cols-1 row-cols-md-2 row-cols-lg-4 d-flex align-items-stretch g-3">
+                    <!-- START INDIVIDUAL CARD -->
                     <?php
                         $stmt = $pdo->prepare("CALL get_process_card()");
                         $stmt->execute();
@@ -163,59 +160,63 @@
                         foreach($rows as $row){
 
                     ?>
-                            <div class="col g-5">
-                                <div class="row">
-                                    <span class="process-line"></span>
-                                </div>
-                                <div class="row">
-                                    <div class="col border" style="padding-bottom: 1rem; padding-right: 0; padding-left: 0;">
-                                        <!-- Imagen de 200 x 100 -->
-                                        <img class="w-100" src="http://drive.google.com/uc?export=view&id=1Bw22s4t6l_H6e9r6f_A7y0jIuGYEeRy0" alt="">
-                                        <h5 class="process-title-card"><span><?php echo $row['titulo_proceso'];?></span><!--<i class="fa fa-bell process-bell-active" aria-hidden="true"></i>--></h5>
+                            <div class="col col-lg-3">
+                                <div class="card h-100">
+                                    <div class="card-header" style="background-color: #894B5D"></div>
+                                    <img src="http://drive.google.com/uc?export=view&id=1Bw22s4t6l_H6e9r6f_A7y0jIuGYEeRy0" class="card-img-top" alt="...">
+                                    <div class="card-body" style="padding: 0; background-color: #ead9d8">
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item d-flex align-items-center" style="height: 100px; background-color: white;">
+                                                <h5 class="process-title-card"><?php echo $row['titulo_proceso'];?></h5>
+                                            </li>
+                                            <li class="list-group-item" style="background-color: white; ">
+                                                <p class="process-date-card"><strong>Ambito:</strong> <?php echo $row['nombre_ambito'];?> </p>
+                                            </li>
+                                            <li class="list-group-item " style="background-color: white;">
+                                                <p class="process-date-card"><strong>Distrito:</strong> <?php echo $row['nombre_distrito'];?> </p>
+                                            </li>
+                                            <li class="list-group-item" style="background-color: white;">
+                                                <div class="row d-flex align-items-center">
+                                                    <div class="col">
+                                                        <p class="process-date-card"><strong>Fecha de inicio</strong></p>
+                                                    </div>
+                                                    <div class="col">
+                                                        <p class="process-date-card"><strong>Fecha de finalización</strong></p>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <p class="process-date-card"><?php echo $row['fecha_inicio_proceso'];?></p>
+                                                    </div>
+                                                    <div class="col">
+                                                        <p class="process-date-card"><?php echo $row['fecha_fin_proceso'];?></p>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item d-flex flex-column" style="background-color: #ead9d8">
+                                                <p class="process-status-card"><strong>Fase actual</strong></p>
+                                                <button class="process-button"><?php echo $row['titulo_fase'];?></button>
+                                                <a href="#"><button class="process-button-card"><strong>Más información</strong></button></a>
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col border">
-                                        <p class="process-date-card"><strong>Ambito:</strong> <?php echo $row['nombre_ambito'];?></p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col border">
-                                        <p class="process-date-card"><strong>Distrito:</strong> <?php echo $row['nombre_distrito'];?></p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col border">
-                                        <p class="process-date-card"><strong>Fecha de inicio</strong><br><?php echo $row['fecha_inicio_proceso'];?></p>
-                                    </div>
-                                    <div class="col border">
-                                        <p class="process-date-card"><strong>Fecha de finalización</strong><br> <?php echo $row['fecha_fin_proceso'];?> </p>
-                                    </div>
-                                </div>
-                                <div class="row border">
-                                    <div class="col" style="background-color:#EAD9D8;">
-                                        <p class="process-status-card"><strong>Fase actual</strong></p>
-                                        <center><button class="process-button"><?php echo $row['titulo_fase'];?></button></center>
-                                        <a href="./participa2.php"><button class="process-button-card"><strong>Más información</strong></button></a>
-                                    </div>
-                                </div>
-                            </div> 
+                            </div>
                     <?php
                         }
                         $stmt->closeCursor();
                     ?>
 
-                    
+
+                    <!-- END INDIVIDUAL CARD--> 
                 </div>
             </div>
+            <!-- END CARDS -->                        
+            
         </div>
         <!-- End First Content -->
 
-        <hr style="width: 75%; margin: 0 auto;">
-
-        <!-- Past Process -->
-    
-        <!-- End Second Content -->
+        
         
         <!-- Start Footer -->
         <footer style="margin-bottom: -5rem;">
@@ -239,16 +240,48 @@
             $(document).ready(function(){
                 $('#ambitos').on('change', function(){
                     var value = $(this).val();
-                    alert(value);
+                    var value2 = $('#distritos').val();
+                    
+                    $.ajax({
+                        url: "fetch/filter_process.php",
+                        type: "POST",
+                        data: {
+                            v1: value,
+                            v2: value2
+                        }, 
+                        beforeSend:() =>{
+                            $('.filter').html("<span>Working ... </span>");
+                        },
+                        success:function(data){
+                            $('.filter').html(data);
+                        }
+
+                    });
                 });
             });
 
             $(document).ready(function(){
                 $('#distritos').on('change', function(){
-                    var value = $(this).val();
-                    alert(value);
+                    var value = $('#ambitos').val(); $(this).val();
+                    var value2 = $(this).val();
+                    $.ajax({
+                        url: "fetch/filter_process.php",
+                        type: "POST",
+                        data: {
+                            v1: value,
+                            v2: value2
+                        }, 
+                        beforeSend:() =>{
+                            $('.filter').html("<span>Working ... </span>");
+                        },
+                        success:function(data){
+                            $('.filter').html(data);
+                        }
+                    });
                 });
             });
+
+
         </script>
     </body>
 </html>
