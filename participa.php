@@ -157,49 +157,55 @@
                 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4">
 
                     <?php
-
+                        $stmt = $pdo->prepare("CALL get_process_card()");
+                        $stmt->execute();
+                        $rows = $stmt->fetchAll();
+                        foreach($rows as $row){
 
                     ?>
-                        <div class="col g-5">
-                            <div class="row">
-                                <span class="process-line"></span>
-                            </div>
-                            <div class="row">
-                                <div class="col border" style="padding-bottom: 1rem; padding-right: 0; padding-left: 0;">
-                                    <!-- Imagen de 200 x 100 -->
-                                    <img class="w-100" src="http://drive.google.com/uc?export=view&id=1Bw22s4t6l_H6e9r6f_A7y0jIuGYEeRy0" alt="">
-                                    <h5 class="process-title-card"><span>Titulo</span><!--<i class="fa fa-bell process-bell-active" aria-hidden="true"></i>--></h5>
+                            <div class="col g-5">
+                                <div class="row">
+                                    <span class="process-line"></span>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col border">
-                                    <p class="process-date-card"><strong>Ambito:</strong> aaa</p>
+                                <div class="row">
+                                    <div class="col border" style="padding-bottom: 1rem; padding-right: 0; padding-left: 0;">
+                                        <!-- Imagen de 200 x 100 -->
+                                        <img class="w-100" src="http://drive.google.com/uc?export=view&id=1Bw22s4t6l_H6e9r6f_A7y0jIuGYEeRy0" alt="">
+                                        <h5 class="process-title-card"><span><?php echo $row['titulo_proceso'];?></span><!--<i class="fa fa-bell process-bell-active" aria-hidden="true"></i>--></h5>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col border">
-                                    <p class="process-date-card"><strong>Distrito:</strong> aaaa</p>
+                                <div class="row">
+                                    <div class="col border">
+                                        <p class="process-date-card"><strong>Ambito:</strong> <?php echo $row['nombre_ambito'];?></p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col border">
-                                    <p class="process-date-card"><strong>Fecha de inicio</strong><br>8/11/2002</p>
+                                <div class="row">
+                                    <div class="col border">
+                                        <p class="process-date-card"><strong>Distrito:</strong> <?php echo $row['nombre_distrito'];?></p>
+                                    </div>
                                 </div>
-                                <div class="col border">
-                                    <p class="process-date-card"><strong>Fecha de finalización</strong><br>8/11/2002</p>
+                                <div class="row">
+                                    <div class="col border">
+                                        <p class="process-date-card"><strong>Fecha de inicio</strong><br><?php echo $row['fecha_inicio_proceso'];?></p>
+                                    </div>
+                                    <div class="col border">
+                                        <p class="process-date-card"><strong>Fecha de finalización</strong><br> <?php echo $row['fecha_fin_proceso'];?> </p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row border">
-                                <div class="col" style="background-color:#EAD9D8">
-                                    <p class="process-status-card"><strong>Fase actual</strong></p>
-                                    <center><button class="process-button">Introducción</button></center>
-                                    <a href="./participa2.php"><button class="process-button-card"><strong>Más información</strong></button></a>
+                                <div class="row border">
+                                    <div class="col" style="background-color:#EAD9D8;">
+                                        <p class="process-status-card"><strong>Fase actual</strong></p>
+                                        <center><button class="process-button"><?php echo $row['titulo_fase'];?></button></center>
+                                        <a href="./participa2.php"><button class="process-button-card"><strong>Más información</strong></button></a>
+                                    </div>
                                 </div>
-                            </div>
-                        </div> 
+                            </div> 
                     <?php
-
+                        }
+                        $stmt->closeCursor();
                     ?>
+
+                    
                 </div>
             </div>
         </div>

@@ -33,3 +33,12 @@ BEGIN
   SELECT nombre_ambito FROM ambitos;
 END$$
 DELIMITER ;
+
+/* Procedimiento para conseguir todos los procesos con su fase actual, ambito y distrito */
+
+DELIMITER $$
+CREATE PROCEDURE get_process_card()
+BEGIN
+  SELECT titulo_proceso, fecha_inicio_proceso, fecha_fin_proceso, nombre_ambito, nombre_distrito, titulo_fase FROM procesos, fases, ambitos, distritos WHERE fase_actual = n_fase and procesos.aid = ambitos.aid and procesos.did = distritos.did;
+END$$
+DELIMITER ;
