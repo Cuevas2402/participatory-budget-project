@@ -115,7 +115,7 @@
             <div class="row text-center">
                 <div class="col">
                     <p>ÁMBITOS 
-                        <select  id="ambitos" class="process-select" type="text">
+                        <select  id="ambitos"  name="ambitos" class="process-select" type="text">
                             <option value="0" selected>Todos</option>
                             <?php
                                 $stmt = $pdo->prepare("CALL get_ambitos()");
@@ -134,8 +134,8 @@
                 </div>
 
                 <div class="col">
-                    <p>ÁMBITOS 
-                        <select  id="ambitos" class="process-select" type="text">
+                    <p>DISTRITOS 
+                        <select  id="distritos" name="distritos" class="process-select" type="text">
                             <option value="0" selected>Todos</option>
                             <?php
                                 $stmt = $pdo->prepare("CALL get_distritos()");
@@ -235,5 +235,22 @@
             </div>
         </footer>
         <!-- End Footer -->
+        
+        <!-- Codgio para que funcione el filtro-->
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $('#ambitos').on('change', function(){
+                    var value = $(this).val();
+                    alert(value);
+                });
+            });
+
+            $(document).ready(function(){
+                $('#distritos').on('change', function(){
+                    var value = $(this).val();
+                    alert(value);
+                });
+            });
+        </script>
     </body>
 </html>
