@@ -96,7 +96,7 @@
         <div class="circulo cir2"><p>2</p></div>
         <div class="t c2">
             <h2 style="color: #894B5D; font-weight: bold;">Evaluación</h2>
-            <small>30 DE MAYO AL 22 DE JUNIO </small>
+            <small>30 DE MAYO AL 22 DE JUNIO</small>
             <p>Las dependencias involucradas evaluarán tu propuesta para revisar si es viable económica, técnica y jurídicamente.</p>
             <span class="left-container-arrow arrow2"></span>
         </div>
@@ -149,7 +149,6 @@
           <div class="col border">
               <div class="my-5">
                   <?php
-                    
                     //$procesosDestacados = "SELECT titulo_proceso, subtitulo_proceso, titulo_fase, descripcion_proceso, COUNT(participaciones.pid) as total FROM procesos, participaciones, fases WHERE procesos.pid = participaciones.pid and fases.pid = procesos.pid and fase_actual = n_fase GROUP BY procesos.pid ORDER BY total DESC";
                     //$procesos = "SELECT * FROM procesos";
                     //$result = mysqli_query($connection, $procesosDestacados);
@@ -186,8 +185,8 @@
                     </center>
               </div>
           </div>
-          <div class="col border d-flex justify-content-center align-items-center" style="padding: 0 0;">
-              <img class="card-img" src="img/img4.jpg" alt="">
+          <div class="col border d-flex justify-content-center align-items-center" style="padding: 0 0;  background-image: url(img/img4.jpg); background-position: center; background-repeat: no-repeat; background-size: 100% 100%;">
+              <img class="card-img" src="img/img4.jpg" alt="" style="filter: opacity(0)">
           </div>
       </div>
     </div>
