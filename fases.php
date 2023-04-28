@@ -59,7 +59,7 @@
             <div class="container">
                 <div class="nav3">
                     <h5><a href="participa2.php?id=<?php echo $id; ?>&token=<?php echo hash_hmac('sha1', $id, KEY_TOKEN );?>">EL PROCESO</a></h5>
-                    <h5><a class="a-active" href="#">FASES </a></h5>
+                    <h5><a href="fases.php?id=<?php echo $id; ?>&token=<?php echo hash_hmac('sha1', $id, KEY_TOKEN );?>">FASES </a></h5>
                     <h5><a href="fichasActivas.php">FICHAS ACTIVAS</a></h5>
                 </div> 
             </div>

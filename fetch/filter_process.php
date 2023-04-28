@@ -6,7 +6,7 @@
     if(isset($_POST['v1']) && isset($_POST['v2'])){
         $v1 = $_POST['v1'];
         $v2 = $_POST['v2'];
-        $query = "SELECT procesos.pid, titulo_proceso, fecha_inicio_proceso, fecha_fin_proceso, nombre_ambito, nombre_municipio, titulo_fase FROM procesos, fases, ambitos, municipios WHERE fase_actual = n_fase and procesos.aid = ambitos.aid and procesos.mid = municipios.mid ";
+        $query = "SELECT procesos.pid, titulo_proceso, fecha_inicio_proceso, fecha_fin_proceso, nombre_ambito, nombre_municipio, titulo_fase FROM procesos, fases, ambitos, municipios WHERE fase_actual = n_fase and procesos.aid = ambitos.aid and procesos.mid = municipios.mid and procesos.pid = fases.pid ";
         if($v1 != 0){
             $query .= "and procesos.aid = '$v1'";
         }

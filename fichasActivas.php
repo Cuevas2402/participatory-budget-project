@@ -1,3 +1,22 @@
+<?php
+    require 'config/db.php';
+    require 'config/config.php';
+    $db = new Database();
+    $pdo = $db -> connect();
+    $id = isset($_GET['id']) ? $_GET['id'] : '';
+    $token = isset($_GET['token']) ? $_GET['token'] : '';
+
+    if($id == '' && $token == ''){
+        echo "Error no se puedo encontrar nada";
+        exit;
+    }else{
+        $token_tmp = hash_hmac('sha1', $id, KEY_TOKEN);
+        if($token == $token_tmp){
+            $sql = $pdo->prepare("SELECT * FROM procesos, ambitos, municipios WHERE procesos.pid = '$id' and procesos.aid = ambitos.aid and procesos.mid = municipios.mid");
+            $sql->execute();
+            $rows = $sql->fetch();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -174,68 +193,43 @@
                             </p>
                             </div>
                         </div>
-                        <!-- START CARDS NUEVO -->
-                        <div class="container text-center" style="margin-top: 4rem; margin-bottom: 8rem;">
-                            <div class="filter row row-cols-1 row-cols-md-2 row-cols-lg-4 d-flex align-items-stretch g-3">
+                        <!-- start cards nuevo -->
+                        <div class="container text-center" style="margin-top: 1rem;">
+                            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-2 d-flex align-items-stretch g-3">
+
+
                                 <!-- START INDIVIDUAL CARD -->
-                                <?php
-                                    $stmt = $pdo->prepare("CALL get_process_card()");
-                                    $stmt->execute();
-                                    $rows = $stmt->fetchAll();
-                                    foreach($rows as $row){
-
-                                ?>
-                                        <div class="col col-lg-3">
-                                            <div class="card h-100">
-                                                <div class="card-header" style="background-color: #894B5D"></div>
-                                                <img src="http://drive.google.com/uc?export=view&id=1Bw22s4t6l_H6e9r6f_A7y0jIuGYEeRy0" class="card-img-top" alt="...">
-                                                <div class="card-body" style="padding: 0; background-color: #ead9d8">
-                                                    <ul class="list-group list-group-flush">
-                                                        <li class="list-group-item d-flex align-items-center" style="height: 100px; background-color: white;">
-                                                            <h5 class="process-title-card"><?php echo $row['titulo_proceso'];?></h5>
-                                                        </li>
-                                                        <li class="list-group-item" style="background-color: white; ">
-                                                            <p class="process-date-card"><strong>Ambito:</strong> <?php echo $row['nombre_ambito'];?> </p>
-                                                        </li>
-                                                        <li class="list-group-item " style="background-color: white;">
-                                                            <p class="process-date-card"><strong>Municipio:</strong> <?php echo $row['nombre_municipio'];?> </p>
-                                                        </li>
-                                                        <li class="list-group-item" style="background-color: white;">
-                                                            <div class="row d-flex align-items-center">
-                                                                <div class="col">
-                                                                    <p class="process-date-card"><strong>Fecha de inicio</strong></p>
-                                                                </div>
-                                                                <div class="col">
-                                                                    <p class="process-date-card"><strong>Fecha de finalización</strong></p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col">
-                                                                    <p class="process-date-card"><?php echo $row['fecha_inicio_proceso'];?></p>
-                                                                </div>
-                                                                <div class="col">
-                                                                    <p class="process-date-card"><?php echo $row['fecha_fin_proceso'];?></p>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                        <li class="list-group-item d-flex flex-column" style="background-color: #ead9d8">
-                                                            <p class="process-status-card"><strong>Fase actual</strong></p>
-                                                            <button class="process-button"><?php echo $row['titulo_fase'];?></button>
-                                                            <a href="participa2.php?id=<?php echo $row['pid']; ?>&token=<?php echo hash_hmac('sha1', $row['pid'], KEY_TOKEN );?>" ><button class="process-button-card"><strong>Más información</strong></button></a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
+                                <div class="col">
+                                    <div class="card h-100">
+                                        <div class="card-header" style="background-color: #894B5D"></div>
+                                        <img src="http://drive.google.com/uc?export=view&id=1Bw22s4t6l_H6e9r6f_A7y0jIuGYEeRy0" class="card-img-top" alt="...">
+                                        <div class="card-body" style="padding: 0;">
+                                            <ul class="list-group list-group-flush">
+                                                <li class="list-group-item d-flex justify-content-center align-items-center" style="height: 100px">
+                                                    <h5 class="process-title-card">El titulo debería tener wrap</h5>
+                                                </li>
+                                                <li class="list-group-item">
+                                                    <p class="process-content-card"><strong>Autor:</strong> Jose</p> 
+                                                </li>
+                                                <li class="list-group-item">
+                                                    <p class="process-content-card"><strong>Distrito:</strong> aaaa</p>
+                                                </li>
+                                                <li class="list-group-item">
+                                                    <p class="process-content-card"><strong>Fecha de creación: </strong>8/11/2002</p>
+                                                </li>
+                                                <li class="list-group-item d-flex flex-column" style="background-color: #ead9d8">
+                                                    <a href="#"><button class="process-button-card"><strong>Más información</strong></button></a>
+                                                </li>
+                                            </ul>
                                         </div>
-                                <?php
-                                    }
-                                    $stmt->closeCursor();
-                                ?>
-
-
-                                <!-- END INDIVIDUAL CARD--> 
+                                    </div>
+                                </div>
+                                <!-- END INDIVIDUAL CARD -->
+                                
+                                
                             </div>
                         </div>
+                        <!-- end cards nuevo -->
                   </div>
             </div>
         </div>
