@@ -58,7 +58,7 @@
         <div style="border-bottom: 1px solid rgba(0, 0, 0, 0.25);">
             <div class="container">
                 <div class="nav3">
-                    <h5><a href="participa2.php">EL PROCESO</a></h5>
+                    <h5><a href="participa2.php?id=<?php echo $id; ?>&token=<?php echo hash_hmac('sha1', $id, KEY_TOKEN );?>">EL PROCESO</a></h5>
                     <h5><a class="a-active" href="#">FASES </a></h5>
                     <h5><a href="fichasActivas.php">FICHAS ACTIVAS</a></h5>
                 </div> 
@@ -74,23 +74,27 @@
         <div class="timeline">
                 <?php
                     foreach($rows as $row){
-                        
                 ?>
                         <div class="c-off-animate right-container">
+                            <!-- circulo active = para circulo activo --> 
+                            <!-- circulo down = para circulo inactivo --> 
                             <?php
-                                if($row['estado'] == 1 || $rows['estado'] == 2){
+                                if($row['estado'] == 1  || $row['estado'] == 2){
                                     ?>
                                         <div class="circulo active"></div>
                                     <?php
+
                                 }else{
+                                    if($row['estado'] == 3 ){
                                     ?>
                                         <div class="circulo down"></div>
                                     <?php
+                                    }
+                                        
                                 }
                             ?>
-                            <!-- circulo active = para circulo activo --> 
-                            <!-- circulo down = para circulo inactivo --> 
-                            <div class="circulo active"></div>
+                            
+                            
                             
                             <div class="t c2">
                                 <?php
@@ -99,23 +103,39 @@
                                 <!-- inncerc = color pasado -->
                                 <!-- innerActive = color presente -->
                                 <!-- innerDown = color futuro -->
-                                <div class="innerc"> <!-- -->
-                                    <small>21 de marzo - 9 de abril</small>
-                                    <h4>Registro de Participantes y Propuestas</h4>
-                                </div>
+                                <?php
+                                    if($row['estado'] == 1 ){
+                                        ?>
+                                            <div class="innerc"> 
+                                                <small><?php echo $row['fecha_inicio_fases']; ?> - <?php echo $row['fecha_fin_fases']; ?></small>
+                                                <h4><?php echo $row['titulo_fase']; ?></h4>
+                                            </div>
+                                        <?php
 
+                                    }else{
+                                        if($row['estado'] == 2 ){
+                                        ?>
+                                            <div class="innerActive"> 
+                                                <small><?php echo $row['fecha_inicio_fases']; ?> - <?php echo $row['fecha_fin_fases']; ?></small>
+                                                <h4><?php echo $row['titulo_fase']; ?></h4>
+                                            </div>
+                                        <?php
+                                        }else{
+                                            if($row['estado'] == 3 ){
+                                            ?>
+                                                <div class="innerDown"> 
+                                                    <small><?php echo $row['fecha_inicio_fases']; ?> - <?php echo $row['fecha_fin_fases']; ?></small>
+                                                    <h4><?php echo $row['titulo_fase']; ?></h4>
+                                                </div>
+                                            <?php
+                                            }
+                                        }
+                                            
+                                    }
+                                ?>
 
                                 <div class="paddingc">
-                                    <p><b>Requisitos</b></p>
-                                    <ul>
-                                        <li>Ser ciudadano mexicano.</li>
-                                        <li>Ser mayor de edad.</li>
-                                        <li>Ser residente de la sección en la cual desarrollará el cargo.</li>
-                                        <li>Estar en pleno uso de sus derechos civiles.</li>
-                                        <li>Tener vocación de servicio</li>
-                                        <li>No ser servidor público.</li>
-                                        <li>No formar parte de algún partido político.</li>
-                                    </ul>
+                                    <?php echo $row['descripcion_fase']?>
                                 
                                 </div>
                                 
