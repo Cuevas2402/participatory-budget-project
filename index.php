@@ -1,5 +1,6 @@
 <?php
   require 'config/db.php';
+  require 'config/config.php';
   $db = new Database();
   $pdo = $db -> connect();
   $stmt = $pdo->prepare("CALL get_process_featured_1()");
@@ -148,16 +149,6 @@
       <div class="row row-cols-1 row-cols-md-1 row-cols-lg-2">
           <div class="col border">
               <div class="my-5">
-                  <?php
-                    //$procesosDestacados = "SELECT titulo_proceso, subtitulo_proceso, titulo_fase, descripcion_proceso, COUNT(participaciones.pid) as total FROM procesos, participaciones, fases WHERE procesos.pid = participaciones.pid and fases.pid = procesos.pid and fase_actual = n_fase GROUP BY procesos.pid ORDER BY total DESC";
-                    //$procesos = "SELECT * FROM procesos";
-                    //$result = mysqli_query($connection, $procesosDestacados);
-                    //$cont = 0;
-                    //while($row = mysqli_fetch_row($result)){
-                      //if($cont>0){
-                        //break;
-                      //}
-                  ?>
                     <h2 class="process-featured-title">
                       <?php
                         echo $row['titulo_proceso'];
@@ -180,7 +171,7 @@
                       //  }
                   ?>
                     <center>
-                        <button class="process-featured-button-1">Más información</button>
+                        <a href="participa2.php?id=<?php echo $row['pid']; ?>&token=<?php echo hash_hmac('sha1', $row['pid'], KEY_TOKEN );?>" ><button class="process-featured-button-1">Más información</button></a>
                         <button class="process-featured-button-2">PARTICIPAR</button>
                     </center>
               </div>
@@ -193,7 +184,9 @@
     <center><button class="process-featured-button-3-large">Ver todos los procesos</button></center>
   </div>
   <!-- End featured proceses-->
-  
+  <?php
+    $stmt->closeCursor();
+  ?>
 
   <!-- Start Footer -->
   <footer style="margin-bottom: -5rem;">

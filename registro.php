@@ -34,7 +34,7 @@
         <div class="container">
             <div class="nav3">
                 <h5><a href="participa2.php">EL PROCESO</a></h5>
-                <h5><a class="a-active" href="#">REGISTRO</a></h5>
+                <h5><a class="a-active" href="#">FASES </a></h5>
                 <h5><a href="fichasActivas.php">FICHAS ACTIVAS</a></h5>
             </div> 
         </div>

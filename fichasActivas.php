@@ -28,7 +28,7 @@
 
 <body style="font-family: Roboto;">
     <!-- Start Navbar -->
-        <?php require 'header/header.php' ?>
+    <?php require 'header/header.php' ?>
     <!-- End Navbar -->
 
     <div class="card-section">
@@ -38,7 +38,7 @@
         <div class="container">
             <div class="nav3">
                 <h5><a href="participa2.php">EL PROCESO</a></h5>
-                <h5><a href="registro.php">REGISTRO</a></h5>
+                <h5><a href="fases.php"> FASES </a></h5>
                 <h5><a class="a-active" href="#">FICHAS ACTIVAS</a></h5>
             </div> 
         </div>
@@ -174,139 +174,66 @@
                             </p>
                             </div>
                         </div>
-                        <div class="container text-center">
-                            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-2">
-                                <div class="col gx-5">
-                                    <div class="row">
-                                        <span class="process-line"></span>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col border" style="padding-bottom: 1rem; padding-right: 0; padding-left: 0;">
-                                            <!-- Imagen de 400 x 200 -->
-                                            <img class="w-100" src="http://drive.google.com/uc?export=view&id=1Bw22s4t6l_H6e9r6f_A7y0jIuGYEeRy0" alt="">
-                                            <h5 class="process-title-card"><span>Titulo</span><i class="fa fa-bell process-bell-active" aria-hidden="true"></i></h5>
+                        <!-- START CARDS NUEVO -->
+                        <div class="container text-center" style="margin-top: 4rem; margin-bottom: 8rem;">
+                            <div class="filter row row-cols-1 row-cols-md-2 row-cols-lg-4 d-flex align-items-stretch g-3">
+                                <!-- START INDIVIDUAL CARD -->
+                                <?php
+                                    $stmt = $pdo->prepare("CALL get_process_card()");
+                                    $stmt->execute();
+                                    $rows = $stmt->fetchAll();
+                                    foreach($rows as $row){
+
+                                ?>
+                                        <div class="col col-lg-3">
+                                            <div class="card h-100">
+                                                <div class="card-header" style="background-color: #894B5D"></div>
+                                                <img src="http://drive.google.com/uc?export=view&id=1Bw22s4t6l_H6e9r6f_A7y0jIuGYEeRy0" class="card-img-top" alt="...">
+                                                <div class="card-body" style="padding: 0; background-color: #ead9d8">
+                                                    <ul class="list-group list-group-flush">
+                                                        <li class="list-group-item d-flex align-items-center" style="height: 100px; background-color: white;">
+                                                            <h5 class="process-title-card"><?php echo $row['titulo_proceso'];?></h5>
+                                                        </li>
+                                                        <li class="list-group-item" style="background-color: white; ">
+                                                            <p class="process-date-card"><strong>Ambito:</strong> <?php echo $row['nombre_ambito'];?> </p>
+                                                        </li>
+                                                        <li class="list-group-item " style="background-color: white;">
+                                                            <p class="process-date-card"><strong>Municipio:</strong> <?php echo $row['nombre_municipio'];?> </p>
+                                                        </li>
+                                                        <li class="list-group-item" style="background-color: white;">
+                                                            <div class="row d-flex align-items-center">
+                                                                <div class="col">
+                                                                    <p class="process-date-card"><strong>Fecha de inicio</strong></p>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <p class="process-date-card"><strong>Fecha de finalización</strong></p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <p class="process-date-card"><?php echo $row['fecha_inicio_proceso'];?></p>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <p class="process-date-card"><?php echo $row['fecha_fin_proceso'];?></p>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="list-group-item d-flex flex-column" style="background-color: #ead9d8">
+                                                            <p class="process-status-card"><strong>Fase actual</strong></p>
+                                                            <button class="process-button"><?php echo $row['titulo_fase'];?></button>
+                                                            <a href="participa2.php?id=<?php echo $row['pid']; ?>&token=<?php echo hash_hmac('sha1', $row['pid'], KEY_TOKEN );?>" ><button class="process-button-card"><strong>Más información</strong></button></a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col border">
-                                            <p class="process-date-card"><strong>Fecha de creación:</strong> DD/MM/AAAA</p>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col border">
-                                            <p class="process-date-card"><strong>Fecha de inicio</strong><br>DD/MM/AAAA</p>
-                                        </div>
-                                        <div class="col border">
-                                            <p class="process-date-card"><strong>Fecha de finalización</strong><br>DD/MM/AAAA</p>
-                                        </div>
-                                    </div>
-                                    <div class="row border">
-                                        <div class="col" style="background-color:#EAD9D8">
-                                            <p class="process-status-card"><strong>Fase actual</strong></p>
-                                            <center><button class="process-button">Introducción</button></center>
-                                            <a href="./participa2.html"><button class="process-button-card"><strong>Más información</strong></button></a>
-                                        </div>
-                                    </div>
-                                </div> 
-                
-                                <div class="col gx-5">
-                                    <div class="row">
-                                        <span class="process-line"></span>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col border" style="padding-bottom: 1rem; padding-right: 0; padding-left: 0;">
-                                            <!-- Imagen de 200 x 100 -->
-                                            <img class="w-100" src="http://drive.google.com/uc?export=view&id=1Bw22s4t6l_H6e9r6f_A7y0jIuGYEeRy0" alt="Proceso">
-                                            <h5 class="process-title-card"><span>Titulo</span><i class="fa fa-bell-o process-bell-active" aria-hidden="true"></i></h5>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col border">
-                                            <p class="process-date-card"><strong>Fecha de creación:</strong> DD/MM/AAAA</p>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col border">
-                                            <p class="process-date-card"><strong>Fecha de inicio</strong><br>DD/MM/AAAA</p>
-                                        </div>
-                                        <div class="col border">
-                                            <p class="process-date-card"><strong>Fecha de finalización</strong><br>DD/MM/AAAA</p>
-                                        </div>
-                                    </div>
-                                    <div class="row border">
-                                        <div class="col" style="background-color: #EAD9D8">
-                                            <p class="process-status-card"><strong>Fase actual</strong></p>
-                                            <center><button class="process-button">Introducción</button></center>
-                                            <a href="./participa2.html"><button class="process-button-card"><strong>Más información</strong></button></a>
-                                        </div>
-                                    </div>
-                                </div>
-                
-                                <div class="col gx-5 gy-5">
-                                    <div class="row">
-                                        <span class="process-line"></span>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col border" style="padding-bottom: 1rem; padding-right: 0; padding-left: 0;">
-                                            <!-- Imagen de 200 x 100 -->
-                                            <img class="w-100" src="http://drive.google.com/uc?export=view&id=1Bw22s4t6l_H6e9r6f_A7y0jIuGYEeRy0" alt="Proceso">
-                                            <h5 class="process-title-card"><span>Titulo</span><i class="fa fa-bell-o process-bell" aria-hidden="true"></i></h5>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col border">
-                                            <p class="process-status-card"><strong>Fecha de creación:</strong> DD/MM/AAAA</p>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col border">
-                                            <p class="process-status-card"><strong>Fecha de inicio</strong><br>DD/MM/AAAA</p>
-                                        </div>
-                                        <div class="col border">
-                                            <p class="process-status-card"><strong>Fecha de finalización</strong><br>DD/MM/AAAA</p>
-                                        </div>
-                                    </div>
-                                    <div class="row border">
-                                        <div class="col" style="background-color: #EAD9D8">
-                                            <p class="process-status-card"><strong>Fase actual</strong></p>
-                                            <center><button class="process-button">Introducción</button></center>
-                                            <a href="./participa2.html"><button class="process-button-card"><strong>Más información</strong></button></a>
-                                        </div>
-                                    </div>
-                                </div>
-                
-                                <div class="col gx-5 gy-5">
-                                    <div class="row">
-                                        <span class="process-line"></span>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col border" style="padding-bottom: 1rem; padding-right: 0; padding-left: 0;">
-                                            <!-- Imagen de 200 x 100 -->
-                                            <img class="w-100" src="http://drive.google.com/uc?export=view&id=1Bw22s4t6l_H6e9r6f_A7y0jIuGYEeRy0" alt="Proceso">
-                                            <h5 class="process-title-card"><span>Titulo</span><i class="fa fa-bell-o process-bell" aria-hidden="true"></i></h5>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col border">
-                                            <p class="process-status-card"><strong>Fecha de creación:</strong> DD/MM/AAAA</p>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col border">
-                                            <p class="process-status-card"><strong>Fecha de inicio</strong><br>DD/MM/AAAA</p>
-                                        </div>
-                                        <div class="col border">
-                                            <p class="process-status-card"><strong>Fecha de finalización</strong><br>DD/MM/AAAA</p>
-                                        </div>
-                                    </div>
-                                    <div class="row border">
-                                        <div class="col" style="background-color: #EAD9D8">
-                                            <p class="process-status-card"><strong>Fase actual</strong></p>
-                                            <center><button class="process-button">Introducción</button></center>
-                                            <a href="./participa2.html"><button class="process-button-card"><strong>Más información</strong></button></a>
-                                        </div>
-                                    </div>
-                                </div>
+                                <?php
+                                    }
+                                    $stmt->closeCursor();
+                                ?>
+
+
+                                <!-- END INDIVIDUAL CARD--> 
                             </div>
                         </div>
                   </div>
