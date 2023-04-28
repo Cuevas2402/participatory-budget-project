@@ -100,11 +100,38 @@
         <!-- Process -->
         <div class="container process-featured">
             <div class="process-filter">
-                <h4><strong><i class="fa fa-square" aria-hidden="true"></i> PROCESOS (#)</strong></h4>
+                <?php
+                    $stmt = $pdo->prepare("CALL count_process()");
+                    $stmt->execute();
+                    $rows = $stmt->fetch();
+                ?>
+                <h4><strong><i class="fa fa-square" aria-hidden="true"></i> PROCESOS (<?php echo $rows['count(pid)']; ?>)</strong></h4>
+                <?php
+                    $stmt->closeCursor();
+                ?>
                 <h4 class="see-process">VER</h4>
-                <h4><a href="">ACTIVOS (#)</a></h4>
-                <h4><a href="">PASADOS (#)</a></h4>
-                <h4><a href="">TODOS (#)</a></h4>
+                <h4><a href="">TODOS</a></h4>
+
+                <?php
+                    $stmt = $pdo->prepare("CALL count_process_active()");
+                    $stmt->execute();
+                    $rows = $stmt->fetch();
+                ?>
+                <h4><a href="">ACTIVOS (<?php echo $rows['count(pid)']; ?>)</a></h4>
+                <?php
+                    $stmt->closeCursor();
+                ?>
+
+                <?php
+                    $stmt = $pdo->prepare("CALL count_process_down()");
+                    $stmt->execute();
+                    $rows = $stmt->fetch();
+                ?>
+                <h4><a href="">PASADOS (<?php echo $rows['count(pid)']; ?>)</a></h4>
+                <?php
+                    $stmt->closeCursor();
+                ?>
+                
             </div> 
         </div>
 
@@ -132,7 +159,7 @@
                 </div>
 
                 <div class="col">
-                    <p>DISTRITOS 
+                    <p>MUNICIPIOS 
                         <select  id="distritos" name="distritos" class="process-select" type="text">
                             <option value="0" selected>Todos</option>
                             <?php
@@ -241,8 +268,8 @@
         <!-- Codgio para que funcione el filtro-->
         <script type="text/javascript">
             $(document).ready(function(){
-                $('#ambitos').on('change', function(){
-                    var value = $(this).val();
+                $('#ambitos, #distritos').on('change', function(){
+                    var value = $('#ambitos').val();
                     var value2 = $('#distritos').val();
                     
                     $.ajax({
@@ -263,26 +290,6 @@
                 });
             });
 
-            $(document).ready(function(){
-                $('#distritos').on('change', function(){
-                    var value = $('#ambitos').val(); $(this).val();
-                    var value2 = $(this).val();
-                    $.ajax({
-                        url: "fetch/filter_process.php",
-                        type: "POST",
-                        data: {
-                            v1: value,
-                            v2: value2
-                        }, 
-                        beforeSend:() =>{
-                            $('.filter').html("<span>Working ... </span>");
-                        },
-                        success:function(data){
-                            $('.filter').html(data);
-                        }
-                    });
-                });
-            });
 
 
         </script>
