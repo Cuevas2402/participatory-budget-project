@@ -45,7 +45,43 @@
 
     <body style="font-family: Roboto;">
         <!-- Start Navbar -->
-        <?php require 'header/header.php' ?>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+            <a class="navbar-brand" href="#"><img src="img/logo.png" style="width: 200px;" alt="LOGO"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse mx-auto" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mx-auto mb-2 mb-lg-0 text-center">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.php">Inicio</a>
+                </li>
+                <li class="nav-item mx-5">
+                    <a class="nav-link" style="color: black;" href="participa.php">Participa</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="ayuda.php">Ayuda</a>
+                </li>
+                </ul>
+                <div class="text-center">
+                    <a href="registrarse.php"><button class="btn me-3 my-3 registra">Regístrate</button></a>
+                    <a href="sesion.php"><button class="btn ms-3 my-3 inicia">Inicia Sesión</button></a>
+                </div>
+            </div>
+            </div>
+        </nav>
+        <div class="nav2">
+            <ul class="nav justify-content-center">
+                <li class="nav-item">
+                    <form class="d-flex my-3">
+                        <input class="form-control" type="search" placeholder="Buscar convocatorias, participantes, etc..." aria-label="Search">
+                        <button class="btn buscar" type="submit">
+                            <i class='fa-solid fa-magnifying-glass'></i>
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </div>
         <!-- End Navbar -->
 
         <div class="card-section">
@@ -161,46 +197,6 @@
                                 ?>
                             </div>
                         </li>
-                        <!--<li class="list-group-item" style="background-color: #EAD9D8;">
-                            <div class="m-2">
-                                <p><b>Categoría</b></p>
-                                <p><input type="checkbox" id="checkAll2"> Todas</p>
-                                <p>
-                                    <div class="row">
-                                        <div class="col">
-                                            <input type="checkbox" id="checkAll900" class="check900">
-                                            900 - 999
-                                        </div>
-                                        <div class="col">
-                                            <button onclick="toggleMore()" id="myBtn"><span style="font-size: 24px;" class="material-symbols-outlined">
-                                                expand_more</span></button>
-                                        </div>
-                                        <div class="moreOptions" id="moreOptions">
-                                            <p><input type="checkbox" class="check900"> 900</p>
-                                            <p><input type="checkbox" class="check900"> 901</p>
-                                            <p><input type="checkbox" class="check900"> 902</p>
-                                            <p><input type="checkbox" class="check900"> 903</p>
-                                            <p><input type="checkbox" class="check900"> 904</p>
-                                            <p><input type="checkbox" class="check900"> 905</p>
-                                        </div>
-                                    </div>
-                                    
-                                </p>
-                                <?php
-                                    $sql = $pdo->prepare("SELECT * FROM procesos, participaciones WHERE procesos.pid = '$id' AND procesos.pid = participaciones.pid");
-                                    $sql->execute();
-                                    $rows = $sql->fetchAll();
-                                    foreach($rows as $row){
-
-                                    
-                                ?>
-                                <p><input type="checkbox" class="check900" value="<?php echo $row['uid']?>"> <?php echo $row['uid']?></p>
-                                <?php
-                                    }
-                                    $sql->closeCursor();
-                                ?>
-                            </div>
-                        </li>-->
                     </ul>
                 </div>
                 <div class="col-12 col-sm-12 col-md-8">
