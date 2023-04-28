@@ -161,9 +161,9 @@
                                 ?>
                             </div>
                         </li>
-                        <li class="list-group-item" style="background-color: #EAD9D8;">
+                        <!--<li class="list-group-item" style="background-color: #EAD9D8;">
                             <div class="m-2">
-                                <!--<p><b>Categoría</b></p>
+                                <p><b>Categoría</b></p>
                                 <p><input type="checkbox" id="checkAll2"> Todas</p>
                                 <p>
                                     <div class="row">
@@ -185,7 +185,7 @@
                                         </div>
                                     </div>
                                     
-                                </p>-->
+                                </p>
                                 <?php
                                     $sql = $pdo->prepare("SELECT * FROM procesos, participaciones WHERE procesos.pid = '$id' AND procesos.pid = participaciones.pid");
                                     $sql->execute();
@@ -200,7 +200,7 @@
                                     $sql->closeCursor();
                                 ?>
                             </div>
-                        </li>
+                        </li>-->
                     </ul>
                 </div>
                 <div class="col-12 col-sm-12 col-md-8">

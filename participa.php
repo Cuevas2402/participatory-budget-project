@@ -110,14 +110,14 @@
                     $stmt->closeCursor();
                 ?>
                 <h4 class="see-process">VER</h4>
-                <h4><a href="">TODOS</a></h4>
+                <h4><a class="procesos-f process-filter-a-active" data-value="1" >TODOS</a></h4>
 
                 <?php
                     $stmt = $pdo->prepare("CALL count_process_active()");
                     $stmt->execute();
                     $rows = $stmt->fetch();
                 ?>
-                <h4><a href="">ACTIVOS (<?php echo $rows['count(pid)']; ?>)</a></h4>
+                <h4><a class="procesos-f process-filter-a-down" data-value="2">ACTIVOS (<?php echo $rows['count(pid)']; ?>)</a></h4>
                 <?php
                     $stmt->closeCursor();
                 ?>
@@ -127,7 +127,7 @@
                     $stmt->execute();
                     $rows = $stmt->fetch();
                 ?>
-                <h4><a href="">PASADOS (<?php echo $rows['count(pid)']; ?>)</a></h4>
+                <h4><a class="procesos-f process-filter-a-down" data-value="3">PASADOS (<?php echo $rows['count(pid)']; ?>)</a></h4>
                 <?php
                     $stmt->closeCursor();
                 ?>
@@ -160,7 +160,7 @@
 
                 <div class="col">
                     <p>MUNICIPIOS 
-                        <select  id="distritos" name="distritos" class="process-select" type="text">
+                        <select  id="municipios" name="municipios" class="process-select" type="text">
                             <option value="0" selected>Todos</option>
                             <?php
                                 $stmt = $pdo->prepare("CALL get_municipios()");
@@ -268,16 +268,17 @@
         <!-- Codgio para que funcione el filtro-->
         <script type="text/javascript">
             $(document).ready(function(){
-                $('#ambitos, #distritos').on('change', function(){
-                    var value = $('#ambitos').val();
-                    var value2 = $('#distritos').val();
-                    
+                $('#ambitos, #municipios').on('change', function(){
+                    let ambitos = $("#ambitos").val(); // Agarrar lo que esta en el campo de ambitos
+                    let municipios = $("#municipios").val(); // Agarrar lo que esta en el campo de municipios
+                    let estado = $(".process-filter-a-active").data("value");
                     $.ajax({
                         url: "fetch/filter_process.php",
                         type: "POST",
                         data: {
-                            v1: value,
-                            v2: value2
+                            v1: ambitos,
+                            v2: municipios,
+                            v3: estado
                         }, 
                         beforeSend:() =>{
                             $('.filter').html("<span>Working ... </span>");
@@ -289,7 +290,32 @@
                     });
                 });
             });
+            
+            $(document).ready(function(){
+                $(".procesos-f").click(function() {
+                    let ambitos = $("#ambitos").val();
+                    let municipios = $("#municipios").val();
+                    let estado = $(this).data("value");
+                    $(".process-filter-a-active").addClass("process-filter-a-down").removeClass("process-filter-a-active");
+                    $(this).addClass("process-filter-a-active").removeClass("process-filter-a-down");
+                    $.ajax({
+                        url: "fetch/filter_process.php",
+                        type: "POST",
+                        data: {
+                            v1: ambitos,
+                            v2: municipios,
+                            v3: estado
+                        }, 
+                        beforeSend:() =>{
+                            $('.filter').html("<span>Working ... </span>");
+                        },
+                        success:function(data){
+                            $('.filter').html(data);
+                        }
 
+                    });
+                });
+            });
 
 
         </script>

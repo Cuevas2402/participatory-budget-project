@@ -355,14 +355,24 @@ footer p > a:hover {
     gap: 3%;
 }
 
-.process-filter > h4 > a {
+.process-filter-a-down {
     text-decoration: none;
     color: #a0a0a0;
 }
 
-.process-filter > h4 > a:hover {
+.process-filter-a-down:hover {
     text-decoration: underline;
     color: #0089A6;
+}
+
+.process-filter-a-active {
+    text-decoration: underline;
+    color: #0089A6;
+}
+
+.process-filter-a-active:hover {
+    text-decoration: none;
+    color: #a0a0a0;
 }
 
 .see-process {
