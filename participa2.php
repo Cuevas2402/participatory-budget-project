@@ -1,3 +1,23 @@
+<?php
+    require 'config/db.php';
+    require 'config/config.php';
+    $db = new Database();
+    $pdo = $db -> connect();
+    $id = isset($_GET['id']) ? $_GET['id'] : '';
+    $token = isset($_GET['token']) ? $_GET['token'] : '';
+
+    if($id == '' && $token == ''){
+        echo "Error no se puedo encontrar nada";
+        exit;
+    }else{
+        $token_tmp = hash_hmac('sha1', $id, KEY_TOKEN);
+        if($token == $token_tmp){
+            $sql = $pdo->prepare("SELECT * FROM procesos, ambitos, municipios WHERE procesos.pid = '$id' and procesos.aid = ambitos.aid and procesos.mid = municipios.mid");
+            $sql->execute();
+            $rows = $sql->fetch();
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,48 +57,31 @@
         <div class="container">
             <div class="nav3">
                 <h5><a class="a-active" href="#">EL PROCESO</a></h5>
-                <h5><a href="registro.php">REGISTRO</a></h5>
+                <h5><a href="fases.php?id=<?php echo $id; ?>&token=<?php echo hash_hmac('sha1', $id, KEY_TOKEN );?>">FASES</a></h5>
                 <h5><a href="fichasActivas.php">FICHAS ACTIVAS</a></h5>
             </div> 
         </div>
     </div>
 
     <div class="container" style="margin-top: 5rem;">
-        <h2 style="text-align: center; font-weight: normal; font-size: 32px; font-weight: bold;">¡Apoya a tu Barrio y se Juez Auxiliar! 💪🏽🤠</h2>
-        <p style="text-align: center; margin-top: 2.5%;">Participa en la consulta extraordinaria para elegir a tu Juez o Jueza Auxiliar. Consulta la convocatoria y las bases para participar. No olvides que la historia de Monterrey la escribimos juntos las vecinos y vecinos en sus calles, colonias y barrios.</p>
+        <h2 style="text-align: center; font-weight: normal; font-size: 32px; font-weight: bold;">
+            <?php
+                echo $rows['titulo_proceso'];
+            ?>
+        </h2>
+        <p style="text-align: center; margin-top: 2.5%;">
+            <?php
+                echo $rows['subtitulo_proceso'];
+            ?>
+        </p>
     </div>
 
     <div class="container" style="margin-top: 5%; margin-bottom: 10rem;">
         <div class="row no-gutters">
             <div class="col-12 col-sm-12 col-md-8 col-12" style="padding: 0 25px 0 0;">
-                <p><b>¡Ven y ayúdanos a sembrar paz en Monterrey!</b></p>
-                <p>Participa a partir del 10 de Abril en la Consulta Extraordinaria para elegir a tu Juez o Jueza Auxiliar. Consulta las bases y alista tu documentación para iniciar el proceso de postulación. Puedes hacerlo en línea desde tu casa o acercándote a alguno de los Centros de Atención Ciudadana o diferentes puntos que instalaremos en todo el municipio para ayudarte en tu registro.</p>
-
-                   <p> Las candidaturas podrán registrarse a partir del 21 de Marzo y hasta el 09 de Abril. Entre más pronto te inscribas como candidato y cumplas con los requisitos para validar tu candidatura, podrás iniciar campaña en tu colonia y sección en el plazo antes descrito.</p>
-                    
-                   <p>Para poder votar por tu candidato o candidata, podrás hacerlo a partir del 24 Abril y hasta el 21 de Mayo.
-                    Participa e invita a que participen tus conocidos. No olvides que la historia de Monterrey la escribimos juntos las vecinos y vecinos en sus calles, colonias y barrios.</p>
-                <br>
-                <p><b>Requisitos</b></p>
-                <ul>
-                    <li>Ser ciudadano mexicano.</li>
-                    <li>Ser mayor de edad.</li>
-                    <li>Ser residente de la sección en la cual desarrollará el cargo.</li>
-                    <li>Estar en pleno uso de sus derechos civiles.</li>
-                    <li>Tener vocación de servicio</li>
-                    <li>No ser servidor público.</li>
-                    <li>No formar parte de algún partido político.</li>
-                </ul>
-                <br>
-                <p><b>¿Cómo participar?</b></p>
-                <ol>
-                    <li><b>REGISTRATE COMO ASPIRANTE DE TU SECCIÓN</b> en la plataforma https://decidimos.monterrey.gob.mx/processes/juecesauxiliares2023/f/72/ (Enlace externo) o en nuestros módulos: Palacio Municipal, Parque Aztlán, Parque Tucán, CAM Garza Sada de 8:00 a 16:00 hrs. Podrás hacerlo a partir del 21 de Marzo y hasta el 9 de Abril.</li>
-                    <li><b>SUBE TUS 3 PROPUESTAS</b> después de registrar tu candidatura, si deseas compartir tus ideas, postulalas en la sección de Propuestas Link</li>
-                    <li><b>ESPERA A QUE SE CONFIRME TU POSTULACIÓN</b> y se publique en el sitio tu Perfil.</li>
-                    <li><b>HAZ DIFUSIÓN EN TU COLONIA DE TU POSTULACIÓN E INVITA A QUE SE REGISTREN PARA VOTAR A TUS VECINOS Y VECINAS.</b> Promueve tus ideas de mejora de tu comunidad entre tus vecinos y vecinas. No olvides invitar a tus vecinos y vecinas para hacer que participen el mayor número de personas</li>
-                    <li><b>REGISTRO PARA VOTAR.</b> A partir del 21 de Marzo y hasta el 09 de Abril, deben registrarse los vecinos y vecinas para eligir y votar por la persona que más los represente como Juez o Jueza Auxiliar de su sección.</li>
-                    <li><b>RESULTADOS DE CONSULTA.</b> El día 5 de Junio se darán a conocer los resultados de la consulta.</li>
-                </ol>
+                <?php
+                    echo $rows['descripcion_c_proceso'];
+                ?>
             </div>
             <div class="col-6 col-md-4 col-sm-12 col-12">
                 <button type="button" class="btn btn-follow btn-lg" style="margin-left:10%; margin-bottom: 5%; width: 75%;"><span style="position: relative; top: 5px;" class="material-symbols-outlined">
@@ -86,124 +89,31 @@
                     </span> Seguir </button>
                
                 <ul class="list-group" style="text-align: center;">
-                    <li class="list-group-item"><p><b>QUÉ SE DECIDE</b></p><p>
-                        Los cargos de Juez y Jueza Auxiliar por sección</p></li>
-                    <li class="list-group-item"><p><b>QUIÉN PARTICIPA</b></p><p>Ciudadanos y ciudadanas mayores de edad</p></li>
-                    <li class="list-group-item"><p><b>CÓMO SE DECIDE</b></p><p>Mediante una consulta extraordinaria ciudadana vía plataforma digital</p></li>
-                    <li class="list-group-item"><p><b>ÁMBITO</b></p><p>Municipio de Monterrey</p></li>
-                    <li class="list-group-item"><p><b>GRUPO PROMOTOR</b></p><p>
-                        Secretaría del Ayuntamiento de Monterrey</p></li>
-                    <li class="list-group-item"><p><b>FECHA DE INICIO</b></p><p>21 de marzo de 2023</p></li>
+                    <li class="list-group-item"><p><b>ÁMBITO</b></p><p>
+                        <?php
+                            echo $rows['nombre_ambito'];
+                        ?>
+                    </p></li>
+                    <li class="list-group-item"><p><b>MUNICIPIO</b></p><p>
+                        <?php
+                            echo $rows['nombre_municipio'];
+                        ?>
+                    </p></li>
+                    <li class="list-group-item"><p><b>FECHA DE INICIO</b></p><p>
+                        <?php
+                            echo $rows['fecha_inicio_proceso'];
+                        ?>
+                    </p></li>
                     <li class="list-group-item"><p><b>FECHA DE FINALIZACIÓN</b></p><p>
-                        19 de junio de 2023</p></li>
+                        <?php
+                            echo $rows['fecha_fin_proceso'];
+                        ?>
+                    </p></li>
                   </ul>
             </div>
         </div>
     </div> 
 
-
-<div style="background-color: #F0F0F0; width: 100%; padding: 2%;">
-    <div class="container" style="margin-top: 0.5%; margin-bottom: 2.5%">
-        <h2 style="text-align: center; font-weight: normal; font-size: 32px; font-weight: bold;">FASE 2 DE 6</h2>
-        <!-- Start Timeline -->
-    </div>  
-  
-  <div class="timeline">
-    
-    <div class="vertical-line"></div>
-    <div class="vertical-line2"></div>
-    <div class="c-off-animate right-container">
-        <div class="circulo active"></div>
-        
-        <div class="t c2">
-            <div class="innerc">
-                <small>21 de marzo - 9 de abril</small>
-                <h4>Registro de Participantes y Propuestas</h4>
-            </div>
-            <div class="paddingc">
-                <p><b>Requisitos</b></p>
-                <ul>
-                    <li>Ser ciudadano mexicano.</li>
-                    <li>Ser mayor de edad.</li>
-                    <li>Ser residente de la sección en la cual desarrollará el cargo.</li>
-                    <li>Estar en pleno uso de sus derechos civiles.</li>
-                    <li>Tener vocación de servicio</li>
-                    <li>No ser servidor público.</li>
-                    <li>No formar parte de algún partido político.</li>
-                </ul>
-               
-            </div>
-            
-        </div>
-    </div>
-    <div class="c-off-animate right-container">
-        <div class="circulo active"></div>
-        
-        <div class="t c2">
-            <div class="innerActive">
-                <small>10 a 23 de abril</small>
-                <h4>Validación de Registro de Participantes Y Propuestas</h4>
-            </div>
-            <div class="paddingc">
-                <p>Validación de la documentación de las personas registradas a participar como Juez o Jueza Auxiliar en la Consulta Extraordinaria.</p>
-            </div>
-            
-        </div>
-    </div>
-
-    <div class="c-off-animate right-container">
-        <div class="circulo down"></div>
-        
-        <div class="t c2">
-            <div class="innerDown">
-                <small>24 de abril - 21 de mayo</small>
-                <h4>Votación de la Consulta Extraoridinaria</h4>
-            </div>
-            <div class="paddingc">
-                <p>Etapa para que la población de Monterrey participe en la Consulta Extraoridinaria para elegir a sus Jueces y Juezas Auxiliares. Desde la promoción, la consulta y el procesamiento de la información.</p>
-            </div>
-            
-        </div>
-    </div>
-
-    <div class="c-off-animate right-container">
-        <div class="circulo down"></div>
-        
-        <div class="t c2">
-            <div class="innerDown">
-                <small>22 de mayo - 4 de junio</small>
-                <h4>Validación de Consulta</h4>
-            </div>
-            <div class="paddingc">
-                <p>Etapa para la Validación de la votación emitida por la población de Monterrey que participó en la Consulta Extraordinaria.</p>
-            </div>
-            
-        </div>
-    </div>
-
-
-    <div class="c-off-animate right-container">
-        <div class="circulo down"></div>
-        
-        <div class="t c2">
-            <div class="innerDown">
-                <small>5 de junio - 19 de junio</small>
-                <h4>Publicación de Resultados ✨🤩</h4>
-            </div>
-            <div class="paddingc">
-                <p>Etapa para la publicación de resultados de Jueces y Juezas Auxiliares electas en la consulta extraordinaria.</p>
-            </div>
-            
-        </div>
-    </div>
-
-
-
-    
-  </div>
-  <!-- End Timeline -->
-    </div>  
-</div>
     
   <!-- Start Footer -->
   <footer style="margin-bottom: -5rem;">
@@ -223,3 +133,14 @@
   <!-- End Footer -->
 </body>
 </html>
+
+<?php
+            
+            $sql->closeCursor();
+          
+        }else{
+            echo 'Error al procesar peticion';
+            exit;
+        }
+    }
+?>

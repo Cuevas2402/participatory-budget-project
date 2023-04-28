@@ -72,7 +72,7 @@
                                     echo $row['descripcion_proceso'];
                                 ?>
                             <center>
-                                <button class="process-featured-button-1">Más información</button>
+                                <a href="participa2.php?id=<?php echo $row['pid']; ?>&token=<?php echo hash_hmac('sha1', $row['pid'], KEY_TOKEN );?>" ><button class="process-featured-button-1">Más información</button></a>
                                 <button class="process-featured-button-2">PARTICIPAR</button>
                             </center>
                         </div>
@@ -133,12 +133,12 @@
                         <select  id="distritos" name="distritos" class="process-select" type="text">
                             <option value="0" selected>Todos</option>
                             <?php
-                                $stmt = $pdo->prepare("CALL get_distritos()");
+                                $stmt = $pdo->prepare("CALL get_municipios()");
                                 $stmt->execute();
                                 $rows = $stmt->fetchAll();
                                 foreach($rows as $row){
                                     ?>
-                                        <option value="<?php echo $row['did']?>" ><?php echo $row['nombre_distrito'] ?></option>
+                                        <option value="<?php echo $row['mid']?>" ><?php echo $row['nombre_municipio'] ?></option>
                                     <?php
 
                                 }
@@ -173,7 +173,7 @@
                                                 <p class="process-date-card"><strong>Ambito:</strong> <?php echo $row['nombre_ambito'];?> </p>
                                             </li>
                                             <li class="list-group-item " style="background-color: white;">
-                                                <p class="process-date-card"><strong>Distrito:</strong> <?php echo $row['nombre_distrito'];?> </p>
+                                                <p class="process-date-card"><strong>Municipio:</strong> <?php echo $row['nombre_municipio'];?> </p>
                                             </li>
                                             <li class="list-group-item" style="background-color: white;">
                                                 <div class="row d-flex align-items-center">
@@ -196,7 +196,7 @@
                                             <li class="list-group-item d-flex flex-column" style="background-color: #ead9d8">
                                                 <p class="process-status-card"><strong>Fase actual</strong></p>
                                                 <button class="process-button"><?php echo $row['titulo_fase'];?></button>
-                                                <a href="#"><button class="process-button-card"><strong>Más información</strong></button></a>
+                                                <a href="participa2.php?id=<?php echo $row['pid']; ?>&token=<?php echo hash_hmac('sha1', $row['pid'], KEY_TOKEN );?>" ><button class="process-button-card"><strong>Más información</strong></button></a>
                                             </li>
                                         </ul>
                                     </div>
