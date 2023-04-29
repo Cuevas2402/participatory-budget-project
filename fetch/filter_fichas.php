@@ -6,7 +6,7 @@
     if(isset($_POST['datos']) ){
         $datos = $_POST['datos'];
         foreach($datos as $data){
-            $sql = $pdo->prepare("SELECT * FROM procesos, participaciones, usuarios, distritos WHERE procesos.pid = '$data' and procesos.pid = participaciones.pid AND usuarios.uid = participaciones.uid and distritos.did = participaciones.did");
+            $sql = $pdo->prepare("SELECT * FROM participaciones, usuarios, distritos WHERE participaciones.pid = '$data' AND usuarios.uid = participaciones.uid and distritos.did = participaciones.did");
             $sql->execute();
             $rows = $sql->fetchAll();
             foreach($rows as $row){
@@ -46,7 +46,7 @@
         }
     }else{
         $id = $_POST['id'];
-        $sql = $pdo->prepare("SELECT * FROM procesos, participaciones, usuarios, distritos WHERE procesos.pid = '$id' and procesos.pid = participaciones.pid AND usuarios.uid = participaciones.uid and distritos.did = participaciones.did");
+        $sql = $pdo->prepare("SELECT * FROM participaciones, usuarios, distritos WHERE participaciones.pid = '$id' AND usuarios.uid = participaciones.uid and distritos.did = participaciones.did");
         $sql->execute();
         $rows = $sql->fetchAll();
         foreach($rows as $row){
