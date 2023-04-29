@@ -85,8 +85,10 @@
         <!-- End Navbar -->
         
         <!-- Start process card -->
-        <div class="card-section">
-            <h1 class="section-title">Consulta Extraordinaria para la selección de jueces y juezas auxiliares</h1>
+        <div>
+            <img src="img/h321px.jpg" class="img-fluid d-none d-md-block w-100">
+            <img src="img/h641px.jpg" class="img-fluid d-none d-sm-block d-md-none w-100">
+            <img src="img/h1920px.jpg" class="img-fluid d-block d-sm-none d-md-none w-100">
         </div>
         <!-- End process card  -->
 

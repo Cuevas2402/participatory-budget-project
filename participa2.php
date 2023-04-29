@@ -86,9 +86,11 @@
     <!-- End Navbar -->
 
 
-    <div class="card-section" style="margin-bottom: 0;">
-        <h1 class="section-title">Consulta Extraordinaria para la selección de jueces y juezas auxiliares</h1>
-    </div>
+    <div>
+        <img src="img/h321px.jpg" class="img-fluid d-none d-md-block w-100">
+        <img src="img/h641px.jpg" class="img-fluid d-none d-sm-block d-md-none w-100">
+        <img src="img/h1920px.jpg" class="img-fluid d-block d-sm-none d-md-none w-100">
+    </div>  
     <div style="border-bottom: 1px solid rgba(0, 0, 0, 0.25);">
         <div class="container">
             <div class="nav3">

@@ -6,6 +6,10 @@
     if(isset($_POST['datos']) && isset($_POST['id'])){
         $busqueda = $_POST['datos'];
         $id = $_POST['id'];
+        //sanitizar el string
+        //$busqueda = $pdo->quote($busqueda); //Escapar el string de caracteres espciales 
+        $busqueda = filter_var($busqueda, FILTER_SANITIZE_STRING); 
+
         // Definir el parametro
         $busqueda = '%'.$busqueda.'%';
         $sql = $pdo->prepare("SELECT participaciones.*, usuarios.*, distritos.* FROM participaciones INNER JOIN usuarios ON participaciones.uid = usuarios.uid INNER JOIN distritos ON distritos.did = participaciones.did WHERE pid = ? AND (LOWER(titulo_registro) LIKE ? OR LOWER(propuesta) LIKE ? OR LOWER(nombre) LIKE ? OR participaciones.uid LIKE ?)");
