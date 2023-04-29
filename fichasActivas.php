@@ -41,6 +41,8 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+        <!-- JQuery -->
+        <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
     </head>
 
     <body style="font-family: Roboto;">
@@ -172,7 +174,7 @@
                         </li>
                         <li class="list-group-item" style="background-color: #EAD9D8;">
                             <form class="d-flex my-3 m-2">
-                                <input class="form-control" type="search" placeholder="Buscar" aria-label="Search">
+                                <input class="form-control" type="search" placeholder="Buscar usuario, titulo, descripción ..." aria-label="Search">
                                 <button class="btn buscar" type="submit">
                                     <i class='fa-solid fa-magnifying-glass'></i>
                                 </button>
@@ -180,7 +182,7 @@
                         </li>
                         <li class="list-group-item" style="background-color: #EAD9D8;">
                             <div class="m-2">
-                                <p><b>Ámbito</b></p>
+                                <p><b>Distritos</b></p>
                                 <?php
                                     $sql = $pdo->prepare("SELECT * FROM procesos, municipios, distritos WHERE procesos.pid = '$id' AND procesos.mid = municipios.mid AND municipios.mid =  distritos.mid;");
                                     $sql->execute();
@@ -224,7 +226,7 @@
                             </div>
                             <!-- start cards nuevo -->
                             <div class="container text-center" style="margin-top: 1rem;">
-                                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-2 d-flex align-items-stretch g-3">
+                                <div class="filter row row-cols-1 row-cols-md-2 row-cols-lg-2 d-flex align-items-stretch g-3">
                                     <?php
                                         $sql = $pdo->prepare("SELECT * FROM procesos, participaciones, usuarios, distritos WHERE procesos.pid = '$id' and procesos.pid = participaciones.pid AND usuarios.uid = participaciones.uid and distritos.did = participaciones.did");
                                         $sql->execute();
@@ -293,7 +295,7 @@
         <!-- End Footer -->
 
         <!-- JS Script -->
-        <script>
+        <!--<script>
             // Selecciona el checkbox con la etiqueta "Todas"
             const checkAll = document.getElementById('checkAll');
 
@@ -377,6 +379,32 @@
             cerrarPopup.onclick = function() {
                 popup.style.display = "none";
             }
+        </script>-->
+
+        <script type="text/javascript">  
+            $(document).ready(function(){
+                $('input[type="checkbox"]').on('change', function() { // Cada que haya un cambio en un checkbox salta el evento
+                    var valores = $('input[type="checkbox"]:checked').map(function() { return $(this).val(); }).get();  // Almacena los valores de los checkbox marcados y los mete en un arreglo
+                    var did = "<?php echo $id; ?>";
+                    console.log(valores);
+                    $.ajax({
+                        url: "fetch/filter_fichas.php",
+                        type: "POST",
+                        data: {
+                            datos: valores,
+                            id: did
+                        }, 
+                        beforeSend:() =>{
+                            $('.filter').html("<span>Working ... </span>");
+                        },
+                        success:function(data){
+                            $('.filter').html(data);
+                        }
+
+                    });
+                });
+            });
+            
         </script>
     </body>
 </html>
