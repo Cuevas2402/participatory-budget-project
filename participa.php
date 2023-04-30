@@ -51,10 +51,8 @@
                     <a class="nav-link" href="ayuda.php">Ayuda</a>
                 </li>
                 </ul>
-                <div class="text-center">
-                    <a href="registrarse.php"><button class="btn me-3 my-3 registra">Regístrate</button></a>
-                    <a href="sesion.php"><button class="btn ms-3 my-3 inicia">Inicia Sesión</button></a>
-                </div>
+                <!-- (Iniciar Sesión / Registrarse) o Sesion Inicada -->
+				<?php require 'components/login.php' ?>
             </div>
         </div>
     </nav>
