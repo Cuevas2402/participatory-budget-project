@@ -20,188 +20,163 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
 </head>
-
 <body style="font-family: Roboto;">
-    <!-- Start Navbar -->
-    <nav class="navbar navbar-expand-lg">
-        <div class="container">
-          <a class="navbar-brand" href="#"><img src="img/logo.png" style="width: 200px;" alt="LOGO"></a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse mx-auto" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mx-auto mb-2 mb-lg-0 text-center">
-              <li class="nav-item">
-                <a class="nav-link" href="index.php">Inicio</a>
-              </li>
-              <li class="nav-item mx-5">
-                <a class="nav-link" href="participa.php">Participa</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="ayuda.php">Ayuda</a>
-              </li>
-            </ul>
-            <div class="text-center">
-                <a href="registrarse.php"><button class="btn me-3 my-3 registra">Regístrate</button></a>
-                <a href="sesion.php"><button class="btn ms-3 my-3 inicia">Inicia Sesión</button></a>
-            </div>
-          </div>
-        </div>
-      </nav>
-      <!-- Start search bar-->
+	<!-- Start Navbar -->
+	<nav class="navbar navbar-expand-lg">
+		<div class="container">
+			<a class="navbar-brand" href="#"><img src="img/logo.png" style="width: 200px;" alt="LOGO"></a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse mx-auto" id="navbarSupportedContent">
+				<ul class="navbar-nav me-auto mx-auto mb-2 mb-lg-0 text-center">
+				<li class="nav-item">
+					<a class="nav-link" href="index.php">Inicio</a>
+				</li>
+				<li class="nav-item mx-5">
+					<a class="nav-link" href="participa.php">Participa</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="ayuda.php">Ayuda</a>
+				</li>
+				</ul>
+				<div class="text-center">
+					<a href="registrarse.php"><button class="btn me-3 my-3 registra">Regístrate</button></a>
+					<a href="sesion.php"><button class="btn ms-3 my-3 inicia">Inicia Sesión</button></a>
+				</div>
+			</div>
+		</div>
+	</nav>
+	<!-- Start search bar-->
 
-      <?php require 'components/search_bar.php'; ?>
-      
-      <!-- End search bar-->
+	<?php require 'components/search_bar.php'; ?>
+	
+	<!-- End search bar-->
 
-      <!-- End Navbar -->
-    
-      <div class="container d-flex justify-content-center text-center" style="margin-top: 5%;">
-          <h2 style="font-weight: 600;">REGISTRATE </h2>
-      </div>
+	<!-- End Navbar -->
+	
+	<div class="container d-flex justify-content-center text-center" style="margin-top: 5%;">
+		<h2 style="font-weight: 600;">REGISTRATE </h2>
+	</div>
 
-      <div class="container mt-4">
-        <center><p style="font-weight: 300;">¿Ya tienes una cuenta? <a href="">Iniciar Sesión</a></p></center>
-        <center><p style="font-weight: 300;">¿Olvidaste tu contraseña? <a href="">Recuperar Contraseña</a></p></center>
-        <center><p style="font-weight: 300;">¿No has recibido las instrucciones de confirmación? <a href="">Recibir Instrucciones</a></p></center>
-      </div>
+	<div class="container mensaje mt-5">
+		<div class="container form-div d-flex justify-content-center" style="margin-top: 3%; width: 70%;">
+			<form class="form-r needs-validation" style="width: 75%;" method="POST" id="form" novalidate>
+				<div class="form-group f-register"  >
+					<i><p style="font-weight: 500; color: #894B5D;"> * Los campos requeridos están marcados con un asterisco</p></i>
 
-      <div class="container mensaje mt-5">
-        <div class="container form-div d-flex justify-content-center" style="margin-top: 3%; width: 70%;">
-            <form class="needs-validation" style="width: 75%;" id="form" action="fetch/registrar.php" method="POST" novalidate>
-                <div class="form-group f-register"  >
-                    <i><p style="font-weight: 500; color: #894B5D;"> * Los campos requeridos están marcados con un asterisco</p></i>
+					<div>
+						<label class="label-register">Tu nombre *</label>
+						<small><i><small><p>Nombre público que aparecera en la pagina</p></small></i></small>
+						<input type="nombre" class="nombre form-control w-100" name="nombre" id="nombre" placeholder="joseman" required>
+						<div class="valid-feedback">
+							Todo bien
+						</div>
+						<div class="invalid-feedback">
+							Campo Obligatorio
+						</div>
+					</div>
 
-                    <div>
-                      <label class="label-register">Tu nombre *</label>
-                      <small><i><small><p>Nombre público que aparecera en la pagina</p></small></i></small>
-                      <input type="nombre" class="form-control w-100" name="nombre" id="nombre" placeholder="joseman" required>
-                      <div class="valid-feedback">
-                        Todo bien
-                      </div>
-                      <div class="invalid-feedback">
-                        Campo Obligatorio
-                      </div>
-                    </div>
+					<div>
+						<label class="label-register">Tu correo electrónico*</label>
+						<input type="email" class="email form-control w-100" name="email" id="email" placeholder="jose.gallegos@udem.edu" required>
+						<div class="valid-feedback">
+							Todo bien
+						</div>
+						<div class="invalid-feedback">
+							Campo Obligatorio
+						</div>
+					</div>
 
-                    <div>
-                      <label class="label-register">Tu correo electrónico*</label>
-                      <input type="email" class="form-control w-100" name="email" id="email" placeholder="jose.gallegos@udem.edu" required>
-                      <div class="valid-feedback">
-                        Todo bien
-                      </div>
-                      <div class="invalid-feedback">
-                        Campo Obligatorio
-                      </div>
-                    </div>
+					<div>
+						<label class="label-register">Número de Teléfono *</label>
+						<input type="phone" class="telefono form-control w-100" name="telefono" id="telefono" placeholder="11111111111" required>
+						<div class="valid-feedback">
+							Todo bien
+						</div>
+						<div class="invalid-feedback">
+							Campo Obligatorio
+						</div>
+					</div>
 
-                    <div>
-                      <label class="label-register">Número de Teléfono *</label>
-                      <input type="phone" class="form-control w-100" name="telefono" id="telefono" placeholder="11111111111" required>
-                      <div class="valid-feedback">
-                        Todo bien
-                      </div>
-                      <div class="invalid-feedback">
-                        Campo Obligatorio
-                      </div>
-                    </div>
+					<div>
+						<label class="label-register">Contraseña *</label>
+						<small><i><small><p>  Minimo 10 caracteres</p></small></i></small>
+						<input type="password" class=" contrasena form-control w-100" name="constrasena" id="contrasena" placeholder="contraseña" required>
+						<div class="valid-feedback">
+							Todo bien
+						</div>
+						<div class="invalid-feedback">
+							Campo Obligatorio
+						</div>
+					</div>
+					
+					<p class="mt-2"><input type="checkbox"> Aceptar los Términos de Uso</p>
+					<small><i><small><p> Al registrarte aceptas los Términos y Condiciones de Uso. <a href="/"> Puedes revisar el aviso de privacidad integral aqui. </a></p></small></i></small>
 
-                    <div>
-                      <label class="label-register">Contraseña *</label>
-                      <small><i><small><p>  Minimo 10 caracteres</p></small></i></small>
-                      <input type="password" class="form-control w-100" name="constraseña" id="contraseña" placeholder="contraseña" required>
-                      <div class="valid-feedback">
-                        Todo bien
-                      </div>
-                      <div class="invalid-feedback">
-                        Campo Obligatorio
-                      </div>
-                    </div>
-                    
-                    <p class="mt-2"><input type="checkbox"> Aceptar los Términos de Uso</p>
-                    <small><i><small><p> Al registrarte aceptas los Términos y Condiciones de Uso. <a href="/"> Puedes revisar el aviso de privacidad integral aqui. </a></p></small></i></small>
+					<p class="mt-2"><input type="checkbox"> Aceptar Permiso de Contacto</p>
+					<small><i><small><p> Al marcar esta opción aceptas que recibiras un boletín ocasional con información relevante.</p></small></i></small>
 
-                    <p class="mt-2"><input type="checkbox"> Aceptar Permiso de Contacto</p>
-                    <small><i><small><p> Al marcar esta opción aceptas que recibiras un boletín ocasional con información relevante.</p></small></i></small>
+					<center><button class="process-featured-button-2-large mt-5" type="submit"> REGISTRARTE</button></center>
 
-                    <center><button class="process-featured-button-2-large mt-5"> REGISTRARTE</button></center>
-                </div>
-            </form>
-        </div>
-    </div>
+					<div class="container mt-4">
+						<center><p style="font-weight: 300;">¿Ya tienes una cuenta? <a href="">Iniciar Sesión</a></p></center>
+						<center><p style="font-weight: 300;">¿Olvidaste tu contraseña? <a href="">Recuperar Contraseña</a></p></center>
+						<center><p style="font-weight: 300;">¿No has recibido las instrucciones de confirmación? <a href="">Recibir Instrucciones</a></p></center>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
 
-    <!-- Start Footer -->
-    <footer style="margin-bottom: -5rem;">
-      <div class="footer-content" >
-          <ul class="socials">
-              <li><a href="#"><i class="fa fa-twitter-square"></i></a></li>
-              <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-              <li><a href="#"><i class="fa fa-facebook-square"></i></a></li>
-          </ul>
-          <p><a href="http://" target="_blank">Términos y condiciones</a></p>
-          <p><a href="http://" target="_blank">Descargar ficheros de datos abiertos</a></p>
-      </div>
-      <div class="footer-bottom">
-          <p>Este programa es público, ajeno a cualquier partido político. Queda prohibido el uso para fines distintos a los establecidos en el Programa.</p>
-      </div>
-    </footer>
-  <!-- End Footer -->
+	<!-- Start Footer -->
+	<footer style="margin-bottom: -5rem;">
+		<div class="footer-content" >
+			<ul class="socials">
+				<li><a href="#"><i class="fa fa-twitter-square"></i></a></li>
+				<li><a href="#"><i class="fa fa-instagram"></i></a></li>
+				<li><a href="#"><i class="fa fa-facebook-square"></i></a></li>
+			</ul>
+			<p><a href="http://" target="_blank">Términos y condiciones</a></p>
+			<p><a href="http://" target="_blank">Descargar ficheros de datos abiertos</a></p>
+		</div>
+		<div class="footer-bottom">
+			<p>Este programa es público, ajeno a cualquier partido político. Queda prohibido el uso para fines distintos a los establecidos en el Programa.</p>
+		</div>
+	</footer>
+	<!-- End Footer -->
 
-    <script>
-      // Example starter JavaScript for disabling form submissions if there are invalid fields
-      (function () {
-        'use strict'
+	<script>
+	
+		// Registrar datos
+		$(document).ready(function(){
+			$('.form-r').on('submit', function(){
+				var nombre = $('.nombre').val();
+				var contrasena = $('.contrasena').val();
+				var email = $('.email').val();
+				var telefono = $('.telefono').val();
+				console.log(contrasena);
+				$.ajax({
+					url: "fetch/registrar.php",
+					type: "POST",
+					data: {
+						nombre: nombre,
+						email: email,
+						telefono: telefono,
+						contrasena: contrasena
+					}, 
+					success:function(data){
+						$('.mensaje').html(data);
+					}
 
-        // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        var forms = document.querySelectorAll('.needs-validation')
+				});
+			});
+		});
+	</script>
 
-        // Loop over them and prevent submission
-        Array.prototype.slice.call(forms)
-          .forEach(function (form) {
-            form.addEventListener('submit', function (event) {
-              if (!form.checkValidity()) {
-                event.preventDefault()
-                event.stopPropagation()
-              }
-
-              form.classList.add('was-validated')
-            }, false)
-          });
-      })();
-
-      // Registrar datos
-      $(document).ready(function(){
-                $('.needs-validation').on('submit', function(){
-                    var nombre = $('input[name="nombre"]').val();
-                    var contraseña = $('input[name="contraseña"]').val();
-                    var email = $('input[name="email"]').val();
-                    var telefono = $('input[name="telefono"]').val();
-                    $.ajax({
-                        url: "fetch/registrar.php",
-                        type: "POST",
-                        data: {
-                            nombre: ambitos,
-                            constraseña: municipios,
-                            email: estado,
-                            telefono
-                        }, 
-                        beforeSend:() =>{
-                            $('.filter').html("<span>Working ... </span>");
-                        },
-                        success:function(data){
-                            $('.mensaje').html(data);
-                        }
-
-                    });
-                });
-            });
-    </script>
-
-    
-
-    <script src="js/script.js"></script>
-
-  </body>
-
+	<script src="js/script.js"></script>
+</body>
 </html>
