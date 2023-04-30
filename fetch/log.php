@@ -19,13 +19,14 @@
             $count = $sql->rowCount();
             $sql->closeCursor();
             /* Ejecutar consulta */
-
+            
             if($count > 0){
                 if(!isset($_SESSION)){ 
                     session_start(); 
                 }
-
-                $_SESSION['']= 
+                
+                $_SESSION['id'] = $row['uid'];
+                $_SESSION['nombre'] = $row['nombre']; 
 
 
                 header("Location: ../sesion.php?exito=true");
