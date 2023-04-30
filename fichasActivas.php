@@ -5,8 +5,8 @@
     $token = isset($_GET['token']) ? $_GET['token'] : '';
 
     if($id == '' && $token == ''){
-        echo "Error no se puedo encontrar nada";
-        exit;
+        header("Location: components/404.php");
+        exit();
     }else{
         $token_tmp = hash_hmac('sha1', $id, KEY_TOKEN);
         if($token == $token_tmp){
@@ -56,7 +56,7 @@
                     <a class="nav-link" href="index.php">Inicio</a>
                 </li>
                 <li class="nav-item mx-5">
-                    <a class="nav-link" style="color: black;" href="participa.php">Participa</a>
+                    <a class="nav-link a-active" href="participa.php">Participa</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="ayuda.php">Ayuda</a>
@@ -420,8 +420,8 @@
 
 <?php
         }else{
-            echo 'Error al procesar peticion';
-            exit;
+            header("Location: /components/404.php");
+            exit();
         }
     }
         //$stmt->closeCursor();

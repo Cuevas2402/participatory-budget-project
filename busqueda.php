@@ -306,6 +306,7 @@
 <?php
 
     }else{
-        echo "Error";
+        header("Location: /components/404.php");
+        exit();
     }
 ?>

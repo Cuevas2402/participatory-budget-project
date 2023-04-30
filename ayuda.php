@@ -40,7 +40,7 @@
 					<a class="nav-link" href="participa.php">Participa</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" style="color: black;"  href="ayuda.php">Ayuda</a>
+					<a class="nav-link a-active" href="ayuda.php">Ayuda</a>
 				</li>
 				</ul>
 				<div class="text-center">

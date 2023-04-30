@@ -22,6 +22,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <!-- JQuery -->
     <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+	<!-- POPPER.JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.3/umd/popper.min.js" integrity="sha512-QCxgIH+YRz9tSvQ2hXFV7iMGyKp4o30a4qH1zZLkTkZiWpy9Xblb70wuPpGX7z0dFkj0V7Pw37ayEiK7fLQY6Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 </head>
 <body style="font-family: Roboto;">
 	<!-- Start Navbar -->
@@ -62,9 +65,9 @@
 		<h2 style="font-weight: 600;">REGISTRATE </h2>
 	</div>
 
-	<div class="container mensaje mt-5">
-		<div class="container form-div d-flex justify-content-center" style="margin-top: 3%; width: 70%;">
-			<form class="form-r needs-validation" style="width: 75%;" method="POST" id="form" novalidate>
+	<div class="container  mensaje mt-5">
+		<div class=" container form-div d-flex justify-content-center" style="margin-top: 3%; width: 70%;">
+			<form class="form-r needs-validation" style="width: 75%;"  action="fetch/registrar.php" method="POST" id="form" novalidate>
 				<div class="form-group f-register"  >
 					<i><p style="font-weight: 500; color: #894B5D;"> * Los campos requeridos están marcados con un asterisco</p></i>
 
@@ -105,7 +108,7 @@
 					<div>
 						<label class="label-register">Contraseña *</label>
 						<small><i><small><p>  Minimo 10 caracteres</p></small></i></small>
-						<input type="password" class=" contrasena form-control w-100" name="constrasena" id="contrasena" placeholder="contraseña" required>
+						<input type="password" class=" contrasena form-control w-100" name="contrasena" id="contrasena" placeholder="contraseña" required>
 						<div class="valid-feedback">
 							Todo bien
 						</div>
@@ -149,34 +152,108 @@
 	</footer>
 	<!-- End Footer -->
 
-	<script>
-	
-		// Registrar datos
-		$(document).ready(function(){
-			$('.form-r').on('submit', function(){
-				var nombre = $('.nombre').val();
-				var contrasena = $('.contrasena').val();
-				var email = $('.email').val();
-				var telefono = $('.telefono').val();
-				console.log(contrasena);
-				$.ajax({
-					url: "fetch/registrar.php",
-					type: "POST",
-					data: {
-						nombre: nombre,
-						email: email,
-						telefono: telefono,
-						contrasena: contrasena
-					}, 
-					success:function(data){
-						$('.mensaje').html(data);
-					}
+	<!-- MODALES -->
 
+		<!-- MODAL NOMBRE -->
+		<div class="modal fade" id="nombreEnUsoModal" tabindex="-1" role="dialog" aria-labelledby="nombreEnUsoModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="nombreEnUsoModalLabel">El nombre de usuario ya está en uso</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						Por favor, elige otro nombre de usuario.
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- FIN MODAL NOMBRE-->
+
+		<!-- MODAL CORREO -->
+		<div class="modal fade" id="correoenUso" tabindex="-1" role="dialog" aria-labelledby="correoenUsoLabel" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="correoenUsoModalLabel">El correo ya está en uso</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						Por favor, elige otro correo.
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- FIN MODAL CORREO-->
+
+
+		<!-- MODAL EXITO -->
+		<div class="modal fade" id="exito" tabindex="-1" role="dialog" aria-labelledby="exitoLabel" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exitolLabel">Registro exitoso</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						Puedes comenzar a participar en procesos y votar por propuestas 🥳
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- FIN MODAL EXITO-->
+
+	<!-- FIN MODALES -->
+
+	<!-- CODIGO PARA DESPLEGAR MODALES -->
+	<?php
+		if (isset($_GET['nombreEnUso']) && $_GET['nombreEnUso'] === 'true') {
+			?>
+			<script>
+				$(document).ready(function() {
+					$('#nombreEnUsoModal').modal('show');
 				});
-			});
-		});
-	</script>
+			</script>
+			<?php
+		}
 
+		if (isset($_GET['correoenUso']) && $_GET['correoenUso'] === 'true') {
+			?>
+			<script>
+				$(document).ready(function() {
+					$('#correoenUso').modal('show');
+				});
+			</script>
+			<?php
+		}
+
+		if (isset($_GET['exito']) && $_GET['exito'] === 'true') {
+			?>
+			<script>
+				$(document).ready(function() {
+					$('#exito').modal('show');
+				});
+			</script>
+			<?php
+		}
+	?>
+
+	<!-- FIN CODIGO PARA DESPLEGAR MODALES -->
 	<script src="js/script.js"></script>
 </body>
 </html>
