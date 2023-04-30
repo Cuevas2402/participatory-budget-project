@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,40 +25,37 @@
 </head>
 <body style="font-family: Roboto;">
     <!-- Start Navbar -->
-    <!-- Start Navbar -->
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-        <a class="navbar-brand" href="#"><img src="img/logo.png" style="width: 200px;" alt="LOGO"></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse mx-auto" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mx-auto mb-2 mb-lg-0 text-center">
-            <li class="nav-item">
-                <a class="nav-link" href="index.php">Inicio</a>
-            </li>
-            <li class="nav-item mx-5">
-                <a class="nav-link" href="participa.php">Participa</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" style="color: black;"  href="ayuda.php">Ayuda</a>
-            </li>
-            </ul>
-            <div class="text-center">
-                <a href="registrarse.php"><button class="btn me-3 my-3 registra">Regístrate</button></a>
-                <a href="sesion.php"><button class="btn ms-3 my-3 inicia">Inicia Sesión</button></a>
-            </div>
-        </div>
+			<a class="navbar-brand" href="#"><img src="img/logo.png" style="width: 200px;" alt="LOGO"></a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse mx-auto" id="navbarSupportedContent">
+				<ul class="navbar-nav me-auto mx-auto mb-2 mb-lg-0 text-center">
+				<li class="nav-item">
+					<a class="nav-link" href="index.php">Inicio</a>
+				</li>
+				<li class="nav-item mx-5">
+					<a class="nav-link" href="participa.php">Participa</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" style="color: black;"  href="ayuda.php">Ayuda</a>
+				</li>
+				</ul>
+				<div class="text-center">
+					<a href="registrarse.php"><button class="btn me-3 my-3 registra">Regístrate</button></a>
+					<a href="sesion.php"><button class="btn ms-3 my-3 inicia">Inicia Sesión</button></a>
+				</div>
+			</div>
         </div>
     </nav>
     <!-- Start search bar-->
 
-    <?php require 'components/search_bar.php'; ?>
-    
-    <!-- End search bar-->
+	<?php require 'components/search_bar.php'; ?>
+		
+	<!-- End search bar-->
 
-    
-    <!-- End Navbar -->
     <!-- End Navbar -->
     
     <div class="contenido">
@@ -417,23 +413,22 @@
         </div>
     </footer>
 
+	<!--& SCRIPT PARA SECCIONES -->
+	<script>
+		function openCat(evt, categoria) {
+			var i, tabcontent, tablinks;
+			tabcontent = document.getElementsByClassName("tabcontent");
+			for (i = 0; i < tabcontent.length; i++) {
+				tabcontent[i].style.display = "none";
+			}
+			tablinks = document.getElementsByClassName("tablinks");
+			for (i = 0; i < tablinks.length; i++) {
+				tablinks[i].className = tablinks[i].className.replace(" active", "");
+			}
+			document.getElementById(categoria).style.display = "block";
+			evt.currentTarget.className += " active";
+		}
+	</script>
 </body>
 </html>
 
-<!--& SCRIPT PARA SECCIONES -->
-<script>
-    function openCat(evt, categoria) {
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
-        }
-        tablinks = document.getElementsByClassName("tablinks");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace(" active", "");
-        }
-        document.getElementById(categoria).style.display = "block";
-        evt.currentTarget.className += " active";
-    }
-</script>
-</html>

@@ -426,7 +426,6 @@
 </html>
 
 <?php
-            
         }else{
             echo 'Error al procesar peticion';
             exit;

@@ -60,14 +60,14 @@
       <div class="container d-flex justify-content-center text-center" style="margin-top: 5%;">
           <h2 style="font-weight: 600;">REGISTRATE </h2>
       </div>
-      
+
       <div class="container mt-4">
         <center><p style="font-weight: 300;">¿Ya tienes una cuenta? <a href="">Iniciar Sesión</a></p></center>
         <center><p style="font-weight: 300;">¿Olvidaste tu contraseña? <a href="">Recuperar Contraseña</a></p></center>
         <center><p style="font-weight: 300;">¿No has recibido las instrucciones de confirmación? <a href="">Recibir Instrucciones</a></p></center>
       </div>
 
-      <div class="container mt-5">
+      <div class="container mensaje mt-5">
         <div class="container form-div d-flex justify-content-center" style="margin-top: 3%; width: 70%;">
             <form class="needs-validation" style="width: 75%;" id="form" action="fetch/registrar.php" method="POST" novalidate>
                 <div class="form-group f-register"  >
@@ -76,7 +76,7 @@
                     <div>
                       <label class="label-register">Tu nombre *</label>
                       <small><i><small><p>Nombre público que aparecera en la pagina</p></small></i></small>
-                      <input type="nombre" class="form-control w-100" id="nombre" placeholder="joseman" required>
+                      <input type="nombre" class="form-control w-100" name="nombre" id="nombre" placeholder="joseman" required>
                       <div class="valid-feedback">
                         Todo bien
                       </div>
@@ -169,7 +169,37 @@
             }, false)
           });
       })();
+
+      // Registrar datos
+      $(document).ready(function(){
+                $('.needs-validation').on('submit', function(){
+                    var nombre = $('input[name="nombre"]').val();
+                    var contraseña = $('input[name="contraseña"]').val();
+                    var email = $('input[name="email"]').val();
+                    var telefono = $('input[name="telefono"]').val();
+                    $.ajax({
+                        url: "fetch/registrar.php",
+                        type: "POST",
+                        data: {
+                            nombre: ambitos,
+                            constraseña: municipios,
+                            email: estado,
+                            telefono
+                        }, 
+                        beforeSend:() =>{
+                            $('.filter').html("<span>Working ... </span>");
+                        },
+                        success:function(data){
+                            $('.mensaje').html(data);
+                        }
+
+                    });
+                });
+            });
     </script>
+
+    
+
     <script src="js/script.js"></script>
 
   </body>
