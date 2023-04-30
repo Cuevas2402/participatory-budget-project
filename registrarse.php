@@ -49,160 +49,129 @@
           </div>
         </div>
       </nav>
-      <div class="nav2">
-          <ul class="nav justify-content-center">
-              <li class="nav-item">
-                  <form class="d-flex my-3">
-                      <input class="form-control" type="search" placeholder="Buscar convocatorias, participantes, etc..." aria-label="Search">
-                      <button class="btn buscar" type="submit">
-                          <i class='fa-solid fa-magnifying-glass'></i>
-                      </button>
-                  </form>
-              </li>
-          </ul>
-      </div>
+      <!-- Start search bar-->
+
+      <?php require 'components/search_bar.php'; ?>
+      
+      <!-- End search bar-->
+
       <!-- End Navbar -->
     
-    <div class="container d-flex justify-content-center text-center" style="margin-top: 5%;">
-        <h2 style="font-weight: 600;">REGISTRATE </h2>
-    </div>
-    <div class="container mt-4">
-      <center><p style="font-weight: 300;">¿Ya tienes una cuenta? <a href="">Iniciar Sesión</a></p></center>
-      <center><p style="font-weight: 300;">¿Olvidaste tu contraseña? <a href="">Recuperar Contraseña</a></p></center>
-      <center><p style="font-weight: 300;">¿No has recibido las instrucciones de confirmación? <a href="">Recibir Instrucciones</a></p></center>
-    </div>
-    <div class="container mt-5">
-      <div class="container form-div d-flex justify-content-center" style="margin-top: 3%; width: 70%;">
-          <form class="needs-validation" style="width: 75%;" id="form" novalidate>
-              <div class="form-group f-register"  >
-                  <i><p style="font-weight: 500; color: #894B5D;"> * Los campos requeridos están marcados con un asterisco</p></i>
-
-                  <div>
-                    <label class="label-register">Tu nombre *</label>
-                    <small><i><small><p>Nombre público que aparecera en la pagina</p></small></i></small>
-                    <input type="nombre" class="form-control w-100" id="nombre" placeholder="joseman" required>
-                    <div class="valid-feedback">
-                      Todo bien
-                    </div>
-                    <div class="invalid-feedback">
-                      Campo Obligatorio
-                    </div>
-                  </div>
-
-                  <div>
-                    <label class="label-register">Tu correo electrónico*</label>
-                    <input type="email" class="form-control w-100" id="email" placeholder="jose.gallegos@udem.edu" required>
-                    <div class="valid-feedback">
-                      Todo bien
-                    </div>
-                    <div class="invalid-feedback">
-                      Campo Obligatorio
-                    </div>
-                  </div>
-
-                  <div>
-                    <label class="label-register">Número de Teléfono *</label>
-                    <input type="phone" class="form-control w-100" id="telefono" placeholder="11111111111" required>
-                    <div class="valid-feedback">
-                      Todo bien
-                    </div>
-                    <div class="invalid-feedback">
-                      Campo Obligatorio
-                    </div>
-                  </div>
-
-                  <div>
-                    <label class="label-register">Contraseña *</label>
-                    <small><i><small><p>  Minimo 10 caracteres</p></small></i></small>
-                    <input type="password" class="form-control w-100" id="contraseña" placeholder="contraseña" required>
-                    <div class="valid-feedback">
-                      Todo bien
-                    </div>
-                    <div class="invalid-feedback">
-                      Campo Obligatorio
-                    </div>
-                  </div>
-                  
-                  <p class="mt-2"><input type="checkbox"> Aceptar los Términos de Uso</p>
-                  <small><i><small><p> Al registrarte aceptas los Términos y Condiciones de Uso. <a href="/"> Puedes revisar el aviso de privacidad integral aqui. </a></p></small></i></small>
-
-                  <p class="mt-2"><input type="checkbox"> Aceptar Permiso de Contacto</p>
-                  <small><i><small><p> Al marcar esta opción aceptas que recibiras un boletín ocasional con información relevante.</p></small></i></small>
-
-                  <center><button class="process-featured-button-2-large mt-5"> REGISTRARTE</button></center>
-              </div>
-          </form>
+      <div class="container d-flex justify-content-center text-center" style="margin-top: 5%;">
+          <h2 style="font-weight: 600;">REGISTRATE </h2>
       </div>
-  </div>
+      
+      <div class="container mt-4">
+        <center><p style="font-weight: 300;">¿Ya tienes una cuenta? <a href="">Iniciar Sesión</a></p></center>
+        <center><p style="font-weight: 300;">¿Olvidaste tu contraseña? <a href="">Recuperar Contraseña</a></p></center>
+        <center><p style="font-weight: 300;">¿No has recibido las instrucciones de confirmación? <a href="">Recibir Instrucciones</a></p></center>
+      </div>
 
-  <!-- Start Footer -->
-  <footer style="margin-bottom: -5rem;">
-    <div class="footer-content" >
-        <ul class="socials">
-            <li><a href="#"><i class="fa fa-twitter-square"></i></a></li>
-            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-            <li><a href="#"><i class="fa fa-facebook-square"></i></a></li>
-        </ul>
-        <p><a href="http://" target="_blank">Términos y condiciones</a></p>
-        <p><a href="http://" target="_blank">Descargar ficheros de datos abiertos</a></p>
+      <div class="container mt-5">
+        <div class="container form-div d-flex justify-content-center" style="margin-top: 3%; width: 70%;">
+            <form class="needs-validation" style="width: 75%;" id="form" action="fetch/registrar.php" method="POST" novalidate>
+                <div class="form-group f-register"  >
+                    <i><p style="font-weight: 500; color: #894B5D;"> * Los campos requeridos están marcados con un asterisco</p></i>
+
+                    <div>
+                      <label class="label-register">Tu nombre *</label>
+                      <small><i><small><p>Nombre público que aparecera en la pagina</p></small></i></small>
+                      <input type="nombre" class="form-control w-100" id="nombre" placeholder="joseman" required>
+                      <div class="valid-feedback">
+                        Todo bien
+                      </div>
+                      <div class="invalid-feedback">
+                        Campo Obligatorio
+                      </div>
+                    </div>
+
+                    <div>
+                      <label class="label-register">Tu correo electrónico*</label>
+                      <input type="email" class="form-control w-100" name="email" id="email" placeholder="jose.gallegos@udem.edu" required>
+                      <div class="valid-feedback">
+                        Todo bien
+                      </div>
+                      <div class="invalid-feedback">
+                        Campo Obligatorio
+                      </div>
+                    </div>
+
+                    <div>
+                      <label class="label-register">Número de Teléfono *</label>
+                      <input type="phone" class="form-control w-100" name="telefono" id="telefono" placeholder="11111111111" required>
+                      <div class="valid-feedback">
+                        Todo bien
+                      </div>
+                      <div class="invalid-feedback">
+                        Campo Obligatorio
+                      </div>
+                    </div>
+
+                    <div>
+                      <label class="label-register">Contraseña *</label>
+                      <small><i><small><p>  Minimo 10 caracteres</p></small></i></small>
+                      <input type="password" class="form-control w-100" name="constraseña" id="contraseña" placeholder="contraseña" required>
+                      <div class="valid-feedback">
+                        Todo bien
+                      </div>
+                      <div class="invalid-feedback">
+                        Campo Obligatorio
+                      </div>
+                    </div>
+                    
+                    <p class="mt-2"><input type="checkbox"> Aceptar los Términos de Uso</p>
+                    <small><i><small><p> Al registrarte aceptas los Términos y Condiciones de Uso. <a href="/"> Puedes revisar el aviso de privacidad integral aqui. </a></p></small></i></small>
+
+                    <p class="mt-2"><input type="checkbox"> Aceptar Permiso de Contacto</p>
+                    <small><i><small><p> Al marcar esta opción aceptas que recibiras un boletín ocasional con información relevante.</p></small></i></small>
+
+                    <center><button class="process-featured-button-2-large mt-5"> REGISTRARTE</button></center>
+                </div>
+            </form>
+        </div>
     </div>
-    <div class="footer-bottom">
-        <p>Este programa es público, ajeno a cualquier partido político. Queda prohibido el uso para fines distintos a los establecidos en el Programa.</p>
-    </div>
-  </footer>
+
+    <!-- Start Footer -->
+    <footer style="margin-bottom: -5rem;">
+      <div class="footer-content" >
+          <ul class="socials">
+              <li><a href="#"><i class="fa fa-twitter-square"></i></a></li>
+              <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+              <li><a href="#"><i class="fa fa-facebook-square"></i></a></li>
+          </ul>
+          <p><a href="http://" target="_blank">Términos y condiciones</a></p>
+          <p><a href="http://" target="_blank">Descargar ficheros de datos abiertos</a></p>
+      </div>
+      <div class="footer-bottom">
+          <p>Este programa es público, ajeno a cualquier partido político. Queda prohibido el uso para fines distintos a los establecidos en el Programa.</p>
+      </div>
+    </footer>
   <!-- End Footer -->
 
-  <!--<script>
-  // Example starter JavaScript for disabling form submissions if there are invalid fields
-  (function () {
-    'use strict'
+    <script>
+      // Example starter JavaScript for disabling form submissions if there are invalid fields
+      (function () {
+        'use strict'
 
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    var forms = document.querySelectorAll('.needs-validation')
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.querySelectorAll('.needs-validation')
 
-    // Loop over them and prevent submission
-    Array.prototype.slice.call(forms)
-      .forEach(function (form) {
-        form.addEventListener('submit', function (event) {
-          if (!form.checkValidity()) {
-            event.preventDefault()
-            event.stopPropagation()
-          }
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms)
+          .forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+              if (!form.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+              }
 
-          form.classList.add('was-validated')
-        }, false)
-      })
-  })()
-  /*let nombre = document.getElementById("nombre");
+              form.classList.add('was-validated')
+            }, false)
+          });
+      })();
+    </script>
+    <script src="js/script.js"></script>
 
-  nombre.addEventListener("blur", function() {
-    if (email.value == "") {
-      alert("Campo Obligatorio");
-    }
-  }, true);
+  </body>
 
-  let email = document.getElementById("email");
-
-  email.addEventListener("blur", function() {
-    if (email.value == "") {
-      alert("Campo Obligatorio");
-    }
-  }, true);
-
-  let contraseña = document.getElementById("contraseña");
-
-  contraseña.addEventListener("blur", function() {
-    if (email.value == "" || email.value.length < 10) {
-      alert("Campo Obligatorio");
-    }
-  }, true);*/
-    /*let email = document.getElementById('email');
-    form.addEventListener("blur", function(event){
-      if(email.value.length == 0){
-        email.style.backgroundColor = "lightblue";
-      }
-    }, true);*/
-  </script>-->
-  <script src="js/script.js"></script>
-</body>
 </html>

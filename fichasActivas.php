@@ -70,18 +70,11 @@
             </div>
             </div>
         </nav>
-        <div class="nav2">
-            <ul class="nav justify-content-center">
-                <li class="nav-item">
-                    <form class="d-flex my-3">
-                        <input class="form-control" type="search" placeholder="Buscar convocatorias, participantes, etc..." aria-label="Search">
-                        <button class="btn buscar" type="submit">
-                            <i class='fa-solid fa-magnifying-glass'></i>
-                        </button>
-                    </form>
-                </li>
-            </ul>
-        </div>
+        <!-- Start search bar-->
+
+        <?php require 'components/search_bar.php'; ?>
+        
+        <!-- End search bar-->
         <!-- End Navbar -->
 
         <div>

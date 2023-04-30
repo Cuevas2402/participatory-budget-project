@@ -50,7 +50,7 @@
                     <a class="nav-link"  href="index.php">Inicio</a>
                 </li>
                 <li class="nav-item mx-5">
-                    <a class="nav-link" style="color: black;" href="participa.php">Participa</a>
+                    <a class="nav-link" href="participa.php">Participa</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="ayuda.php">Ayuda</a>
@@ -63,18 +63,11 @@
             </div>
             </div>
         </nav>
-        <div class="nav2">
-            <ul class="nav justify-content-center">
-                <li class="nav-item">
-                    <form class="d-flex my-3">
-                        <input class="form-control" type="search" placeholder="Buscar convocatorias, participantes, etc..." aria-label="Search">
-                        <button class="btn buscar" type="submit">
-                            <i class='fa-solid fa-magnifying-glass'></i>
-                        </button>
-                    </form>
-                </li>
-            </ul>
-        </div>
+        <!-- Start search bar-->
+
+        <?php require 'components/search_bar.php'; ?>
+        
+        <!-- End search bar-->
         <!-- End Navbar -->
 
 
