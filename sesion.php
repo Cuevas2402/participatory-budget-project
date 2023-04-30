@@ -21,6 +21,9 @@
       <!-- Leaflet-->
       <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
       <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+	  <!-- JQuery -->
+	  <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+
   </head>
   <body style="font-family: Roboto;">
     <!-- Start Navbar -->
@@ -54,6 +57,7 @@
 	<?php require 'components/search_bar.php'; ?>
 	
 	<!-- End search bar-->
+	
 	<!-- End Navbar -->
       
 	<div class="container d-flex justify-content-center text-center" style="margin-top: 5%;">
@@ -62,11 +66,11 @@
 
 	<div class="container mt-5">
 		<div class="container form-div d-flex justify-content-center" style="margin-top: 3%; width: 70%;">
-			<form class="needs-validation" style="width: 75%;" id="form" novalidate>
+			<form class="needs-validation" style="width: 75%;" action="fetch/log.php" method="POST" id="form" novalidate>
 				<div class="form-group f-register"  >
 					<div>
 						<label class="label-register">Correo Electrónico *</label>
-						<input type="nombre" class="form-control w-100" id="nombre" placeholder="jose.gallegos@udem.edu" required>
+						<input type="email" class="form-control w-100" name="email" id="email" placeholder="jose.gallegos@udem.edu" required>
 						<div class="valid-feedback">
 							Todo bien
 						</div>
@@ -77,7 +81,7 @@
 
 						<div>
 						<label class="label-register">Contraseña *</label>
-						<input type="password" class="form-control w-100" id="email" placeholder="Contraseña" required>
+						<input type="password" class="form-control w-100" name="password" id="password" placeholder="Contraseña" required>
 						<div class="valid-feedback">
 							Todo bien
 						</div>
@@ -86,7 +90,7 @@
 						</div>
 						</div>
 						<p class="mt-2"><input type="checkbox"> Recuérdame </p>
-						<center><button class="process-featured-button-2-large mt-4">INICIAR SESIÓN</button></center>
+						<center><button class="process-featured-button-2-large mt-4" type="submit">INICIAR SESIÓN</button></center>
 
 						<div class="container mt-4">
 							<center><p style="font-weight: 300;">¿Olvidaste tu contraseña?</p>
@@ -96,7 +100,110 @@
 			</form>
 		</div>
 	</div>
-          
+	<!-- MODALES -->
+
+		<!-- MODAL EXITO -->
+		<div class="modal fade" id="exito" tabindex="-1" role="dialog" aria-labelledby="exitoLabel" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exitolLabel">Registro exitoso</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						Puedes comenzar a participar en procesos y votar por propuestas 🥳
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- FIN MODAL EXITO-->
+
+
+		<!-- MODAL CREDENCIALES -->
+		<div class="modal fade" id="credenciales" tabindex="-1" role="dialog" aria-labelledby="credencialesLabel" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="credencialeslLabel">Credenciales Incorrectas </h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						Los datos que ingresaste no concuerdan 😰
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- FIN MODAL CREDENCIALES-->
+
+
+		<!-- MODAL CORREO -->
+		<div class="modal fade" id="correo" tabindex="-1" role="dialog" aria-labelledby="correoLabel" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="correoLabel">Correo no registrado/h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						El correo que ingreso no se encuentra registrado en la pagina 😬
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- FIN MODAL CORREO-->
+
+
+	<!-- FIN MODALES -->
+
+	<!-- CODIGO PARA DESPLEGAR MODALES -->
+	<?php
+		
+		if (isset($_GET['exito']) && $_GET['exito'] === 'true') {
+			?>
+				<script>
+					$(document).ready(function() {
+						$('#exito').modal('show');
+					});
+				</script>
+			<?php
+		}
+
+		if (isset($_GET['credenciales']) && $_GET['credenciales'] === 'true') {
+			?>
+				<script>
+					$(document).ready(function() {
+						$('#credenciales').modal('show');
+					});
+				</script>
+			<?php
+		}
+
+		if (isset($_GET['correo']) && $_GET['correo'] === 'true') {
+			?>
+				<script>
+					$(document).ready(function() {
+						$('#correo').modal('show');
+					});
+				</script>
+			<?php
+		}
+
+	?>
 
 	<!-- Start Footer -->
 	<footer style="margin-bottom: -5rem;">

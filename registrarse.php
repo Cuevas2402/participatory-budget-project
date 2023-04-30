@@ -224,31 +224,31 @@
 	<?php
 		if (isset($_GET['nombreEnUso']) && $_GET['nombreEnUso'] === 'true') {
 			?>
-			<script>
-				$(document).ready(function() {
-					$('#nombreEnUsoModal').modal('show');
-				});
-			</script>
+				<script>
+					$(document).ready(function() {
+						$('#nombreEnUsoModal').modal('show');
+					});
+				</script>
 			<?php
 		}
 
 		if (isset($_GET['correoenUso']) && $_GET['correoenUso'] === 'true') {
 			?>
-			<script>
-				$(document).ready(function() {
-					$('#correoenUso').modal('show');
-				});
-			</script>
+				<script>
+					$(document).ready(function() {
+						$('#correoenUso').modal('show');
+					});
+				</script>
 			<?php
 		}
 
 		if (isset($_GET['exito']) && $_GET['exito'] === 'true') {
 			?>
-			<script>
-				$(document).ready(function() {
-					$('#exito').modal('show');
-				});
-			</script>
+				<script>
+					$(document).ready(function() {
+						$('#exito').modal('show');
+					});
+				</script>
 			<?php
 		}
 	?>

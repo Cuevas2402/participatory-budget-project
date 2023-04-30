@@ -1,12 +1,6 @@
 <?php
     require '../config/config.php';
     require '../config/db.php';
-    error_log($_POST['nombre']);
-    error_log($_POST['telefono']);
-    error_log($_POST['email']);
-    $contrasena = $_POST['contrasena'];
-
-    error_log($_POST['contrasena']);
     //  && isset($_POST['telefono']) && isset($_POST['email']) && isset($_POST['contrasena'])
     if(isset($_POST['nombre']) && isset($_POST['telefono']) && isset($_POST['email']) && isset($_POST['contrasena'])){
         //echo '<script>alert("sE PUEDIERON INSERTAR DATOS");</script>';
@@ -55,8 +49,8 @@
 
     }else{
 
-        echo 'Error faltaron datos';
-
+        header("Location: ../components/404.php");
+        exit();
     }
 
 ?>
