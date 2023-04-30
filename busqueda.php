@@ -175,7 +175,7 @@
         </div>
         <!-- End First Content -->
 
-        <!-- Usuarios  -->
+        <!-- Participaciones  -->
         <div class="container process-featured">
             <div class="process-filter">
                 <?php
@@ -256,79 +256,61 @@
         </div>
         <!-- End First Content -->
 
-        <!-- Process -->
+        <!-- Participaciones  -->
         <div class="container process-featured">
             <div class="process-filter">
                 <?php
-                    $stmt = $pdo->prepare("CALL count_process()");
-                    $stmt->execute();
-                    $rows = $stmt->fetch();
+                    $sql = $pdo->prepare("SELECT usuarios.* FROM usuarios WHERE LOWER(nombre) LIKE ? ");
+
+                    // Agregar los parametros
+                    
+                    $sql->execute([$valor]);
+                    // Fetch los resultados
+                    $rows = $sql->fetchAll(PDO::FETCH_ASSOC);
+                    $count = $sql->rowCount();
                 ?>
-                <h4><strong><i class="fa fa-square" aria-hidden="true"></i> PROCESOS (<?php echo $rows['count(pid)']; ?>)</strong></h4>
-                <?php
-                    $stmt->closeCursor();
-                ?>
+                <h4><strong><i class="fa fa-square" aria-hidden="true"></i> USUARIOS (<?php echo $count; ?>)</strong></h4>
             </div>
 
         
 
 
             <!-- START CARDS NUEVO -->
-            <div class="container text-center" style="margin-top: 4rem; margin-bottom: 8rem;">
+            <div class="container" style="margin-top: 4rem; margin-bottom: 8rem;">
                 <div class="filter row row-cols-1 row-cols-md-2 row-cols-lg-4 d-flex align-items-stretch g-3">
                     <!-- START INDIVIDUAL CARD -->
                     <?php
-                        $stmt = $pdo->prepare("CALL get_process_card()");
-                        $stmt->execute();
-                        $rows = $stmt->fetchAll();
-                        foreach($rows as $row){
+                        
+                        
+                        if($count > 0){
+                            
+                            foreach($rows as $row){
 
                     ?>
-                            <div class="col col-lg-3">
-                                <div class="card h-100">
-                                    <div class="card-header" style="background-color: #894B5D"></div>
-                                    <img src="http://drive.google.com/uc?export=view&id=1Bw22s4t6l_H6e9r6f_A7y0jIuGYEeRy0" class="card-img-top" alt="...">
-                                    <div class="card-body" style="padding: 0; background-color: #ead9d8">
-                                        <ul class="list-group list-group-flush">
-                                            <li class="list-group-item d-flex align-items-center" style="height: 100px; background-color: white;">
-                                                <h5 class="process-title-card"><?php echo $row['titulo_proceso'];?></h5>
-                                            </li>
-                                            <li class="list-group-item" style="background-color: white; ">
-                                                <p class="process-date-card"><strong>Ambito:</strong> <?php echo $row['nombre_ambito'];?> </p>
-                                            </li>
-                                            <li class="list-group-item " style="background-color: white;">
-                                                <p class="process-date-card"><strong>Municipio:</strong> <?php echo $row['nombre_municipio'];?> </p>
-                                            </li>
-                                            <li class="list-group-item" style="background-color: white;">
-                                                <div class="row d-flex align-items-center">
-                                                    <div class="col">
-                                                        <p class="process-date-card"><strong>Fecha de inicio</strong></p>
-                                                    </div>
-                                                    <div class="col">
-                                                        <p class="process-date-card"><strong>Fecha de finalización</strong></p>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <p class="process-date-card"><?php echo $row['fecha_inicio_proceso'];?></p>
-                                                    </div>
-                                                    <div class="col">
-                                                        <p class="process-date-card"><?php echo $row['fecha_fin_proceso'];?></p>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="list-group-item d-flex flex-column" style="background-color: #ead9d8">
-                                                <p class="process-status-card"><strong>Fase actual</strong></p>
-                                                <button class="process-button"><?php echo $row['titulo_fase'];?></button>
-                                                <a href="participa2.php?id=<?php echo $row['pid']; ?>&token=<?php echo hash_hmac('sha1', $row['pid'], KEY_TOKEN );?>" ><button class="process-button-card"><strong>Más información</strong></button></a>
-                                            </li>
-                                        </ul>
-                                    </div>
+
+                            <!-- START INDIVIDUAL CARD -->
+                            <div class="row me-2 border g-0">
+                                <div class="col-3">
+                                    <img src="img/avatar.png" style="width: 100px; border-radius: 3px 0 0px 3px;">
+                                </div>
+                                <div class="col">
+                                    <span><?php echo $row['nombre']; ?></span>
+                                    <p>Creado el: <?php echo $row['fecha_creacion']; ?></p>
+                                    <a><button>Más información</button></a>
                                 </div>
                             </div>
+                            <!-- END INDIVIDUAL CARD -->
                     <?php
-                        }
-                        $stmt->closeCursor();
+
+                            }
+                        }else{
+                                ?>
+                                    <div class="container" style="margin-top:5%">
+                                        <h1 class="text-center">No se encontró ninguna búsqueda con esos valores 😰</h1>
+                                    </div>
+                                <?php
+                            }
+                        $sql->closeCursor();
                     ?>
 
                     <!-- END INDIVIDUAL CARD--> 
