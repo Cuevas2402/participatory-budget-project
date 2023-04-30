@@ -1,8 +1,6 @@
 <?php
     require 'config/db.php';
     require 'config/config.php';
-    $db = new Database();
-    $pdo = $db -> connect();
     $id = isset($_GET['id']) ? $_GET['id'] : '';
     $token = isset($_GET['token']) ? $_GET['token'] : '';
 
@@ -15,6 +13,7 @@
             $sql = $pdo->prepare("SELECT * FROM procesos, fases WHERE  procesos.pid = '$id' AND procesos.pid = fases.pid;");
             $sql->execute();
             $rows = $sql->fetchAll();
+            
 ?>
 
 <!DOCTYPE html>

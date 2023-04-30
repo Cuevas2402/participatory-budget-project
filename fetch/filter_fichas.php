@@ -1,8 +1,6 @@
 <?php
     require '../config/config.php';
     require '../config/db.php';
-    $db = new Database();
-    $pdo = $db -> connect();
     if(isset($_POST['datos']) ){
         $datos = $_POST['datos'];
         foreach($datos as $data){

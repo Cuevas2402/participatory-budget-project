@@ -1,8 +1,6 @@
 <?php
     require 'config/db.php';
     require 'config/config.php';
-    $db = new Database();
-    $pdo = $db -> connect();
     $id = isset($_GET['id']) ? $_GET['id'] : '';
     $token = isset($_GET['token']) ? $_GET['token'] : '';
 

@@ -1,8 +1,6 @@
 <?php
     require '../config/config.php';
     require '../config/db.php';
-    $db = new Database();
-    $pdo = $db -> connect();
     if(isset($_POST['v1']) && isset($_POST['v2']) && isset($_POST['v3'])){
         $v1 = $_POST['v1'];
         $v2 = $_POST['v2'];

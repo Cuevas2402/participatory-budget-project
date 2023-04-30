@@ -1,8 +1,6 @@
 <?php
   require 'config/db.php';
   require 'config/config.php';
-  $db = new Database();
-  $pdo = $db -> connect();
   $stmt = $pdo->prepare("CALL get_process_featured_1()");
   $stmt->execute();
   $row = $stmt->fetch();
@@ -36,6 +34,8 @@
     <!-- Leaflet-->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
     <style>
       #map { height: 600px; }
     </style>
@@ -70,8 +70,8 @@
     <div class="nav2">
         <ul class="nav justify-content-center">
             <li class="nav-item">
-                <form class="d-flex my-3">
-                    <input class="form-control" type="search" placeholder="Buscar convocatorias, participantes, etc..." aria-label="Search">
+                <form id="form-busqueda" class=" form-busqueda d-flex my-3">
+                    <input name="termino-busqueda" id="termino-busqueda" class="buscar-input form-control" type="search"  placeholder="Buscar convocatorias, participantes, etc...">
                     <button class="btn buscar" type="submit">
                         <i class='fa-solid fa-magnifying-glass'></i>
                     </button>
@@ -241,5 +241,24 @@
   </footer>
   <!-- End Footer -->
   <script src="js/map.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('#form-busqueda').on('submit', function() {
+        /*$.post('index.php', { dato: 'valor' }, function(response) {
+          window.location.href = 'otrapagina.php';
+        });*/
+        var valor1 = $('#termino-busqueda').val(); // variable con el valor a pasar
+        $.ajax({
+          url: 'index.php',
+          type: 'POST',
+          data: { miDato: valor1 },
+          success: function(response) {
+            window.location.href = 'busqueda.php?dato1=' + valor1;
+          }
+        });
+      });
+    });
+
+  </script>
 </body>
 </html>

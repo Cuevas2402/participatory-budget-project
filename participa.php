@@ -1,8 +1,6 @@
 <?php
     require 'config/db.php';
     require 'config/config.php';
-    $db = new Database();
-    $pdo = $db -> connect();
     $stmt = $pdo->prepare("CALL get_process_featured_2()");
     $stmt->execute();
     $rows = $stmt->fetchAll();
