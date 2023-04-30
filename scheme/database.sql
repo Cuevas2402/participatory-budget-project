@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-04-2023 a las 01:03:24
+-- Tiempo de generación: 30-04-2023 a las 03:54:51
 -- Versión del servidor: 10.4.25-MariaDB
 -- Versión de PHP: 8.1.10
 
@@ -261,16 +261,17 @@ CREATE TABLE `usuarios` (
   `contraseña` varchar(10) NOT NULL,
   `telefono` int(11) DEFAULT NULL,
   `permiso` tinyint(1) NOT NULL,
-  `correo` varchar(256) DEFAULT NULL
+  `correo` varchar(256) DEFAULT NULL,
+  `fecha_creacion` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`uid`, `nombre`, `contraseña`, `telefono`, `permiso`, `correo`) VALUES
-(1, 'admin', 'admin', NULL, 1, NULL),
-(2, 'admin', 'admin', NULL, 1, NULL);
+INSERT INTO `usuarios` (`uid`, `nombre`, `contraseña`, `telefono`, `permiso`, `correo`, `fecha_creacion`) VALUES
+(1, 'admin', 'admin', NULL, 1, NULL, '2023-04-13'),
+(2, 'admin', 'admin', NULL, 1, NULL, '2023-04-10');
 
 -- --------------------------------------------------------
 
