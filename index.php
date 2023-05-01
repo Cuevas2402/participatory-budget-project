@@ -1,10 +1,10 @@
 <?php
-  require 'config/db.php';
-  require 'config/config.php';
-  $stmt = $pdo->prepare("CALL get_process_featured_1()");
-  $stmt->execute();
-  $row = $stmt->fetch();
-  $cont = 0;
+	require 'config/db.php';
+	require 'config/config.php';
+	$stmt = $pdo->prepare("CALL get_process_featured_1()");
+	$stmt->execute();
+	$row = $stmt->fetch();
+	$cont = 0;
 ?>
 
 <!DOCTYPE html>
@@ -42,31 +42,30 @@
 </head>
 <body style="font-family: Roboto;">
 	<!-- Start Navbar -->
-	<nav class="navbar navbar-expand-lg">
-		<div class="container">
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
 			<a class="navbar-brand" href="#"><img src="img/logo.png" style="width: 200px;" alt="LOGO"></a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse mx-auto" id="navbarSupportedContent">
 				<ul class="navbar-nav me-auto mx-auto mb-2 mb-lg-0 text-center">
-					<li class="nav-item">
-						<a class="nav-link a-active" href="index.php">Inicio</a>
-					</li>
-					<li class="nav-item mx-5">
-						<a class="nav-link" href="participa.php">Participa</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="ayuda.php">Ayuda</a>
-					</li>
+				<li class="nav-item">
+					<a class="nav-link a-active" href="index.php">Inicio</a>
+				</li>
+				<li class="nav-item mx-5">
+					<a class="nav-link" href="participa.php">Participa</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="ayuda.php">Ayuda</a>
+				</li>
 				</ul>
 				<!-- (Iniciar Sesión / Registrarse) o Sesion Inicada -->
 				<?php require 'components/login.php' ?>
-				
 			</div>
-		</div>
-	</nav>
-	<!-- Start search bar-->
+        </div>
+    </nav>
+    <!-- Start search bar-->
 
 	<?php require 'components/search_bar.php'; ?>
 		
@@ -207,7 +206,44 @@
 	<?php
 		$stmt->closeCursor();
 	?>
+	<!-- MODALES -->
 
+		<!-- MODAL EXITO -->
+		<div class="modal fade" id="exito" tabindex="-1" role="dialog" aria-labelledby="exitoLabel" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exitolLabel">Registro exitoso</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						Puedes comenzar a participar en procesos y votar por propuestas 🥳
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- FIN MODAL EXITO-->
+
+	<!-- FIN MODALES -->
+
+	<!-- CODIGO PARA DESPLEGAR MODALES -->
+	<?php
+		
+		if (isset($_GET['exito']) && $_GET['exito'] === 'true') {
+			?>
+				<script>
+					$(document).ready(function() {
+						$('#exito').modal('show');
+					});
+				</script>
+			<?php
+		}
+	?>
 	<!-- Start Footer -->
 	<footer style="margin-bottom: -5rem;">
 		<div class="footer-content" >

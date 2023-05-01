@@ -1,3 +1,10 @@
+<?php
+	require 'config/db.php';
+	require 'config/config.php';
+	
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,32 +34,32 @@
     <!-- Start Navbar -->
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-			<a class="navbar-brand" href="#"><img src="img/logo.png" style="width: 200px;" alt="LOGO"></a>
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse mx-auto" id="navbarSupportedContent">
-				<ul class="navbar-nav me-auto mx-auto mb-2 mb-lg-0 text-center">
-				<li class="nav-item">
-					<a class="nav-link" href="index.php">Inicio</a>
-				</li>
-				<li class="nav-item mx-5">
-					<a class="nav-link" href="participa.php">Participa</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link a-active" href="ayuda.php">Ayuda</a>
-				</li>
-				</ul>
-				<!-- (Iniciar Sesión / Registrarse) o Sesion Inicada -->
-				<?php require 'components/login.php' ?>
-			</div>
+            <a class="navbar-brand" href="#"><img src="img/logo.png" style="width: 200px;" alt="LOGO"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse mx-auto" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mx-auto mb-2 mb-lg-0 text-center">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.php">Inicio</a>
+                </li>
+                <li class="nav-item mx-5">
+                    <a class="nav-link" href="participa.php">Participa</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link a-active" href="ayuda.php">Ayuda</a>
+                </li>
+                </ul>
+                <!-- (Iniciar Sesión / Registrarse) o Sesion Inicada -->
+                <?php require 'components/login.php' ?>
+            </div>
         </div>
     </nav>
     <!-- Start search bar-->
 
-	<?php require 'components/search_bar.php'; ?>
-		
-	<!-- End search bar-->
+    <?php require 'components/search_bar.php'; ?>
+    
+    <!-- End search bar-->
 
     <!-- End Navbar -->
     
