@@ -24,10 +24,7 @@
 
         <!-- Template CSS -->
         <link rel="stylesheet" href="css/template.css">
-        <!-- HeaderBody CSS -->
-        <link rel="stylesheet" href="css/headerBody.css">
-        <!-- Timeline CSS -->
-        <link rel="stylesheet" href="css/timeline.css">
+        
         <!-- Bootstrap CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
         <!-- Bootstrap JS -->
@@ -77,13 +74,13 @@
         <!-- End search bar-->
         
         <!-- End Navbar -->
-
+            
         <div class="container" style="margin-top: 5rem; margin-bottom: 5rem;">
             <div class="row row-cols-1 row-cols-md-2">
                 <div class="col col-md-3"></div>
                 <div class="col col-md-9  d-flex justify-content-around px-5">
-                    <a class=".procesos-f process-filter-a-active" data-value="1" href=""><h5>Actividad</h5></a>
-                    <a class=".procesos-f process-filter-a-down" data-value="2" href=""><h5>Procesos</h5></a>
+                    <a class="procesos-f process-filter-a-active" data-value="1"><h5>Actividad</h5></a>
+                    <a class="procesos-f process-filter-a-down" data-value="2"><h5>Procesos</h5></a>
                 </div>
             </div>
             <div class="row row-cols-1 row-cols-md-2">
@@ -91,15 +88,31 @@
                     <ul class="list-group">
                         <li class="list-group-item">
                             <img class="img-fluid" src="img/avatar.png" alt="">
-                            <h5 class="my-3">Usuario</h5>
+                            <h5 class="my-3"><?php echo $_SESSION['nombre']; ?></h5>
                             <div class="row">
                                 <div class="col border-top">
-                                    <a class=".procesos-f process-filter-a-down" data-value="3" href=""><p>Seguidoras</p></a>
-                                    <p>0</p>
+                                    <a class="procesos-f process-filter-a-down" data-value="3"><p>Seguidores</p></a>
+                                    <p>
+                                        <?php
+                                            $sql = $pdo->prepare("SELECT COUNT(followed) FROM seguir WHERE followed = ?");
+                                            $sql->execute([$_SESSION['id']]);
+                                            $row = $sql->fetch();
+                                            echo $row['COUNT(followed)'];
+                                            $sql->closeCursor();
+                                        ?>
+                                    </p>
                                 </div>
                                 <div class="col border-top">
-                                    <a class=".procesos-f process-filter-a-down" data-value="4" href=""><p>Siguiendo</p></a>
-                                    <p>0</p>
+                                    <a class="procesos-f process-filter-a-down" data-value="4" ><p>Siguiendo</p></a>
+                                    <p>
+                                    <?php
+                                            $sql = $pdo->prepare("SELECT COUNT(follow) FROM seguir WHERE follow = ?");
+                                            $sql->execute([$_SESSION['id']]);
+                                            $row = $sql->fetch();
+                                            echo $row['COUNT(follow)'];
+                                            $sql->closeCursor();
+                                        ?>
+                                    </p>
                                 </div>
                             </div>
                         </li>
@@ -110,7 +123,46 @@
                         <!-- ACOMODO -->
                         <div class="filter row row-cols-1 row-cols-md-2 row-cols-lg-2 d-flex align-items-stretch g-3">
                             <!-- INSERTAR -->
+                            <?php
+                                $sql = $pdo->prepare("SELECT * FROM participaciones, usuarios, distritos WHERE usuarios.uid = ? AND  usuarios.uid = participaciones.uid and distritos.did = participaciones.did");
+                                $sql->execute([$id]);
+                                $rows = $sql->fetchAll();
+                                foreach($rows as $row){
 
+
+                            ?>
+                            <!-- START INDIVIDUAL CARD -->
+                            <div class="col">
+                                <div class="card h-100">
+                                    <div class="card-header" style="background-color: #894B5D"></div>
+                                    <img src="http://drive.google.com/uc?export=view&id=1Bw22s4t6l_H6e9r6f_A7y0jIuGYEeRy0" class="card-img-top" alt="...">
+                                    <div class="card-body" style="padding: 0;">
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item d-flex justify-content-center align-items-center" style="height: 100px">
+                                                <h5 class="process-title-card"><?php echo $row['titulo_registro']; ?></h5>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <p class="process-content-card"><strong>Autor:</strong> <?php echo $row['nombre']; ?></p> 
+                                            </li>
+                                            <li class="list-group-item">
+                                                <p class="process-content-card"><strong>Distrito:</strong> <?php echo $row['nombre_distrito']; ?></p>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <p class="process-content-card"><strong>Fecha de creación: </strong><?php echo $row['fecha_creacion']; ?></p>
+                                            </li>
+                                            <li class="list-group-item d-flex flex-column" style="background-color: #ead9d8">
+                                                <a href="#"><button class="process-button-card"><strong>Más información</strong></button></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- END INDIVIDUAL CARD -->
+                            <?php
+
+                                }
+                                $sql->closeCursor();
+                            ?>
                         </div>
                     </div>
                 </div>
@@ -134,14 +186,15 @@
         </footer>
         <!-- End Footer -->
 
-        <script>
+        <script type="text/javascript">
             $(document).ready(function(){
                 $(".procesos-f").click(function() {
                     let dato = $(this).data("value");
+                    console.log(dato);
                     $(".process-filter-a-active").addClass("process-filter-a-down").removeClass("process-filter-a-active");
                     $(this).addClass("process-filter-a-active").removeClass("process-filter-a-down");
                     $.ajax({
-                        url: "fetch/filter_process.php",
+                        url: "fetch/show_profile.php",
                         type: "POST",
                         data: {
                             dato: dato
