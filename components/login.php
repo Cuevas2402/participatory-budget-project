@@ -68,6 +68,7 @@
                         },
                         success:function(){
                             location.reload();
+                            window.location.href = "index.php";
                         }
                     });
                 });

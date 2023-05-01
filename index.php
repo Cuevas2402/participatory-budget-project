@@ -234,16 +234,29 @@
 	<!-- CODIGO PARA DESPLEGAR MODALES -->
 	<?php
 		
-		if (isset($_GET['exito']) && $_GET['exito'] === 'true') {
+		if (isset($_GET['exito']) && $_GET['exito'] === "true") {
 			?>
 				<script>
 					$(document).ready(function() {
 						$('#exito').modal('show');
 					});
+
+					if (performance.navigation.type === 1) {
+						// El tipo de navegación es "1" cuando la página se carga por primera vez o se recarga
+						// Limpiar los parámetros de la URL sin recargar la página
+						window.history.replaceState({}, document.title, window.location.pathname);
+
+						// Eliminar el parámetro "exito" de la URL
+						var url = window.location.href;
+						url = url.replace('?exito=true', '');
+						history.replaceState({}, '', url);
+					}
 				</script>
 			<?php
 		}
 	?>
+
+	
 	<!-- Start Footer -->
 	<footer style="margin-bottom: -5rem;">
 		<div class="footer-content" >

@@ -1,3 +1,12 @@
+<?php
+	session_start();
+	if(isset($_SESSION['id']) && isset($_SESSION['nombre'])){
+		header('Location: index.php');
+		exit();
+	}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,8 +55,10 @@
 					<a class="nav-link" href="ayuda.php">Ayuda</a>
 				</li>
 				</ul>
-				<!-- (Iniciar Sesión / Registrarse) o Sesion Inicada -->
-				<?php require 'components/login.php' ?>
+				<div class="text-center">
+                    <a href="registrarse.php"><button class="btn me-3 my-3 registra">Regístrate</button></a>
+                    <a href="sesion.php"><button class="btn ms-3 my-3 inicia">Inicia Sesión</button></a>
+                </div>
 			</div>
 		</div>
 	</nav>
