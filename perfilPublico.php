@@ -190,7 +190,25 @@
             </div>
         </footer>
         <!-- End Footer -->
-
+        <!-- MODAL INICIA -->
+        <div class="modal fade" id="inicia" tabindex="-1" role="dialog" aria-labelledby="iniciaLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="iniciaLabel">De verdad quieres cerrar sesion? 🥺 </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
+                        <button type="button" class="si btn btn-secondary" data-dismiss="modal">Si</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- FIN MODAL INICIA-->
+        
         <script type="text/javascript">
             $(document).ready(function(){
                 $(".procesos-f").click(function() {
@@ -220,8 +238,7 @@
             $(document).ready(function(){
                 $(".process-featured-button-1").click(function (){
                     if ($('#seguir').hasClass('process-featured-button-1')) {
-                        $(this).removeClass("process-featured-button-1").addClass("process-featured-button-2").css({'transition': '150ms ease-in-out'});
-                        $('#following-text').text('Siguiendo');
+                        
                         $.ajax({
                             url: "fetch/follow.php",
                             type: "POST",
@@ -233,15 +250,15 @@
                             beforeSend:() =>{
                                 $('.filter').html("<span>Working ... </span>");
                             },
-                            success:function(data){
-                                $('.filter').html(data);
+                            success:function(){
+                                $(this).removeClass("process-featured-button-1").addClass("process-featured-button-2").css({'transition': '150ms ease-in-out'});
+                                $('#following-text').text('Siguiendo');
                             }
 
                         });
 
                     } else {
-                        $(this).removeClass("process-featured-button-2").addClass("process-featured-button-1").css({'transition': '150ms ease-in-out'});
-                        $('#following-text').text('Seguir');
+                        
                         $.ajax({
                             url: "fetch/follow.php",
                             type: "POST",
@@ -253,8 +270,9 @@
                             beforeSend:() =>{
                                 $('.filter').html("<span>Working ... </span>");
                             },
-                            success:function(data){
-                                $('.filter').html(data);
+                            success:function(){
+                                $(this).removeClass("process-featured-button-2").addClass("process-featured-button-1").css({'transition': '150ms ease-in-out'});
+                                $('#following-text').text('Seguir');
                             }
                         });
                     }

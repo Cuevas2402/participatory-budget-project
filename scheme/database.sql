@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-04-2023 a las 03:54:51
+-- Tiempo de generación: 03-05-2023 a las 05:26:49
 -- Versión del servidor: 10.4.25-MariaDB
 -- Versión de PHP: 8.1.10
 
@@ -163,6 +163,15 @@ CREATE TABLE `favoritos` (
   `uid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `favoritos`
+--
+
+INSERT INTO `favoritos` (`pid`, `uid`) VALUES
+(1, 1),
+(1, 24),
+(2, 2);
+
 -- --------------------------------------------------------
 
 --
@@ -207,6 +216,7 @@ CREATE TABLE `participaciones` (
 
 INSERT INTO `participaciones` (`pid`, `uid`, `titulo_registro`, `propuesta`, `fecha_creacion`, `did`) VALUES
 (1, 1, 'Titulo 1', 'Propuesta 1', '2023-04-27', 1),
+(1, 24, 'Titulo 3', 'Propuesta 3', '2023-04-30', 3),
 (2, 1, 'Titulo 2', 'Propuesta 2', '2023-04-27', 2);
 
 -- --------------------------------------------------------
@@ -249,6 +259,15 @@ CREATE TABLE `seguir` (
   `followed` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `seguir`
+--
+
+INSERT INTO `seguir` (`follow`, `followed`) VALUES
+(1, 24),
+(2, 24),
+(24, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -258,7 +277,7 @@ CREATE TABLE `seguir` (
 CREATE TABLE `usuarios` (
   `uid` int(11) NOT NULL,
   `nombre` varchar(50) NOT NULL,
-  `contraseña` varchar(10) NOT NULL,
+  `contraseña` varchar(45) NOT NULL,
   `telefono` int(11) DEFAULT NULL,
   `permiso` tinyint(1) NOT NULL,
   `correo` varchar(256) DEFAULT NULL,
@@ -271,7 +290,9 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`uid`, `nombre`, `contraseña`, `telefono`, `permiso`, `correo`, `fecha_creacion`) VALUES
 (1, 'admin', 'admin', NULL, 1, NULL, '2023-04-13'),
-(2, 'admin', 'admin', NULL, 1, NULL, '2023-04-10');
+(2, 'admin', 'admin', NULL, 1, NULL, '2023-04-10'),
+(24, 'Juan Cuevas', '58639f4bd2ecf90ff9dfb0171a6420c2fd424d08', 1111111111, 0, 'juan.curvos@gmail.com', '2023-05-01'),
+(25, 'juan', '58639f4bd2ecf90ff9dfb0171a6420c2fd424d08', 1111111111, 0, 'juan@juan.com', '2023-05-03');
 
 -- --------------------------------------------------------
 
@@ -390,7 +411,7 @@ ALTER TABLE `procesos`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- Restricciones para tablas volcadas

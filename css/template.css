@@ -823,6 +823,17 @@ button#myBtn {
 }
 
 /* Public profile */
+.card-profile {
+    margin: 16px 20px;
+    border: 1px solid #D6D6D6;
+    border-radius: 3px;
+}
+
+.card-profile-button {
+    background-color: #EAD9D8;
+    border-top: 1px solid #D6D6D6;
+}
+
 .follow-text {
     margin: 5px 0;
     color: #252525;
