@@ -411,6 +411,16 @@ footer p > a:hover {
     color: #0089A6;
 }
 
+.process-filter-a-down-2 {
+    text-decoration: none;
+    color: #0089A6;
+}
+
+.process-filter-a-down-2:hover {
+    text-decoration: none;
+    color: #0089A6;
+}
+
 .process-filter-a-active {
     text-decoration: underline;
     color: #0089A6;
@@ -512,6 +522,17 @@ footer p > a:hover {
 }
 
 .process-button-card {
+    width: 100%;
+    margin-top: 5%; 
+    margin-bottom: 5%; 
+    border: 0; 
+    border-radius: 6px; 
+    padding: .4rem 0; 
+    color: white; 
+    background-color: #8f5e6c;
+}
+
+.process-button-card:hover {
     width: 100%;
     margin-top: 5%; 
     margin-bottom: 5%; 
@@ -710,37 +731,6 @@ button#myBtn {
     width: 120px;
 }
 
-/*** Y ESTO??? ***/
-/* input[type="checkbox"] {
-    margin-top: 3%;
-    appearance: none;
-    width: 13px;
-    height: 13px;
-    border: 2px solid #000;
-    border-radius: 3px;
-    position: relative;
-    cursor: pointer;
-  }
-  
-  input[type="checkbox"]::before {
-    content: "";
-    display: block;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 10px;
-    height: 10px;
-    border-radius: 2px;
-    background-color: #fff;
-    opacity: 1;
-  }
-  
-  input[type="checkbox"]:checked::before {
-    opacity: 1;
-    background-color: #000;
-  } */
-
 /* Fichas Activas */
 .button-popup {
     padding: 3px 10px;
@@ -786,4 +776,59 @@ button#myBtn {
     font-size: 1.5em;
     margin-top: 50px;
 }
-    
+
+/* Login Account */
+.login-account > a {
+    font-size: 20px;
+    text-decoration: none;
+    color: #252525;
+}
+
+.login-account > a:hover {
+    font-size: 20px;
+    text-decoration: none;
+    color: #1b1b1b;
+}
+
+/* Profile Card */
+.profile-name {
+    text-transform: capitalize;
+    font-weight: 400;
+}
+
+.profile-button {
+    border: 1px solid #8f5e6c;
+    background-color: #8f5e6c;
+    color: white;
+    border-radius: 3px;
+    padding: 4px 8px;
+}
+
+.profile-button:hover {
+    border: 1px solid #894B5D;
+    background-color: #894B5D;
+    color: white;
+    border-radius: 3px;
+    padding: 4px 8px;
+}
+
+/* Modals */
+.close {
+    border: none;
+    background-color: white;
+}
+
+.close > span {
+    font-size: 24px !important;
+}
+
+/* Public profile */
+.follow-text {
+    margin: 5px 0;
+    color: #252525;
+}
+
+.follow-count {
+    padding: 0;
+    margin: 0;
+}

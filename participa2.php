@@ -112,9 +112,12 @@
                 ?>
             </div>
             <div class="col-6 col-md-4 col-sm-12 col-12">
-                <button type="button" class="btn btn-follow btn-lg" style="margin-left:10%; margin-bottom: 5%; width: 75%;"><span style="position: relative; top: 5px;" class="material-symbols-outlined">
-                    notifications
-                    </span> Seguir </button>
+                <div class="d-flex flex-column">
+                    <span class="mb-4" style="border-left: 2px solid black"><p class="ms-3" style="font-size: 20px !important; margin: 5px 0;"> Participantes <span class style="font-size: 26px !important; margin: 5px 0 0 20px;"><b>#</b></span></p></span>
+                    <span class="mb-4" style="border-left: 2px solid black"><p class="ms-3" style="font-size: 20px !important; margin: 5px 0;"> Siguiendo <span style="font-size: 26px !important; margin: 5px 0 0 53px;"><b>#</b></span></p></span>
+                </div>
+
+                <button type="button" id="seguir" class="process-featured-button-1" style="margin-left:10%; margin-bottom: 5%; width: 75%;"><span style="position: relative; top: 5px;" class="material-symbols-outlined"> notifications </span> <span id="following-text">Seguir</span> </button>
                 <ul class="list-group" style="text-align: center;">
                     <li class="list-group-item"><p><b>ÁMBITO</b></p><p>
                         <?php
@@ -157,6 +160,20 @@
         </div>
     </footer>
     <!-- End Footer -->
+    
+    <script>
+        $(document).ready(function(){
+            $(".process-featured-button-1").click(function (){
+                if ($('#seguir').hasClass('process-featured-button-1')) {
+                    $(this).removeClass("process-featured-button-1").addClass("process-featured-button-2").css({'transition': '150ms ease-in-out'});
+                    $('#following-text').text('Siguiendo');
+                } else {
+                    $(this).removeClass("process-featured-button-2").addClass("process-featured-button-1").css({'transition': '150ms ease-in-out'});
+                    $('#following-text').text('Seguir');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
 

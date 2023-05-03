@@ -45,7 +45,7 @@
 			<div class="collapse navbar-collapse mx-auto" id="navbarSupportedContent">
 				<ul class="navbar-nav me-auto mx-auto mb-2 mb-lg-0 text-center">
 				<li class="nav-item">
-					<a class="nav-link" style="color: black;" href="index.php">Inicio</a>
+					<a class="nav-link" href="index.php">Inicio</a>
 				</li>
 				<li class="nav-item mx-5">
 					<a class="nav-link" href="participa.php">Participa</a>

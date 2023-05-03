@@ -38,6 +38,7 @@
         <!-- Leaflet-->
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
         <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
         <!-- JQuery -->
         <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
     </head>
@@ -88,14 +89,24 @@
                     <ul class="list-group">
                         <li class="list-group-item">
                             <img class="img-fluid" src="img/avatar.png" alt="">
-                            <h5 class="my-3"><?php echo $_SESSION['nombre']; ?></h5>
+                            <a class="uid process-filter-a-down-2" data-value="<?php echo $id; ?>"><h5 class="my-3">
+                                <?php
+                                    $sql = $pdo->prepare("SELECT nombre FROM usuarios WHERE uid = ?");
+                                    $sql->execute([$id]);
+                                    $row = $sql->fetch();
+                                    echo $row['nombre'];
+                                    $sql->closeCursor();
+                                     
+                                ?>
+
+                            </h5></a>
                             <div class="row">
                                 <div class="col border-top">
-                                    <a class="procesos-f process-filter-a-down" data-value="3"><p>Seguidores</p></a>
-                                    <p>
+                                    <a class="procesos-f process-filter-a-down" data-value="3"><p class="follow-text">Seguidores</p></a>
+                                    <p class="follow-count">
                                         <?php
                                             $sql = $pdo->prepare("SELECT COUNT(followed) FROM seguir WHERE followed = ?");
-                                            $sql->execute([$_SESSION['id']]);
+                                            $sql->execute([$id]);
                                             $row = $sql->fetch();
                                             echo $row['COUNT(followed)'];
                                             $sql->closeCursor();
@@ -103,11 +114,11 @@
                                     </p>
                                 </div>
                                 <div class="col border-top">
-                                    <a class="procesos-f process-filter-a-down" data-value="4" ><p>Siguiendo</p></a>
-                                    <p>
+                                    <a class="procesos-f process-filter-a-down" data-value="4"><p class="follow-text">Siguiendo</p></a>
+                                    <p class="follow-count">
                                     <?php
                                             $sql = $pdo->prepare("SELECT COUNT(follow) FROM seguir WHERE follow = ?");
-                                            $sql->execute([$_SESSION['id']]);
+                                            $sql->execute([$id]);
                                             $row = $sql->fetch();
                                             echo $row['COUNT(follow)'];
                                             $sql->closeCursor();
@@ -117,6 +128,18 @@
                             </div>
                         </li>
                     </ul>
+
+                    <?php 
+                        if($id != $_SESSION['id']){
+
+                    ?>
+                        <div class="mt-4">
+                            <button type="button" id="seguir" class="process-featured-button-1" style="margin-left:10%; margin-bottom: 5%; width: 75%;"><span style="position: relative; top: 5px;" class="material-symbols-outlined"> notifications </span> <span id="following-text">Seguir</span> </button>
+                        </div>
+
+                    <?php
+                        }
+                    ?>
                 </div>
                 <div class="col col-md-9">
                     <div class="container text-center" style="margin-top: 1rem;">
@@ -129,36 +152,7 @@
                                 $rows = $sql->fetchAll();
                                 foreach($rows as $row){
 
-
-                            ?>
-                            <!-- START INDIVIDUAL CARD -->
-                            <div class="col">
-                                <div class="card h-100">
-                                    <div class="card-header" style="background-color: #894B5D"></div>
-                                    <img src="http://drive.google.com/uc?export=view&id=1Bw22s4t6l_H6e9r6f_A7y0jIuGYEeRy0" class="card-img-top" alt="...">
-                                    <div class="card-body" style="padding: 0;">
-                                        <ul class="list-group list-group-flush">
-                                            <li class="list-group-item d-flex justify-content-center align-items-center" style="height: 100px">
-                                                <h5 class="process-title-card"><?php echo $row['titulo_registro']; ?></h5>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <p class="process-content-card"><strong>Autor:</strong> <?php echo $row['nombre']; ?></p> 
-                                            </li>
-                                            <li class="list-group-item">
-                                                <p class="process-content-card"><strong>Distrito:</strong> <?php echo $row['nombre_distrito']; ?></p>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <p class="process-content-card"><strong>Fecha de creación: </strong><?php echo $row['fecha_creacion']; ?></p>
-                                            </li>
-                                            <li class="list-group-item d-flex flex-column" style="background-color: #ead9d8">
-                                                <a href="#"><button class="process-button-card"><strong>Más información</strong></button></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- END INDIVIDUAL CARD -->
-                            <?php
+                                    require 'components/card_ficha.php';
 
                                 }
                                 $sql->closeCursor();
@@ -190,14 +184,16 @@
             $(document).ready(function(){
                 $(".procesos-f").click(function() {
                     let dato = $(this).data("value");
-                    console.log(dato);
+                    let id = $('.uid').data("value");
                     $(".process-filter-a-active").addClass("process-filter-a-down").removeClass("process-filter-a-active");
                     $(this).addClass("process-filter-a-active").removeClass("process-filter-a-down");
                     $.ajax({
                         url: "fetch/show_profile.php",
                         type: "POST",
                         data: {
-                            dato: dato
+                            dato: dato,
+                            id:id
+                            
                         }, 
                         beforeSend:() =>{
                             $('.filter').html("<span>Working ... </span>");
@@ -207,6 +203,18 @@
                         }
 
                     });
+                });
+            });
+
+            $(document).ready(function(){
+                $(".process-featured-button-1").click(function (){
+                    if ($('#seguir').hasClass('process-featured-button-1')) {
+                        $(this).removeClass("process-featured-button-1").addClass("process-featured-button-2").css({'transition': '150ms ease-in-out'});
+                        $('#following-text').text('Siguiendo');
+                    } else {
+                        $(this).removeClass("process-featured-button-2").addClass("process-featured-button-1").css({'transition': '150ms ease-in-out'});
+                        $('#following-text').text('Seguir');
+                    }
                 });
             });
         </script>
