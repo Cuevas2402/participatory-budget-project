@@ -265,7 +265,7 @@
                     if ($('#seguir').hasClass('process-featured-button-1')) {
                         
                         $.ajax({
-                            url: "fetch/follow.php",
+                            url: "fetch/follow_perfil.php",
                             type: "POST",
                             data: {
                                 id:id
@@ -288,7 +288,7 @@
                     } else {
                         
                         $.ajax({
-                            url: "fetch/unfollow.php",
+                            url: "fetch/unfollow_perfil.php",
                             type: "POST",
                             data: {
                                 id:id
