@@ -130,14 +130,25 @@
                     </ul>
 
                     <?php 
-                        if($id != $_SESSION['id']){
+                        if(isset($_SESSION['id'])){
+                
+                        
+                            if($id != $_SESSION['id']){
 
                     ?>
-                        <div class="mt-4">
-                            <button type="button" id="seguir" class="process-featured-button-1" style="margin-left:10%; margin-bottom: 5%; width: 75%;"><span style="position: relative; top: 5px;" class="material-symbols-outlined"> notifications </span> <span id="following-text">Seguir</span> </button>
-                        </div>
-
+                                <div class="mt-4">
+                                    <button type="button" id="seguir" class="process-featured-button-1" style="margin-left:10%; margin-bottom: 5%; width: 75%;"><span style="position: relative; top: 5px;" class="material-symbols-outlined"> notifications </span> <span id="following-text">Seguir</span> </button>
+                                </div>
                     <?php
+                            }
+                        }else{
+
+                    ?>
+                            <div class="mt-4">
+                                <button type="button" id="seguir" class="process-featured-button-1" style="margin-left:10%; margin-bottom: 5%; width: 75%;"><span style="position: relative; top: 5px;" class="material-symbols-outlined"> notifications </span> <span id="following-text">Seguir</span> </button>
+                            </div>
+                    <?php
+
                         }
                     ?>
                 </div>
@@ -211,12 +222,45 @@
                     if ($('#seguir').hasClass('process-featured-button-1')) {
                         $(this).removeClass("process-featured-button-1").addClass("process-featured-button-2").css({'transition': '150ms ease-in-out'});
                         $('#following-text').text('Siguiendo');
+                        $.ajax({
+                            url: "fetch/follow.php",
+                            type: "POST",
+                            data: {
+                                dato: dato,
+                                id:id
+                                
+                            }, 
+                            beforeSend:() =>{
+                                $('.filter').html("<span>Working ... </span>");
+                            },
+                            success:function(data){
+                                $('.filter').html(data);
+                            }
+
+                        });
+
                     } else {
                         $(this).removeClass("process-featured-button-2").addClass("process-featured-button-1").css({'transition': '150ms ease-in-out'});
                         $('#following-text').text('Seguir');
+                        $.ajax({
+                            url: "fetch/follow.php",
+                            type: "POST",
+                            data: {
+                                dato: dato,
+                                id:id
+                                
+                            }, 
+                            beforeSend:() =>{
+                                $('.filter').html("<span>Working ... </span>");
+                            },
+                            success:function(data){
+                                $('.filter').html(data);
+                            }
+                        });
                     }
                 });
             });
+
         </script>
     </body>
 </html>
