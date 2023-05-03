@@ -134,12 +134,28 @@
                 
                         
                             if($id != $_SESSION['id']){
+                                
+
+                                $sql = $pdo->prepare("SELECT COUNT(follow) FROM seguir WHERE follow = ? AND followed = ? ");
+                                $sql->execute([$_SESSION['id'], $id]);
+                                $row = $sql->fetch();
+
+                                if($row['COUNT(follow)'] > 0){
 
                     ?>
-                                <div class="mt-4">
-                                    <button type="button" id="seguir" class="process-featured-button-1" style="margin-left:10%; margin-bottom: 5%; width: 75%;"><span style="position: relative; top: 5px;" class="material-symbols-outlined"> notifications </span> <span id="following-text">Seguir</span> </button>
-                                </div>
+                                    <div class="mt-4">
+                                        <button type="button" id="seguir" class="process-featured-button-2" style="margin-left:10%; margin-bottom: 5%; width: 75%;"><span style="position: relative; top: 5px;" class="material-symbols-outlined"> notifications </span> <span id="following-text">Siguiendo</span> </button>
+                                    </div>
                     <?php
+                                }else{
+                    
+
+                    ?>
+                                    <div class="mt-4">
+                                        <button type="button" id="seguir" class="process-featured-button-1" style="margin-left:10%; margin-bottom: 5%; width: 75%;"><span style="position: relative; top: 5px;" class="material-symbols-outlined"> notifications </span> <span id="following-text">Seguir</span> </button>
+                                    </div>
+                    <?php
+                                }
                             }
                         }else{
 
@@ -147,6 +163,7 @@
                             <div class="mt-4">
                                 <button type="button" id="seguir" class="process-featured-button-1" style="margin-left:10%; margin-bottom: 5%; width: 75%;"><span style="position: relative; top: 5px;" class="material-symbols-outlined"> notifications </span> <span id="following-text">Seguir</span> </button>
                             </div>
+                            
                     <?php
 
                         }
@@ -210,6 +227,7 @@
         <!-- FIN MODAL INICIA-->
         
         <script type="text/javascript">
+
             $(document).ready(function(){
                 $(".procesos-f").click(function() {
                     let dato = $(this).data("value");
@@ -235,24 +253,30 @@
                 });
             });
 
-            $(document).ready(function(){
+            /*$(document).ready(function(){
                 $(".process-featured-button-1").click(function (){
+                    let id = $('.uid').data("value");
                     if ($('#seguir').hasClass('process-featured-button-1')) {
                         
                         $.ajax({
                             url: "fetch/follow.php",
                             type: "POST",
                             data: {
-                                dato: dato,
                                 id:id
                                 
                             }, 
                             beforeSend:() =>{
                                 $('.filter').html("<span>Working ... </span>");
                             },
-                            success:function(){
-                                $(this).removeClass("process-featured-button-1").addClass("process-featured-button-2").css({'transition': '150ms ease-in-out'});
-                                $('#following-text').text('Siguiendo');
+                            success: function(response) {
+                                // Verificar si la condición se cumple
+                                if (!response.condicion) {
+                                // Mostrar el modal aquí
+                                    $("#mi-modal").modal("show");
+                                }else{
+                                    $(this).removeClass("process-featured-button-1").addClass("process-featured-button-2").css({'transition': '150ms ease-in-out'});
+                                    $('#following-text').text('Siguiendo');
+                                }
                             }
 
                         });
@@ -263,21 +287,26 @@
                             url: "fetch/follow.php",
                             type: "POST",
                             data: {
-                                dato: dato,
                                 id:id
                                 
                             }, 
                             beforeSend:() =>{
                                 $('.filter').html("<span>Working ... </span>");
                             },
-                            success:function(){
-                                $(this).removeClass("process-featured-button-2").addClass("process-featured-button-1").css({'transition': '150ms ease-in-out'});
-                                $('#following-text').text('Seguir');
+                            success: function(response) {
+                                // Verificar si la condición se cumple
+                                if (!response.condicion) {
+                                // Mostrar el modal aquí
+                                    $("#mi-modal").modal("show");
+                                }else{
+                                    $(this).removeClass("process-featured-button-2").addClass("process-featured-button-1").css({'transition': '150ms ease-in-out'});
+                                    $('#following-text').text('Seguir');
+                                }
                             }
                         });
                     }
                 });
-            });
+            });*/
 
         </script>
     </body>
