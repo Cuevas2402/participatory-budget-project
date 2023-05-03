@@ -24,4 +24,7 @@
         }
     }
 
+    $db = new Database();
+    $pdo = $db -> connect();
+
 ?>

@@ -1,3 +1,9 @@
+<?php
+	require 'config/db.php';
+	require 'config/config.php';
+	
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -23,10 +29,40 @@
     <!-- Leaflet-->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
 </head>
 <body style="font-family: Roboto;">
     <!-- Start Navbar -->
-        <?php require 'header/header.php' ?>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#"><img src="img/logo.png" style="width: 200px;" alt="LOGO"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse mx-auto" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mx-auto mb-2 mb-lg-0 text-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.php">Inicio</a>
+                    </li>
+                    <li class="nav-item mx-5">
+                        <a class="nav-link" href="participa.php">Participa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link a-active" href="ayuda.php">Ayuda</a>
+                    </li>
+                </ul>
+                <!-- (Iniciar Sesión / Registrarse) o Sesion Inicada -->
+                <?php require 'components/login.php' ?>
+            </div>
+        </div>
+    </nav>
+    <!-- Start search bar-->
+
+    <?php require 'components/search_bar.php'; ?>
+    
+    <!-- End search bar-->
+
     <!-- End Navbar -->
     
     <div class="contenido">
@@ -384,23 +420,22 @@
         </div>
     </footer>
 
+	<!--& SCRIPT PARA SECCIONES -->
+	<script>
+		function openCat(evt, categoria) {
+			var i, tabcontent, tablinks;
+			tabcontent = document.getElementsByClassName("tabcontent");
+			for (i = 0; i < tabcontent.length; i++) {
+				tabcontent[i].style.display = "none";
+			}
+			tablinks = document.getElementsByClassName("tablinks");
+			for (i = 0; i < tablinks.length; i++) {
+				tablinks[i].className = tablinks[i].className.replace(" active", "");
+			}
+			document.getElementById(categoria).style.display = "block";
+			evt.currentTarget.className += " active";
+		}
+	</script>
 </body>
 </html>
 
-<!--& SCRIPT PARA SECCIONES -->
-<script>
-    function openCat(evt, categoria) {
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
-        }
-        tablinks = document.getElementsByClassName("tablinks");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace(" active", "");
-        }
-        document.getElementById(categoria).style.display = "block";
-        evt.currentTarget.className += " active";
-    }
-</script>
-</html>

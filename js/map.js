@@ -44,5 +44,3 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
   circle3.bindPopup("Zona 3");
   circle4.bindPopup("Zona 4");
   circle5.bindPopup("Zona 5");
-  var marker = L.marker([25.68807, -100.31702]).addTo(map);
-  marker.bindPopup("Perteneces a:<br><b>Zona 1</b>").openPopup();

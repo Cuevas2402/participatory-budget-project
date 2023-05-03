@@ -42,3 +42,47 @@ BEGIN
   SELECT procesos.pid, titulo_proceso, fecha_inicio_proceso, fecha_fin_proceso, nombre_ambito, nombre_municipio, titulo_fase FROM procesos, fases, ambitos, municipios WHERE fase_actual = n_fase and procesos.aid = ambitos.aid and procesos.mid = municipios.mid;
 END$$
 DELIMITER ;
+
+/* Procedimiento para contar procesos */
+
+DELIMITER $$
+CREATE PROCEDURE count_process()
+BEGIN
+  SELECT count(pid) FROM procesos;
+END$$
+DELIMITER ;
+
+/* Procedimiento para contar procesos activos */
+
+DELIMITER $$
+CREATE PROCEDURE count_process_active()
+BEGIN
+  SELECT count(pid) FROM procesos WHERE estatus = 1;
+END$$
+DELIMITER ;
+
+/* Procedimiento para contar procesos down */
+
+DELIMITER $$
+CREATE PROCEDURE count_process_down()
+BEGIN
+  SELECT count(pid) FROM procesos WHERE estatus = 0;
+END$$
+
+/* Procedimiento para seleccionar distritos de cada procesos*/
+
+DELIMITER $$
+CREATE PROCEDURE get_process_distrit()
+BEGIN
+  SELECT * FROM procesos, municipios, distritos WHERE procesos.mid =  municipios.mid AND municipios.mid =  distritos.mid;
+END$$
+DELIMITER ;
+
+/* Procedimiento para seleccionar los id de todos los partipantes de un proceso*/
+
+DELIMITER $$
+CREATE PROCEDURE get_process_uid()
+BEGIN
+  SELECT * FROM procesos, participaciones WHERE procesos.pid = participaciones.pid;
+END$$
+DELIMITER ;

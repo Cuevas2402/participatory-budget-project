@@ -1,3 +1,18 @@
+<?php
+    require 'config/db.php';
+    require 'config/config.php';
+    $id = isset($_GET['id']) ? $_GET['id'] : '';
+    $token = isset($_GET['token']) ? $_GET['token'] : '';
+
+    if($id == '' && $token == ''){
+        header("Location: components/404.php");
+        exit();
+    }else{
+        $token_tmp = hash_hmac('sha1', $id, KEY_TOKEN);
+        if($token == $token_tmp){
+            
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,22 +39,52 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
 </head>
-
 <body style="font-family: Roboto;">
     <!-- Start Navbar -->
-    <?php require 'header/header.php' ?>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#"><img src="img/logo.png" style="width: 200px;" alt="LOGO"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse mx-auto" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mx-auto mb-2 mb-lg-0 text-center">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.php">Inicio</a>
+                </li>
+                <li class="nav-item mx-5">
+                    <a class="nav-link a-active" href="participa.php">Participa</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="ayuda.php">Ayuda</a>
+                </li>
+                </ul>
+                <!-- (Iniciar Sesión / Registrarse) o Sesion Inicada -->
+				<?php require 'components/login.php' ?>
+            </div>
+        </div>
+    </nav>
+    <!-- Start search bar-->
+
+    <?php require 'components/search_bar.php'; ?>
+    
+    <!-- End search bar-->
     <!-- End Navbar -->
 
-    <div class="card-section">
-        <h1 class="section-title">Consulta Extraordinaria para la selección de jueces y juezas auxiliares</h1>
+    <div>
+        <img src="img/h321px.jpg" class="img-fluid d-none d-md-block w-100">
+        <img src="img/h641px.jpg" class="img-fluid d-none d-sm-block d-md-none w-100">
+        <img src="img/h1920px.jpg" class="img-fluid d-block d-sm-none d-md-none w-100">
     </div>
     <div style="border-bottom: 1px solid rgba(0, 0, 0, 0.25);">
         <div class="container">
             <div class="nav3">
-                <h5><a href="participa2.php">EL PROCESO</a></h5>
-                <h5><a href="fases.php"> FASES </a></h5>
-                <h5><a class="a-active" href="#">FICHAS ACTIVAS</a></h5>
+                <h5><a href="participa2.php?id=<?php echo $id; ?>&token=<?php echo hash_hmac('sha1', $id, KEY_TOKEN );?>">EL PROCESO</a></h5>
+                <h5><a href="fases.php?id=<?php echo $id; ?>&token=<?php echo hash_hmac('sha1', $id, KEY_TOKEN );?>">FASES </a></h5>
+                <h5><a class="a-active"  href="fichasActivas.php?id=<?php echo $id; ?>&token=<?php echo hash_hmac('sha1', $id, KEY_TOKEN );?>">FICHAS ACTIVAS</a></h5>
             </div> 
         </div>
     </div>
@@ -48,9 +93,19 @@
         <div class="px-2">
             <h4><strong><i class="fa fa-square" aria-hidden="true"></i> PROPUESTAS (#)</strong></h4>
         </div>
-        <div class="px-2">
-            <button id="button-popup" class="button-popup">Nueva Propuesta <i class="fa fa-plus" aria-hidden="true"></i></button>
-        </div>
+        <?php
+            $sql = $pdo->prepare("SELECT * FROM procesos WHERE procesos.pid = '$id'");
+            $sql->execute();
+            $rows = $sql->fetch();
+            if($rows['fase_actual'] == 2){ 
+        ?>
+                <div class="px-2">
+                    <button id="button-popup" class="button-popup">Nueva Propuesta <i class="fa fa-plus" aria-hidden="true"></i></button>
+                </div>
+        <?php
+            }
+            $sql->closeCursor();
+        ?>
     </div>
 
     <div id="popup" class="popup">
@@ -67,25 +122,25 @@
             <form class="needs-validation" style="width: 75%;" id="form" novalidate>
                 <div class="form-group f-register">
                     <div>
-                      <label class="label-register">Correo Electrónico *</label>
-                      <input type="nombre" class="form-control w-100" id="nombre" placeholder="jose.gallegos@udem.edu" required>
-                      <div class="valid-feedback">
-                        Todo bien
-                      </div>
-                      <div class="invalid-feedback">
-                        Campo Obligatorio
-                      </div>
+                        <label class="label-register">Correo Electrónico *</label>
+                        <input type="nombre" class="form-control w-100" id="nombre" placeholder="jose.gallegos@udem.edu" required>
+                        <div class="valid-feedback">
+                            Todo bien
+                        </div>
+                        <div class="invalid-feedback">
+                            Campo Obligatorio
+                        </div>
                     </div>
-  
+
                     <div>
-                      <label class="label-register">Contraseña *</label>
-                      <input type="password" class="form-control w-100" id="email" placeholder="Contraseña" required>
-                      <div class="valid-feedback">
-                        Todo bien
-                      </div>
-                      <div class="invalid-feedback">
-                        Campo Obligatorio
-                      </div>
+                        <label class="label-register">Contraseña *</label>
+                        <input type="password" class="form-control w-100" id="email" placeholder="Contraseña" required>
+                        <div class="valid-feedback">
+                            Todo bien
+                        </div>
+                        <div class="invalid-feedback">
+                            Campo Obligatorio
+                        </div>
                     </div>
                     <center><button class="process-featured-button-2-large mt-4">INICIAR SESIÓN</button></center>
                 </div>
@@ -105,138 +160,75 @@
                         </p>
                     </li>
                     <li class="list-group-item" style="background-color: #EAD9D8;">
-                        <form class="d-flex my-3 m-2">
-                            <input class="form-control" type="search" placeholder="Buscar" aria-label="Search">
-                            <button class="btn buscar" type="submit">
+                        <div class="d-flex my-3 m-2">
+                            <input class="input-search form-control" type="search" placeholder="Buscar usuario, titulo, descripción ..." aria-label="Search">
+                            <button class="buscar-filtro btn buscar">
                                 <i class='fa-solid fa-magnifying-glass'></i>
                             </button>
-                        </form>
-                    </li>
-                    <li class="list-group-item" style="background-color: #EAD9D8;">
-                        <div class="m-2">
-                            <p><b>Ámbito</b></p>
-                            <p><input type="checkbox" id="checkAll"> Todas</p>
-                            <p><input type="checkbox" class="check"> Distrito Centro</p>
-                            <p><input type="checkbox" class="check"> Distrito Huajuco</p>
-                            <p><input type="checkbox" class="check"> Distrito Norte</p>
-                            <p><input type="checkbox" class="check"> Distrito Poniente</p>
-                            <p><input type="checkbox" class="check"> Distrito Sur</p>
                         </div>
                     </li>
                     <li class="list-group-item" style="background-color: #EAD9D8;">
                         <div class="m-2">
-                            <p><b>Categoría</b></p>
-                            <p><input type="checkbox" id="checkAll2"> Todas</p>
-                            <p>
-                                <div class="row">
-                                    <div class="col">
-                                        <input type="checkbox" id="checkAll900" class="check900">
-                                        900 - 999
-                                    </div>
-                                    <div class="col">
-                                        <button onclick="toggleMore()" id="myBtn"><span style="font-size: 24px;" class="material-symbols-outlined">
-                                            expand_more</span></button>
-                                    </div>
-                                    <div class="moreOptions" id="moreOptions">
-                                        <p><input type="checkbox" class="check900"> 900</p>
-                                        <p><input type="checkbox" class="check900"> 901</p>
-                                        <p><input type="checkbox" class="check900"> 902</p>
-                                        <p><input type="checkbox" class="check900"> 903</p>
-                                        <p><input type="checkbox" class="check900"> 904</p>
-                                        <p><input type="checkbox" class="check900"> 905</p>
-                                    </div>
-                                </div>
-                            </p>
+                            <p><b>Distritos</b></p>
+                            <?php
+                                $sql = $pdo->prepare("SELECT * FROM procesos, municipios, distritos WHERE procesos.pid = '$id' AND procesos.mid = municipios.mid AND municipios.mid =  distritos.mid;");
+                                $sql->execute();
+                                $rows = $sql->fetchAll();
+                                foreach($rows as $row){
+
+                                
+                            ?>
+                                <p><input type="checkbox" class="check" value="<?php echo $row['did'] ?>"> <?php echo $row['nombre_distrito']; ?></p>
+
+                            <?php
+                                }
+                                $sql->closeCursor();
+                            ?>
                         </div>
                     </li>
                 </ul>
             </div>
             <div class="col-12 col-sm-12 col-md-8">
                 <div class="container">
-                        <div class="row ">
-                            <div class="col gx-5">
-                                <p>Ordernar propuestas por: <select  class="process-select-2" type="text">
-                                    <option>Aleatorio</option>
-                                    <option>Reciente</option>
-                                    <option>Con más adhesiones</option>
-                                    <option>Más comentadas</option>
-                                    <option>Con más seguidoras</option>
-                                    <option>Con más autoras</option>
-                                </select></p>
-                            </div>
-                            <div class="col">
-                                <p>Resultados por página: 
-                                <select class="process-select-3" type="text">
-                                    <option>20</option>
-                                    <option>50</option>
-                                    <option>100</option>
-                                </select>
-                            </p>
-                            </div>
+                    <div class="row ">
+                        <div class="col gx-5">
+                            <p>Ordernar propuestas por: <select  class="process-select-2" type="text">
+                                <option>Aleatorio</option>
+                                <option>Reciente</option>
+                                <option>Con más adhesiones</option>
+                                <option>Más comentadas</option>
+                                <option>Con más seguidoras</option>
+                                <option>Con más autoras</option>
+                            </select></p>
                         </div>
-                        <!-- START CARDS NUEVO -->
-                        <div class="container text-center" style="margin-top: 4rem; margin-bottom: 8rem;">
-                            <div class="filter row row-cols-1 row-cols-md-2 row-cols-lg-4 d-flex align-items-stretch g-3">
-                                <!-- START INDIVIDUAL CARD -->
-                                <?php
-                                    $stmt = $pdo->prepare("CALL get_process_card()");
-                                    $stmt->execute();
-                                    $rows = $stmt->fetchAll();
-                                    foreach($rows as $row){
-
-                                ?>
-                                        <div class="col col-lg-3">
-                                            <div class="card h-100">
-                                                <div class="card-header" style="background-color: #894B5D"></div>
-                                                <img src="http://drive.google.com/uc?export=view&id=1Bw22s4t6l_H6e9r6f_A7y0jIuGYEeRy0" class="card-img-top" alt="...">
-                                                <div class="card-body" style="padding: 0; background-color: #ead9d8">
-                                                    <ul class="list-group list-group-flush">
-                                                        <li class="list-group-item d-flex align-items-center" style="height: 100px; background-color: white;">
-                                                            <h5 class="process-title-card"><?php echo $row['titulo_proceso'];?></h5>
-                                                        </li>
-                                                        <li class="list-group-item" style="background-color: white; ">
-                                                            <p class="process-date-card"><strong>Ambito:</strong> <?php echo $row['nombre_ambito'];?> </p>
-                                                        </li>
-                                                        <li class="list-group-item " style="background-color: white;">
-                                                            <p class="process-date-card"><strong>Municipio:</strong> <?php echo $row['nombre_municipio'];?> </p>
-                                                        </li>
-                                                        <li class="list-group-item" style="background-color: white;">
-                                                            <div class="row d-flex align-items-center">
-                                                                <div class="col">
-                                                                    <p class="process-date-card"><strong>Fecha de inicio</strong></p>
-                                                                </div>
-                                                                <div class="col">
-                                                                    <p class="process-date-card"><strong>Fecha de finalización</strong></p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col">
-                                                                    <p class="process-date-card"><?php echo $row['fecha_inicio_proceso'];?></p>
-                                                                </div>
-                                                                <div class="col">
-                                                                    <p class="process-date-card"><?php echo $row['fecha_fin_proceso'];?></p>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                        <li class="list-group-item d-flex flex-column" style="background-color: #ead9d8">
-                                                            <p class="process-status-card"><strong>Fase actual</strong></p>
-                                                            <button class="process-button"><?php echo $row['titulo_fase'];?></button>
-                                                            <a href="participa2.php?id=<?php echo $row['pid']; ?>&token=<?php echo hash_hmac('sha1', $row['pid'], KEY_TOKEN );?>" ><button class="process-button-card"><strong>Más información</strong></button></a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                <?php
-                                    }
-                                    $stmt->closeCursor();
-                                ?>
-
-
-                                <!-- END INDIVIDUAL CARD--> 
-                            </div>
+                        <div class="col">
+                            <p>Resultados por página: 
+                            <select class="process-select-3" type="text">
+                                <option>20</option>
+                                <option>50</option>
+                                <option>100</option>
+                            </select>
+                        </p>
                         </div>
-                  </div>
+                    </div>
+                    <!-- start cards nuevo -->
+                    <div class="container text-center" style="margin-top: 1rem;">
+                        <div class="filter row row-cols-1 row-cols-md-2 row-cols-lg-2 d-flex align-items-stretch g-3">
+                            <?php
+                                $sql = $pdo->prepare("SELECT * FROM procesos, participaciones, usuarios, distritos WHERE procesos.pid = '$id' and procesos.pid = participaciones.pid AND usuarios.uid = participaciones.uid and distritos.did = participaciones.did");
+                                $sql->execute();
+                                $rows = $sql->fetchAll();
+                                foreach($rows as $row){
+
+                                    require 'components/card_ficha.php';
+
+                                }
+                                $sql->closeCursor();
+                            ?>
+                        </div>
+                    </div>
+                    <!-- end cards nuevo -->
+                </div>
             </div>
         </div>
     </div> 
@@ -259,7 +251,7 @@
     <!-- End Footer -->
 
     <!-- JS Script -->
-    <script>
+    <!--<script>
         // Selecciona el checkbox con la etiqueta "Todas"
         const checkAll = document.getElementById('checkAll');
 
@@ -343,6 +335,64 @@
         cerrarPopup.onclick = function() {
             popup.style.display = "none";
         }
+    </script>-->
+
+    <script type="text/javascript">  
+        $(document).ready(function(){
+            $('input[type="checkbox"]').on('change', function() { // Cada que haya un cambio en un checkbox salta el evento
+                var valores = $('input[type="checkbox"]:checked').map(function() { return $(this).val(); }).get();  // Almacena los valores de los checkbox marcados y los mete en un arreglo
+                var did = "<?php echo $id; ?>";
+                $.ajax({
+                    url: "fetch/filter_fichas.php",
+                    type: "POST",
+                    data: {
+                        datos: valores,
+                        id: did
+                    }, 
+                    beforeSend:() =>{
+                        $('.filter').html("<span>Working ... </span>");
+                    },
+                    success:function(data){
+                        $('.filter').html(data);
+                    }
+
+                });
+            });
+        });
+
+        $(document).ready(function(){
+            $('.buscar-filtro').on('click', function() { // Cada que le den click a buscar
+                $('input[type="checkbox"]:checked').prop('checked', false);
+                var valor = $('.input-search').val(); // Almacena el valor a buscar
+                console.log(valor);
+                var did = "<?php echo $id; ?>";
+                $.ajax({
+                    url: "fetch/search_fichas.php",
+                    type: "POST",
+                    data: {
+                        datos: valor,
+                        id: did
+                    }, 
+                    beforeSend:() =>{
+                        $('.filter').html("<span>Working ... </span>");
+                    },
+                    success:function(data){
+                        $('.filter').html(data);
+                    }
+
+                });
+            });
+        });
     </script>
 </body>
 </html>
+
+<?php
+        }else{
+            header("Location: /components/404.php");
+            exit();
+        }
+    }
+        //$stmt->closeCursor();
+
+?>

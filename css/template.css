@@ -27,6 +27,24 @@ div.nav2 > ul {
     font-size: 20px;
 }
 
+a.a-active {
+    color: #000000;
+    text-decoration: none;
+    box-shadow: inset 0 -3px 0 0 #60746b;
+    padding-bottom: .6rem;
+    display: inline-block;
+    transition: 300ms ease-out;
+}
+
+a.nav-link:hover {
+    color: #000000;
+    text-decoration: none;
+    box-shadow: inset 0 -3px 0 0 #60746b;
+    padding-bottom: .6rem;
+    display: inline-block;
+    transition: 300ms ease-out;
+}
+
 /* Botones */
 button.registra {
     color: white;
@@ -59,16 +77,7 @@ button.inicia:hover {
 /* Barra de Búsqueda */
 input.form-control {
     width: 600px;
-    /* box-shadow: 0px 2px 3px 2px rgba(0,0,0,0.4) inset;
-    -webkit-box-shadow: 0px 2px 5px 2px rgba(0,0,0,0.4) inset;
-    -moz-box-shadow: 0px 2px 3px 2px rgba(0,0,0,0.4) inset; */
 }
-
-/* input.form-control:focus {
-    box-shadow: 0px 2px 3px 2px rgba(0,0,0,0.4) inset;
-    -webkit-box-shadow: 0px 2px 5px 2px rgba(0,0,0,0.4) inset;
-    -moz-box-shadow: 0px 2px 3px 2px rgba(0,0,0,0.4) inset;
-} */
 
 button.buscar {
     position: relative;
@@ -96,7 +105,6 @@ footer {
     background: #E3E3E3;
     width: 100%;
     color: #252525;
-
 }
 
 .footer-content {
@@ -308,6 +316,18 @@ footer p > a:hover {
     background-color: white;
     border: 1px solid #894B5D;
     border-radius: 6px;
+    transition: 300ms ease-in;
+}
+
+.process-featured-button-1:hover {
+    padding: 10px 16px;
+    font-weight: bold;
+    width: 165px;
+    color: white;
+    background-color: #894B5D;
+    border: 1px solid #894B5D;
+    border-radius: 6px;
+    transition: 300ms ease-in;
 }
 
 .process-featured-button-2 {
@@ -315,9 +335,21 @@ footer p > a:hover {
     font-weight: bold;
     width: 165px;
     color: white;
+    background-color: #8f5e6c;
+    border: 1px solid #8f5e6c;
+    border-radius: 6px; 
+    transition: 300ms ease-in;
+}
+
+.process-featured-button-2:hover {
+    padding: 10px 16px;
+    font-weight: bold;
+    width: 165px;
+    color: white;
     background-color: #894B5D;
     border: 1px solid #894B5D;
-    border-radius: 6px; 
+    border-radius: 6px;
+    transition: 300ms ease-in;
 }
 
 .process-featured-button-2-large {
@@ -325,9 +357,21 @@ footer p > a:hover {
     font-weight: bold;
     width: 250px;
     color: white;
+    background-color: #8f5e6c;
+    border: 1px solid #8f5e6c;
+    border-radius: 6px;
+    transition: 300ms ease-in;
+}
+
+.process-featured-button-2-large:hover {
+    padding: 10px 16px;
+    font-weight: bold;
+    width: 250px;
+    color: white;
     background-color: #894B5D;
     border: 1px solid #894B5D;
     border-radius: 6px;
+    transition: 300ms ease-in;
 }
 
 .process-featured-button-3 {
@@ -336,7 +380,8 @@ footer p > a:hover {
     color: #252525;
     background-color: #d0cece;
     border: none;
-    border-radius: 6px; 
+    border-radius: 6px;
+    transition: 300ms ease-in;
 }
 
 .process-featured-button-3-large {
@@ -347,6 +392,7 @@ footer p > a:hover {
     background-color: white;
     border: 1px solid #894B5D;
     border-radius: 6px;
+    transition: 300ms ease-in;
 }
 
 /* Procesos */
@@ -355,14 +401,34 @@ footer p > a:hover {
     gap: 3%;
 }
 
-.process-filter > h4 > a {
+.process-filter-a-down {
     text-decoration: none;
     color: #a0a0a0;
 }
 
-.process-filter > h4 > a:hover {
+.process-filter-a-down:hover {
     text-decoration: underline;
     color: #0089A6;
+}
+
+.process-filter-a-down-2 {
+    text-decoration: none;
+    color: #0089A6;
+}
+
+.process-filter-a-down-2:hover {
+    text-decoration: none;
+    color: #0089A6;
+}
+
+.process-filter-a-active {
+    text-decoration: underline;
+    color: #0089A6;
+}
+
+.process-filter-a-active:hover {
+    text-decoration: none;
+    color: #a0a0a0;
 }
 
 .see-process {
@@ -463,11 +529,22 @@ footer p > a:hover {
     border-radius: 6px; 
     padding: .4rem 0; 
     color: white; 
+    background-color: #8f5e6c;
+}
+
+.process-button-card:hover {
+    width: 100%;
+    margin-top: 5%; 
+    margin-bottom: 5%; 
+    border: 0; 
+    border-radius: 6px; 
+    padding: .4rem 0; 
+    color: white; 
     background-color: #894B5D;
 }
 
-/* PARTICIPA 2 */
-/* Navegacion  */
+/*      PARTICIPA 2     */
+/* Navegacion */
 .nav3 {
     padding: 1rem 0 .5rem 0;
     display: flex;
@@ -523,7 +600,7 @@ footer p > a:hover {
     background-color: transparent;
 }
 
-/* Boton para ver mas */
+/*  Botón para ver mas */
 #moreOptions {
     display: none;
 }
@@ -546,13 +623,12 @@ button#myBtn {
     'opsz' 48
 }
 
-/* forms styles*/
+/* Forms styles */
 .form-div{
     height: 100%; 
     background-color: #EAD9D8; 
     border-radius: 5px;
     margin-bottom:10%;
-    
 }
 
 .f-register{
@@ -655,47 +731,16 @@ button#myBtn {
     width: 120px;
 }
 
-/*** Y ESTO??? ***/
-/* input[type="checkbox"] {
-    margin-top: 3%;
-    appearance: none;
-    width: 13px;
-    height: 13px;
-    border: 2px solid #000;
-    border-radius: 3px;
-    position: relative;
-    cursor: pointer;
-  }
-  
-  input[type="checkbox"]::before {
-    content: "";
-    display: block;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 10px;
-    height: 10px;
-    border-radius: 2px;
-    background-color: #fff;
-    opacity: 1;
-  }
-  
-  input[type="checkbox"]:checked::before {
-    opacity: 1;
-    background-color: #000;
-  } */
-
-  /* Fichas Activas */
-  .button-popup {
+/* Fichas Activas */
+.button-popup {
     padding: 3px 10px;
     background-color: #894B5D;
     border: 1px solid #894B5D;
     color: white;
     border-radius: 3px;
-  }
+}
   
-  #popup {
+#popup {
     z-index: 1000;
     display: none;
     position: fixed;
@@ -707,15 +752,94 @@ button#myBtn {
     border-radius: 5px;
     width: 600px;
     padding: 25px 40px;
-  }
+}
   
-  #cerrarPopup {
+#cerrarPopup {
     background-color: transparent;
     color: #252525;
     border: none;
     border-radius: 3px;
     font-size: 24px;
-  }
+}
   
+.container-error {
+    margin: 0 auto;
+    text-align: center;
+}
 
-    
+.h1-error {
+    font-size: 4em;
+    margin-top: 100px;
+}
+
+.p-error {
+    font-size: 1.5em;
+    margin-top: 50px;
+}
+
+/* Login Account */
+.login-account > a {
+    font-size: 20px;
+    text-decoration: none;
+    color: #252525;
+}
+
+.login-account > a:hover {
+    font-size: 20px;
+    text-decoration: none;
+    color: #1b1b1b;
+}
+
+/* Profile Card */
+.profile-name {
+    text-transform: capitalize;
+    font-weight: 400;
+}
+
+.profile-button {
+    border: 1px solid #8f5e6c;
+    background-color: #8f5e6c;
+    color: white;
+    border-radius: 3px;
+    padding: 4px 8px;
+}
+
+.profile-button:hover {
+    border: 1px solid #894B5D;
+    background-color: #894B5D;
+    color: white;
+    border-radius: 3px;
+    padding: 4px 8px;
+}
+
+/* Modals */
+.close {
+    border: none;
+    background-color: white;
+}
+
+.close > span {
+    font-size: 24px !important;
+}
+
+/* Public profile */
+.card-profile {
+    margin: 16px 20px;
+    border: 1px solid #D6D6D6;
+    border-radius: 3px;
+}
+
+.card-profile-button {
+    background-color: #EAD9D8;
+    border-top: 1px solid #D6D6D6;
+}
+
+.follow-text {
+    margin: 5px 0;
+    color: #252525;
+}
+
+.follow-count {
+    padding: 0;
+    margin: 0;
+}
