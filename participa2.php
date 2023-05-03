@@ -99,7 +99,7 @@
     <div style="border-bottom: 1px solid rgba(0, 0, 0, 0.25);">
         <div class="container">
             <div class="nav3">
-                <h5><a class="a-active" href="#">EL PROCESO</a></h5>
+                <h5><a class="a-active id-proceso" href="#" data-value="<?php echo $id; ?>">EL PROCESO</a></h5>
                 <h5><a href="fases.php?id=<?php echo $id; ?>&token=<?php echo hash_hmac('sha1', $id, KEY_TOKEN );?>">FASES</a></h5>
                 <h5><a href="fichasActivas.php?id=<?php echo $id; ?>&token=<?php echo hash_hmac('sha1', $id, KEY_TOKEN );?>">FICHAS ACTIVAS</a></h5>
             </div> 
@@ -132,7 +132,38 @@
                     <span class="mb-4" style="border-left: 2px solid black"><p class="ms-3" style="font-size: 20px !important; margin: 5px 0;"> Siguiendo <span style="font-size: 26px !important; margin: 5px 0 0 53px;"><b><?php echo $favoritos; ?></b></span></p></span>
                 </div>
 
-                <button type="button" id="seguir" class="process-featured-button-1" style="margin-left:10%; margin-bottom: 5%; width: 75%;"><span style="position: relative; top: 5px;" class="material-symbols-outlined"> notifications </span> <span id="following-text">Seguir</span> </button>
+                <?php 
+                    if(isset($_SESSION['id'])){
+            
+                        $sql = $pdo->prepare("SELECT COUNT(pid) FROM favoritos WHERE uid = ? AND pid = ? ");
+                        $sql->execute([$_SESSION['id'], $id]);
+                        $row = $sql->fetch();
+
+                        if($row['COUNT(pid)'] > 0){
+
+                ?>
+                            
+                            <button type="button" id="seguir" class="follow-button process-featured-button-2" style="margin-left:10%; margin-bottom: 5%; width: 75%;"><span style="position: relative; top: 5px;" class="material-symbols-outlined"> notifications </span> <span id="following-text">Siguiendo</span> </button>
+                            
+
+                <?php
+                        }else{
+                ?>
+                            
+                            <button type="button" id="seguir" class="follow-button process-featured-button-1" style="margin-left:10%; margin-bottom: 5%; width: 75%;"><span style="position: relative; top: 5px;" class="material-symbols-outlined"> notifications </span> <span id="following-text">Seguir</span> </button>
+                            
+                <?php
+                        }
+                    }else{
+
+                ?>
+                         <button type="button" id="seguir" class="follow-button process-featured-button-1" style="margin-left:10%; margin-bottom: 5%; width: 75%;"><span style="position: relative; top: 5px;" class="material-symbols-outlined"> notifications </span> <span id="following-text">Seguir</span> </button>
+                        
+                        
+                <?php
+
+                    }
+                ?>
                 <ul class="list-group" style="text-align: center;">
                     <li class="list-group-item"><p><b>ÁMBITO</b></p><p>
                         <?php
@@ -175,19 +206,78 @@
         </div>
     </footer>
     <!-- End Footer -->
-    
+
+    <!-- MODALES -->
+
+            <!-- MODAL INICIA -->
+            <div class="modal fade" id="inicia" tabindex="-1" role="dialog" aria-labelledby="iniciaLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exitolLabel">Inicia Sesión</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Para poder seguir un Proceso debes iniciar sesion
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- FIN MODAL INICIA-->
+
+	    <!-- FIN MODALES -->
     <script>
         $(document).ready(function(){
-            $(".process-featured-button-1").click(function (){
-                if ($('#seguir').hasClass('process-featured-button-1')) {
-                    $(this).removeClass("process-featured-button-1").addClass("process-featured-button-2").css({'transition': '150ms ease-in-out'});
-                    $('#following-text').text('Siguiendo');
-                } else {
-                    $(this).removeClass("process-featured-button-2").addClass("process-featured-button-1").css({'transition': '150ms ease-in-out'});
-                    $('#following-text').text('Seguir');
-                }
+                $(".follow-button").click(function (){
+                    let id = $('.id-proceso').data("value");
+                    if ($('#seguir').hasClass('process-featured-button-1')) {
+                        
+                        $.ajax({
+                            url: "fetch/follow_proceso.php",
+                            type: "POST",
+                            data: {
+                                id:id
+                                
+                            },
+                            success: function(response) {
+                                // Verificar si la condición se cumple
+                                if (!response.condicion) {
+                                // Mostrar el modal aquí
+                                    $("#inicia").modal("show");
+                                }else{
+                                    $(this).removeClass("process-featured-button-1").addClass("process-featured-button-2").css({'transition': '150ms ease-in-out'});
+                                    $('#following-text').text('Siguiendo');
+                                    location.reload();
+                                }
+                            }
+
+                        });
+
+                    } else {
+                        
+                        $.ajax({
+                            url: "fetch/unfollow_proceso.php",
+                            type: "POST",
+                            data: {
+                                id:id
+                                
+                            },
+                            success: function() {
+  
+                                $(this).removeClass("process-featured-button-2").addClass("process-featured-button-1").css({'transition': '150ms ease-in-out'});
+                                $('#following-text').text('Seguir');
+                                location.reload();
+        
+                            }
+                        });
+                    }
+                });
             });
-        });
     </script>
 </body>
 </html>
