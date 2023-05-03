@@ -144,7 +144,7 @@
 
                     ?>
                                     <div class="mt-4">
-                                        <button type="button" id="seguir" class="process-featured-button-2" style="margin-left:10%; margin-bottom: 5%; width: 75%;"><span style="position: relative; top: 5px;" class="material-symbols-outlined"> notifications </span> <span id="following-text">Siguiendo</span> </button>
+                                        <button type="button" id="seguir" class="follow-button process-featured-button-2" style="margin-left:10%; margin-bottom: 5%; width: 75%;"><span style="position: relative; top: 5px;" class="material-symbols-outlined"> notifications </span> <span id="following-text">Siguiendo</span> </button>
                                     </div>
                     <?php
                                 }else{
@@ -152,7 +152,7 @@
 
                     ?>
                                     <div class="mt-4">
-                                        <button type="button" id="seguir" class="process-featured-button-1" style="margin-left:10%; margin-bottom: 5%; width: 75%;"><span style="position: relative; top: 5px;" class="material-symbols-outlined"> notifications </span> <span id="following-text">Seguir</span> </button>
+                                        <button type="button" id="seguir" class="follow-button process-featured-button-1" style="margin-left:10%; margin-bottom: 5%; width: 75%;"><span style="position: relative; top: 5px;" class="material-symbols-outlined"> notifications </span> <span id="following-text">Seguir</span> </button>
                                     </div>
                     <?php
                                 }
@@ -161,7 +161,7 @@
 
                     ?>
                             <div class="mt-4">
-                                <button type="button" id="seguir" class="process-featured-button-1" style="margin-left:10%; margin-bottom: 5%; width: 75%;"><span style="position: relative; top: 5px;" class="material-symbols-outlined"> notifications </span> <span id="following-text">Seguir</span> </button>
+                                <button type="button" id="seguir" class="follow-button process-featured-button-1" style="margin-left:10%; margin-bottom: 5%; width: 75%;"><span style="position: relative; top: 5px;" class="material-symbols-outlined"> notifications </span> <span id="following-text">Seguir</span> </button>
                             </div>
                             
                     <?php
@@ -207,24 +207,30 @@
             </div>
         </footer>
         <!-- End Footer -->
-        <!-- MODAL INICIA -->
-        <div class="modal fade" id="inicia" tabindex="-1" role="dialog" aria-labelledby="iniciaLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="iniciaLabel">De verdad quieres cerrar sesion? 🥺 </h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
-                        <button type="button" class="si btn btn-secondary" data-dismiss="modal">Si</button>
+        <!-- MODALES -->
+
+            <!-- MODAL INICIA -->
+            <div class="modal fade" id="inicia" tabindex="-1" role="dialog" aria-labelledby="iniciaLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exitolLabel">Inicia Sesión</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Para poder seguir un usuario debes iniciar sesion
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- FIN MODAL INICIA-->
+            <!-- FIN MODAL INICIA-->
+
+	    <!-- FIN MODALES -->
         
         <script type="text/javascript">
 
@@ -253,8 +259,8 @@
                 });
             });
 
-            /*$(document).ready(function(){
-                $(".process-featured-button-1").click(function (){
+            $(document).ready(function(){
+                $(".follow-button").click(function (){
                     let id = $('.uid').data("value");
                     if ($('#seguir').hasClass('process-featured-button-1')) {
                         
@@ -264,18 +270,16 @@
                             data: {
                                 id:id
                                 
-                            }, 
-                            beforeSend:() =>{
-                                $('.filter').html("<span>Working ... </span>");
                             },
                             success: function(response) {
                                 // Verificar si la condición se cumple
                                 if (!response.condicion) {
                                 // Mostrar el modal aquí
-                                    $("#mi-modal").modal("show");
+                                    $("#inicia").modal("show");
                                 }else{
                                     $(this).removeClass("process-featured-button-1").addClass("process-featured-button-2").css({'transition': '150ms ease-in-out'});
                                     $('#following-text').text('Siguiendo');
+                                    location.reload();
                                 }
                             }
 
@@ -284,29 +288,23 @@
                     } else {
                         
                         $.ajax({
-                            url: "fetch/follow.php",
+                            url: "fetch/unfollow.php",
                             type: "POST",
                             data: {
                                 id:id
                                 
-                            }, 
-                            beforeSend:() =>{
-                                $('.filter').html("<span>Working ... </span>");
                             },
-                            success: function(response) {
-                                // Verificar si la condición se cumple
-                                if (!response.condicion) {
-                                // Mostrar el modal aquí
-                                    $("#mi-modal").modal("show");
-                                }else{
-                                    $(this).removeClass("process-featured-button-2").addClass("process-featured-button-1").css({'transition': '150ms ease-in-out'});
-                                    $('#following-text').text('Seguir');
-                                }
+                            success: function() {
+  
+                                $(this).removeClass("process-featured-button-2").addClass("process-featured-button-1").css({'transition': '150ms ease-in-out'});
+                                $('#following-text').text('Seguir');
+                                location.reload();
+        
                             }
                         });
                     }
                 });
-            });*/
+            });
 
         </script>
     </body>
