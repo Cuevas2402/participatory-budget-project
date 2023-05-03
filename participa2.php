@@ -17,10 +17,14 @@
             $participantes = $row['COUNT(procesos.pid)'];
             $sql->closeCursor();
             //Calcular el numero de seguidores
+            $sql = $pdo->prepare("SELECT COUNT(procesos.pid) FROM procesos, favoritos WHERE procesos.pid = ?  AND procesos.pid = favoritos.pid ");
+            $sql->execute([$id]);
+            $row = $sql->fetch();
+            $favoritos = $row['COUNT(procesos.pid)'];
+            $sql->closeCursor();
 
 
-
-
+            //Desplegar informacion del proceso
             $sql = $pdo->prepare("SELECT * FROM procesos, ambitos, municipios WHERE procesos.pid = '$id' and procesos.aid = ambitos.aid and procesos.mid = municipios.mid");
             $sql->execute();
             $rows = $sql->fetch();
@@ -125,7 +129,7 @@
             <div class="col-6 col-md-4 col-sm-12 col-12">
                 <div class="d-flex flex-column">
                     <span class="mb-4" style="border-left: 2px solid black"><p class="ms-3" style="font-size: 20px !important; margin: 5px 0;"> Participantes <span class style="font-size: 26px !important; margin: 5px 0 0 20px;"><b><?php echo $participantes; ?></b></span></p></span>
-                    <span class="mb-4" style="border-left: 2px solid black"><p class="ms-3" style="font-size: 20px !important; margin: 5px 0;"> Siguiendo <span style="font-size: 26px !important; margin: 5px 0 0 53px;"><b>#</b></span></p></span>
+                    <span class="mb-4" style="border-left: 2px solid black"><p class="ms-3" style="font-size: 20px !important; margin: 5px 0;"> Siguiendo <span style="font-size: 26px !important; margin: 5px 0 0 53px;"><b><?php echo $favoritos; ?></b></span></p></span>
                 </div>
 
                 <button type="button" id="seguir" class="process-featured-button-1" style="margin-left:10%; margin-bottom: 5%; width: 75%;"><span style="position: relative; top: 5px;" class="material-symbols-outlined"> notifications </span> <span id="following-text">Seguir</span> </button>
