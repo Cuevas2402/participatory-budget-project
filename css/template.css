@@ -516,9 +516,9 @@ footer p > a:hover {
     padding: 4px 16px;
     font-weight: 600;
     color: #252525;
-    background-color: #da9dae;
-    border: 1px solid #da9dae;
-    border-radius: 30px; 
+    background-color: #d0cece;
+    border: 1px solid #d0cece;
+    border-radius: 6px;
 }
 
 .process-button-card {
@@ -819,7 +819,18 @@ button#myBtn {
 }
 
 .close > span {
-    font-size: 24px !important;
+    font-size: 32px;
+}
+
+/* Boton No */
+.btn.btn-primary {
+    background-color: #894B5D !important;
+    border: 1px solid #894B5D;
+}
+
+.btn.btn-primary:hover {
+    background-color: #8f5e6c !important;
+    border: 1px solid #8f5e6c;
 }
 
 /* Public profile */
@@ -842,4 +853,8 @@ button#myBtn {
 .follow-count {
     padding: 0;
     margin: 0;
+}
+
+.profile-name {
+    text-transform: capitalize;
 }

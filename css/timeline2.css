@@ -63,21 +63,15 @@
 .c-off-animate{
     padding: 10px 50px;
     position: relative;
-    width: 85%;
-
     opacity: 1;
 }
 
 .t{
-    /*padding:20px 30px;*/
+    margin:20px 2px;
     position: relative;
     border-radius: 6px;
     font-size: 15px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-}
-
-.right-container{
-    left: 10%;
 }
 
 .circulo {
@@ -156,20 +150,16 @@
         margin: 60px auto;
     }
 
-
     .c{
         width: 100%;
         padding-left:80px;
-        padding-right: 25px; 
+        padding-right: 25px;
     }
     .t{
         font-size:13px;
     }
     .t small{
         margin-bottom: 10px;
-    }
-    .right-container{
-        left:0;
     }
     .left-container .circulo, .right-container .circulo{
         left: 10px;

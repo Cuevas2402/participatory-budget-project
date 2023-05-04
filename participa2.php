@@ -91,9 +91,7 @@
     <!-- End Navbar -->
 
     <div>
-        <img src="img/h321px.jpg" class="img-fluid d-none d-md-block w-100">
-        <img src="img/h641px.jpg" class="img-fluid d-none d-sm-block d-md-none w-100">
-        <img src="img/h1920px.jpg" class="img-fluid d-block d-sm-none d-md-none w-100">
+        <img src="img/banner.jpg" class="img-fluid w-100">
     </div>
 
     <div style="border-bottom: 1px solid rgba(0, 0, 0, 0.25);">
@@ -128,8 +126,8 @@
             </div>
             <div class="col-6 col-md-4 col-sm-12 col-12">
                 <div class="d-flex flex-column">
-                    <span class="mb-4" style="border-left: 2px solid black"><p class="ms-3" style="font-size: 20px !important; margin: 5px 0;"> Participantes <span class style="font-size: 26px !important; margin: 5px 0 0 20px;"><b><?php echo $participantes; ?></b></span></p></span>
-                    <span class="mb-4" style="border-left: 2px solid black"><p class="ms-3" style="font-size: 20px !important; margin: 5px 0;"> Siguiendo <span style="font-size: 26px !important; margin: 5px 0 0 53px;"><b><?php echo $favoritos; ?></b></span></p></span>
+                    <span class="mb-4" style="border-left: 3px solid #894B5D"><p class="ms-3" style="font-size: 20px !important; margin: 5px 0;"> Participantes <span class style="font-size: 26px !important; margin: 5px 0 0 20px;"><b><?php echo $participantes; ?></b></span></p></span>
+                    <span class="mb-4" style="border-left: 3px solid #894B5D"><p class="ms-3" style="font-size: 20px !important; margin: 5px 0;"> Siguiendo <span style="font-size: 26px !important; margin: 5px 0 0 50px;"><b><?php echo $favoritos; ?></b></span></p></span>
                 </div>
 
                 <?php 

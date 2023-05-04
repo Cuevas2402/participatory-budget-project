@@ -88,8 +88,8 @@
                 <div class="col col-md-3 text-center px-sm-0 px-md-3 px-lg-5">
                     <ul class="list-group">
                         <li class="list-group-item">
-                            <img class="img-fluid" src="img/avatar.png" alt="">
-                            <a class="uid process-filter-a-down-2" data-value="<?php echo $id; ?>"><h5 class="my-3">
+                            <img class="img-fluid" src="img/avatar.png" alt="perfil" style="border-radius: 3px 3px 0 0px;">
+                            <a class="uid process-filter-a-down-2" data-value="<?php echo $id; ?>"><h5 class="my-3 profile-name" style="font-weight: 500;">
                                 <?php
                                     $sql = $pdo->prepare("SELECT nombre FROM usuarios WHERE uid = ?");
                                     $sql->execute([$id]);
@@ -172,7 +172,7 @@
                 <div class="col col-md-9">
                     <div class="container text-center" style="margin-top: 1rem;">
                         <!-- ACOMODO -->
-                        <div class="filter row row-cols-1 row-cols-md-2 row-cols-lg-2 d-flex align-items-stretch g-3">
+                        <div class="filter row row-cols-1 row-cols-md-2 row-cols-lg-3 d-flex align-items-stretch g-3">
                             <!-- INSERTAR -->
                             <?php
                                 $sql = $pdo->prepare("SELECT * FROM participaciones, usuarios, distritos WHERE usuarios.uid = ? AND  usuarios.uid = participaciones.uid and distritos.did = participaciones.did");

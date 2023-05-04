@@ -77,9 +77,7 @@
     
     <!-- Start process card -->
     <div>
-        <img src="img/h321px.jpg" class="img-fluid d-none d-md-block w-100">
-        <img src="img/h641px.jpg" class="img-fluid d-none d-sm-block d-md-none w-100">
-        <img src="img/h1920px.jpg" class="img-fluid d-block d-sm-none d-md-none w-100">
+        <img src="img/banner.jpg" class="img-fluid w-100">
     </div>
     <!-- End process card  -->
 
@@ -94,10 +92,6 @@
         </div>
     </div>
     <!-- End process sections-->
-
-    <div class="container" style="margin-top: 0.5%; margin-bottom: 2.5%">
-        <h2 style="text-align: center; font-weight: normal; font-size: 32px; font-weight: bold; margin-top: 3rem;">FASES</h2>
-    </div>  
     
     <!-- Start Timeline -->
     <div class="timeline">
