@@ -302,31 +302,31 @@
         });
 
         $(document).ready(function(){
-                $(".follow-button").click(function (){
-                    let id = $('.id-proceso').data("value");
-                    $.ajax({
-                        url: "fetch/proposal.php",
-                        type: "POST",
-                        data: {
-                            id:id
-                        },
-                        success: function(response) {
-                            // Verificar si la condición se cumple
-                            if (response.condicion == 1) {
-                            // Mostrar el modal aquí
-                                $("#inicia").modal("show");
+            $("#button-popup    ").click(function (){
+                let id = $('.id-proceso').data("value");
+                $.ajax({
+                    url: "fetch/proposal.php",
+                    type: "POST",
+                    data: {
+                        id:id
+                    },
+                    success: function(response) {
+                        // Verificar si la condición se cumple
+                        if (response.condicion == 1) {
+                        // Mostrar el modal aquí
+                            $("#inicia").modal("show");
+                        }else{
+                            if(response.condicion == 2){
+                                $("#hecho").modal("show");
                             }else{
-                                if(response.condicion == 2){
-                                    $("#hecho").modal("show");
-                                }else{
 
-                                }
                             }
                         }
+                    }
 
-                    }); 
-                });
+                }); 
             });
+        });
     </script>
 </body>
 </html>
