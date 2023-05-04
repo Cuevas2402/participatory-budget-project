@@ -114,46 +114,6 @@
         ?>
     </div>
 
-    <div id="popup" class="popup">
-        <div class="d-flex justify-content-between">
-            <div>
-                <h3>Por favor, inicia sesión</h3>
-            </div>
-            <div>
-                <button id="cerrarPopup"><i class="fa fa-x" aria-hidden="true"></i></button>
-            </div>
-        </div>
-        <hr>
-        <div class="d-flex justify-content-center">
-            <form class="needs-validation" style="width: 75%;" id="form" novalidate>
-                <div class="form-group f-register">
-                    <div>
-                        <label class="label-register">Correo Electrónico *</label>
-                        <input type="nombre" class="form-control w-100" id="nombre" placeholder="jose.gallegos@udem.edu" required>
-                        <div class="valid-feedback">
-                            Todo bien
-                        </div>
-                        <div class="invalid-feedback">
-                            Campo Obligatorio
-                        </div>
-                    </div>
-
-                    <div>
-                        <label class="label-register">Contraseña *</label>
-                        <input type="password" class="form-control w-100" id="email" placeholder="Contraseña" required>
-                        <div class="valid-feedback">
-                            Todo bien
-                        </div>
-                        <div class="invalid-feedback">
-                            Campo Obligatorio
-                        </div>
-                    </div>
-                    <center><button class="process-featured-button-2-large mt-4">INICIAR SESIÓN</button></center>
-                </div>
-                <p style="font-weight: 300;">¿Olvidaste tu contraseña? <a href="">Recuperar Contraseña</a></p>
-            </form>
-        </div>
-    </div>
 
     <div class="container" style="margin-top: 2%; margin-bottom: 10rem;">
         <div class="row no-gutters">
@@ -207,15 +167,7 @@
                                 <option>Con más autoras</option>
                             </select></p>
                         </div>
-                        <div class="col">
-                            <p>Resultados por página: 
-                            <select class="process-select-3" type="text">
-                                <option>20</option>
-                                <option>50</option>
-                                <option>100</option>
-                            </select>
-                        </p>
-                        </div>
+                        
                     </div>
                     <!-- start cards nuevo -->
                     <div class="container text-center" style="margin-top: 1rem;">
