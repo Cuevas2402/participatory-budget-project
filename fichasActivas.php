@@ -81,7 +81,7 @@
     <div style="border-bottom: 1px solid rgba(0, 0, 0, 0.25);">
         <div class="container">
             <div class="nav3">
-                <h5><a href="participa2.php?id=<?php echo $id; ?>&token=<?php echo hash_hmac('sha1', $id, KEY_TOKEN );?>">EL PROCESO</a></h5>
+                <h5><a class="id-proceso" href="participa2.php?id=<?php echo $id; ?>&token=<?php echo hash_hmac('sha1', $id, KEY_TOKEN );?>" data-value="<?php echo $id; ?>">EL PROCESO</a></h5>
                 <h5><a href="fases.php?id=<?php echo $id; ?>&token=<?php echo hash_hmac('sha1', $id, KEY_TOKEN );?>">FASES </a></h5>
                 <h5><a class="a-active"  href="fichasActivas.php?id=<?php echo $id; ?>&token=<?php echo hash_hmac('sha1', $id, KEY_TOKEN );?>">FICHAS ACTIVAS</a></h5>
             </div> 
@@ -106,7 +106,7 @@
             if($rows['tipo'] == 2){ 
         ?>
                 <div class="px-2">
-                    <button id="button-popup" class="button-popup">Nueva Propuesta <i class="fa fa-plus" aria-hidden="true"></i></button>
+                    <button id="button-popup" class="follow-button button-popup">Nueva Propuesta <i class="fa fa-plus" aria-hidden="true"></i></button>
                 </div>
         <?php
             }
@@ -207,93 +207,52 @@
         </div>
     </footer>
     <!-- End Footer -->
+    <!-- MODALES -->
 
-    <!-- JS Script -->
-    <!--<script>
-        // Selecciona el checkbox con la etiqueta "Todas"
-        const checkAll = document.getElementById('checkAll');
+            <!-- MODAL INICIA -->
+            <div class="modal fade" id="inicia" tabindex="-1" role="dialog" aria-labelledby="iniciaLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exitolLabel">Inicia Sesión</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Para poder seguir un usuario debes iniciar sesion
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- FIN MODAL INICIA-->
 
-        // Selecciona todos los demás checkboxes
-        const checkboxes = document.querySelectorAll('.check');
+            <!-- MODAL INICIA -->
+            <div class="modal fade" id="hecho" tabindex="-1" role="dialog" aria-labelledby="hechoLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="hecholLabel">Ya has particpado en este proceso</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            No puedes participar más de una vez en el mismo proceso
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- FIN MODAL INICIA-->
 
-        // Agrega un event listener al checkbox "Todas"
-        checkAll.addEventListener('change', function() {
-        // Si "Todas" está marcado, marca todos los demás checkboxes
-        if (this.checked) {
-            checkboxes.forEach((checkbox) => {
-            checkbox.checked = true;
-            });
-        } else {
-            // Si "Todas" no está marcado, desmarca todos los demás checkboxes
-            checkboxes.forEach((checkbox) => {
-            checkbox.checked = false;
-            });
-        }
-        });
-
-        // Selecciona el checkbox con la etiqueta "Todas"
-        const checkAll2 = document.getElementById('checkAll2');
-
-        // Selecciona todos los demás checkboxes
-        const checkboxes2 = document.querySelectorAll('.check900');
-
-        // Agrega un event listener al checkbox "Todas"
-        checkAll2.addEventListener('change', function() {
-        // Si "Todas" está marcado, marca todos los demás checkboxes
-        if (this.checked) {
-            checkboxes2.forEach((checkbox) => {
-            checkbox.checked = true;
-            });
-        } else {
-            // Si "Todas" no está marcado, desmarca todos los demás checkboxes
-            checkboxes2.forEach((checkbox) => {
-            checkbox.checked = false;
-            });
-        }
-        });
-
-        // Selecciona el checkbox con la etiqueta "Todas"
-        const checkAll900 = document.getElementById('checkAll900');
-
-        // Selecciona todos los demás checkboxes
-        const checkboxes900 = document.querySelectorAll('.check900');
-
-        // Agrega un event listener al checkbox "Todas"
-        checkAll900.addEventListener('change', function() {
-        // Si "Todas" está marcado, marca todos los demás checkboxes
-        if (this.checked) {
-            checkboxes2.forEach((checkbox) => {
-            checkbox.checked = true;
-            });
-        } else {
-            // Si "Todas" no está marcado, desmarca todos los demás checkboxes
-            checkboxes2.forEach((checkbox) => {
-            checkbox.checked = false;
-            });
-        }
-        });
-        
-        function toggleMore() {
-            var moreOptions = document.getElementById("moreOptions");
-            if (moreOptions.style.display === "block") {
-                moreOptions.style.display = "none";
-            } else {
-                moreOptions.style.display = "block";
-            }
-        }
-
-        var boton = document.getElementById("button-popup");
-        var popup = document.getElementById("popup");
-        var cerrarPopup = document.getElementById("cerrarPopup");
-
-        boton.onclick = function() {
-            popup.style.display = "block";
-        }
-
-        cerrarPopup.onclick = function() {
-            popup.style.display = "none";
-        }
-    </script>-->
+	    <!-- FIN MODALES -->                
+   
 
     <script type="text/javascript">  
         $(document).ready(function(){
@@ -341,6 +300,33 @@
                 });
             });
         });
+
+        $(document).ready(function(){
+                $(".follow-button").click(function (){
+                    let id = $('.id-proceso').data("value");
+                    $.ajax({
+                        url: "fetch/proposal.php",
+                        type: "POST",
+                        data: {
+                            id:id
+                        },
+                        success: function(response) {
+                            // Verificar si la condición se cumple
+                            if (response.condicion == 1) {
+                            // Mostrar el modal aquí
+                                $("#inicia").modal("show");
+                            }else{
+                                if(response.condicion == 2){
+                                    $("#hecho").modal("show");
+                                }else{
+
+                                }
+                            }
+                        }
+
+                    }); 
+                });
+            });
     </script>
 </body>
 </html>
