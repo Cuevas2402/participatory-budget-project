@@ -89,29 +89,42 @@
             </div> 
         </div>
     </div>
+    
+    <?php
+        $sql = $pdo->prepare("SELECT *, participaciones.fecha_creacion as fecha FROM usuarios, participaciones, distritos WHERE participaciones.uid = ? AND participaciones.pid = ? AND participaciones.uid = usuarios.uid AND distritos.did = participaciones.did ");
+        $sql->execute([$uid, $pid]);
+        $row = $sql->fetch();
 
-    <div class="container" style="margin-top: 5rem;">
-		<a href="fichasActivas.php?id=<?php echo $pid; ?>&token=<?php echo hash_hmac('sha1', $pid, KEY_TOKEN);?>"><span><i class="fa-solid fa-chevron-left fa-2xs"></i> Volver al listado</span></a>
-        <h5 class="mt-3" style="font-weight: normal; font-size: 32px; font-weight: 400;">Usuario</h5>
-		<div class="d-flex">
-			<img src="img/avatar.png" alt="" style="width: 20px; height: 20px;">
-			<p class="ms-2">19/00/2002</p>
-		</div>
-    </div>
 
-    <div class="container" style="margin-bottom: 10rem;">
-        <div class="row no-gutters">
-            <div class="col-12 col-sm-12 col-md-8 col-12" style="padding: 12px;">
-				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni at necessitatibus asperiores quasi dolorum soluta officia molestias, minus odio labore. Fugit illum animi, est possimus omnis nesciunt. Provident dicta esse nemo sit est, minima deserunt tempora itaque sint hic dolor fuga perferendis assumenda! Ea, animi numquam iusto in, neque soluta atque veritatis assumenda officiis unde mollitia blanditiis voluptatibus aperiam, nam sit. Eum excepturi nisi voluptatem numquam. Recusandae veritatis sit aut tempore, libero nam, dolores officia at optio corporis rerum provident delectus similique pariatur distinctio autem voluptate soluta veniam repellat id, dicta fugiat explicabo? Consequuntur architecto quia excepturi libero, neque facere ad sint eius ipsum ut. Non esse iste dolorem quibusdam optio asperiores accusamus tenetur ex dolor, impedit sunt, reprehenderit excepturi doloribus sequi necessitatibus. Saepe nulla error harum suscipit id molestiae ab sit maxime, voluptatem delectus voluptates dolore quaerat corrupti modi, doloribus qui et eligendi iste neque dolorum praesentium nobis. Numquam deserunt blanditiis non saepe, ex quasi atque placeat dolorem! Corporis aliquid ratione sequi dolor iste non numquam labore nesciunt ullam sint dolorum veniam amet doloremque veritatis, totam minima maxime magni quaerat in doloribus facere voluptatum ea! Temporibus fugiat ipsam cupiditate quasi beatae facere corporis a mollitia reprehenderit totam accusamus dicta architecto, sapiente officia? Eum praesentium quidem eveniet consectetur expedita dolores earum, necessitatibus possimus labore inventore ullam sit impedit eaque ab rerum harum sed dolorem, temporibus minus corporis quae esse! Ducimus facilis quas voluptatibus molestiae reprehenderit, nobis rerum! Quas commodi voluptatibus nesciunt! Sunt, praesentium qui eum quasi assumenda libero in nisi officiis, ipsum perspiciatis consequatur voluptatem eos aspernatur eius voluptatibus nulla incidunt sequi. Enim fugit expedita officia iste rem minima quibusdam similique repellendus itaque ducimus repudiandae veritatis, natus alias. Exercitationem eos mollitia voluptate laboriosam nisi minima, illo aut optio, atque molestias voluptatum molestiae porro nemo ab distinctio aspernatur dolorum dicta earum!</p>
-
-				<h2>imagen</h2>
-				<!-- <img src="" alt=""> -->
-            </div>
-            <div class="col-6 col-md-4 col-sm-12 col-12">
-                <button type="button" class="btn btn-follow btn-lg" style="margin-left:10%; margin-bottom: 5%; width: 75%;">Votar</button>
+    ?>
+        <div class="container" style="margin-top: 5rem;">
+            <a href="fichasActivas.php?id=<?php echo $pid; ?>&token=<?php echo hash_hmac('sha1', $pid, KEY_TOKEN);?>"><span><i class="fa-solid fa-chevron-left fa-2xs"></i> Volver al listado</span></a>
+            <h5 class="mt-3" style="font-weight: normal; font-size: 32px; font-weight: 400;"><?php echo $row['nombre']?></h5>
+            <div class="d-flex">
+                <img src="img/avatar.png" alt="" style="width: 20px; height: 20px;">
+                <p class="ms-2"><?php echo $row['fecha']?></p>
             </div>
         </div>
-    </div> 
+
+        <div class="container" style="margin-bottom: 10rem;">
+            <div class="row no-gutters">
+                <div class="col-12 col-sm-12 col-md-8 col-12" style="padding: 12px;">
+                    <p><?php echo $row['propuesta']?></p>
+
+                    <h2>imagen</h2>
+                    <!-- <img src="" alt=""> -->
+                </div>
+                <div class="col-6 col-md-4 col-sm-12 col-12">
+                    <button type="button" class="btn btn-follow btn-lg" style="margin-left:10%; margin-bottom: 5%; width: 75%;">Votar</button>
+                </div>
+            </div>
+        </div> 
+    
+    <?php
+        $sql->closeCursor();
+            
+
+    ?>
 
 	<div class="container">
 		
