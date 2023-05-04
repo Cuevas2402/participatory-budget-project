@@ -90,13 +90,20 @@
 
     <div class="container process-featured d-flex">
         <div class="px-2">
-            <h4><strong><i class="fa fa-square" aria-hidden="true"></i> PROPUESTAS (#)</strong></h4>
+            <h4><strong><i class="fa fa-square" aria-hidden="true"></i> PROPUESTAS (
+                <?php
+                    $sql = $pdo->prepare("SELECT COUNT(procesos.pid) FROM procesos, participaciones WHERE procesos.pid = ? AND procesos.pid = participaciones.pid");
+                    $sql->execute([$id]);
+                    $rows = $sql->fetch();
+                    echo $rows['COUNT(procesos.pid)'];
+                ?>
+            )</strong></h4>
         </div>
         <?php
-            $sql = $pdo->prepare("SELECT * FROM procesos WHERE procesos.pid = '$id'");
-            $sql->execute();
+            $sql = $pdo->prepare("SELECT * FROM procesos, fases WHERE procesos.pid = ? AND procesos.pid = fases.pid AND procesos.fase_actual = fases.n_fase");
+            $sql->execute([$id]);
             $rows = $sql->fetch();
-            if($rows['fase_actual'] == 2){ 
+            if($rows['tipo'] == 2){ 
         ?>
                 <div class="px-2">
                     <button id="button-popup" class="button-popup">Nueva Propuesta <i class="fa fa-plus" aria-hidden="true"></i></button>
