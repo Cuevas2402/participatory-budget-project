@@ -82,6 +82,7 @@
                 <div class="col col-md-9  d-flex justify-content-around px-5">
                     <a class="procesos-f process-filter-a-active" data-value="1"><h5>Actividad</h5></a>
                     <a class="procesos-f process-filter-a-down" data-value="2"><h5>Procesos</h5></a>
+                    <a class="procesos-f process-filter-a-down" data-value="5"><h5>Votos</h5></a>
                 </div>
             </div>
             <div class="row row-cols-1 row-cols-md-2">

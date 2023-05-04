@@ -41,8 +41,19 @@
                     }
                     $sql->closeCursor();
                 }else{
-                    header("Location: ../components/404.php");
-                    exit(); 
+                    
+                    if($_POST['dato'] == 5){
+                        $sql = $pdo->prepare("SELECT * FROM votos, usuarios, participaciones, distritos WHERE votos.voted = usuarios.uid AND votos.voting = ? AND votos.pid = participaciones.pid AND votos.voted = participaciones.uid and distritos.did = participaciones.did");
+                        $sql->execute([$_POST['id']]);
+                        $rows = $sql->fetchAll();
+                        $sql->closeCursor();
+                        foreach($rows as $row){
+                            require '../components/card_ficha.php';
+                        }
+                    }else{
+                        header("Location: ../components/404.php");
+                        exit(); 
+                    }
                 }
             }
 
