@@ -18,7 +18,7 @@
             <div class="d-flex justify-content-center align-items-center text-center" style="width: 275.97px; height: 70px;">
                 <div class="dropdown text-center login-account">
                     <a class="dropdown-toggle w-100 h-100" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <span><i class="fas fa-user me-2"></i><?php echo $_SESSION['nombre']; ?></span>
+                        <span class="profile-name"><i class="fas fa-user me-2"></i><?php echo $_SESSION['nombre']; ?></span>
                     </a>
                     <ul class="dropdown-menu text-center">
                         <li><a class="dropdown-item" href="miCuenta.php?id=<?php echo $_SESSION['id']; ?>&token=<?php echo hash_hmac('sha1', $_SESSION['id'], KEY_PERFIL );?>">Mi cuenta</a></li>

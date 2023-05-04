@@ -1,7 +1,7 @@
 <?php
     class Database {
         /* Datos para la conexion a las base de datos*/
-        private $host = "localhost";
+        private $host = "localhost:3307";
         private $database = "presupueto";
         private $user = "root";
         private $password = "";

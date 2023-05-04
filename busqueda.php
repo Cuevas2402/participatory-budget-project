@@ -68,9 +68,6 @@
     <!-- End search bar-->
     <!-- End Navbar -->
 
-
-    <hr style="width: 75%; margin: 0 auto;">
-
     <!-- process dps -->
 
     <!-- Process -->
@@ -86,7 +83,7 @@
                 $rows = $sql->fetchAll(PDO::FETCH_ASSOC);
                 $count = $sql->rowCount();
             ?>
-            <h4><strong><i class="fa fa-square" aria-hidden="true"></i> PROCESOS (<?php echo $count; ?>)</strong></h4> 
+            <h4 style="color: #252525; font-weight: 600;"><i class="fa fa-square" aria-hidden="true"></i> PROCESOS (<?php echo $count; ?>)</h4> 
         </div>
 
         <!-- START CARDS NUEVO -->
@@ -130,7 +127,7 @@
                 $rows = $sql->fetchAll(PDO::FETCH_ASSOC);
                 $count = $sql->rowCount();
             ?>
-            <h4><strong><i class="fa fa-square" aria-hidden="true"></i> PARTICIPACIONES (<?php echo $count; ?>)</strong></h4>
+            <h4 style="color: #252525; font-weight: 600;"><i class="fa fa-square" aria-hidden="true"></i> PARTICIPACIONES (<?php echo $count; ?>)</h4>
         </div>
 
         <!-- START CARDS NUEVO -->
@@ -171,7 +168,7 @@
                 $rows = $sql->fetchAll(PDO::FETCH_ASSOC);
                 $count = $sql->rowCount();
             ?>
-            <h4><strong><i class="fa fa-square" aria-hidden="true"></i> USUARIOS (<?php echo $count; ?>)</strong></h4>
+            <h4 style="color: #252525; font-weight: 600;"><i class="fa fa-square" aria-hidden="true"></i> USUARIOS (<?php echo $count; ?>)</h4>
         </div>
 
         <!-- START CARDS NUEVO -->

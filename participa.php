@@ -66,7 +66,7 @@
 
     <!-- Start Featured Process -->
     <div class="container process-featured">
-        <h4><strong><i class="fa fa-square" aria-hidden="true"></i> PROCESOS DESTACADOS</strong></h4>
+        <h4 style="color: #252525; font-weight: 600;"><i class="fa fa-square" aria-hidden="true"></i> PROCESOS DESTACADOS</h4>
     </div>
     
     <?php
@@ -128,7 +128,7 @@
                 $stmt->execute();
                 $rows = $stmt->fetch();
             ?>
-            <h4><strong><i class="fa fa-square" aria-hidden="true"></i> PROCESOS (<?php echo $rows['count(pid)']; ?>)</strong></h4>
+            <h4 style="color: #252525; font-weight: 600;"><i class="fa fa-square" aria-hidden="true"></i> PROCESOS (<?php echo $rows['count(pid)']; ?>)</h4>
             <?php
                 $stmt->closeCursor();
             ?>
