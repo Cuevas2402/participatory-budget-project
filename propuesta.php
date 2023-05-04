@@ -94,7 +94,7 @@
         $sql = $pdo->prepare("SELECT *, participaciones.fecha_creacion as fecha FROM usuarios, participaciones, distritos WHERE participaciones.uid = ? AND participaciones.pid = ? AND participaciones.uid = usuarios.uid AND distritos.did = participaciones.did ");
         $sql->execute([$uid, $pid]);
         $row = $sql->fetch();
-
+        $sql->closeCursor();
 
     ?>
         <div class="container" style="margin-top: 5rem;">
@@ -114,14 +114,18 @@
                     <h2>imagen</h2>
                     <!-- <img src="" alt=""> -->
                 </div>
+                
                 <div class="col-6 col-md-4 col-sm-12 col-12">
+                    <div class="d-flex flex-column" style="margin-left:10%;">
+                        <span class="mb-4" style="border-left: 3px solid #894B5D"><p class="ms-3" style="font-size: 20px !important; margin: 5px 0; "> Votos <span class style="font-size: 26px !important; margin: 5px 0 0 20px;"><b><?php echo 1; ?></b></span></p></span>
+                    </div>
                     <button type="button" class="btn btn-follow btn-lg" style="margin-left:10%; margin-bottom: 5%; width: 75%;">Votar</button>
                 </div>
             </div>
         </div> 
     
     <?php
-        $sql->closeCursor();
+        
             
 
     ?>
@@ -147,92 +151,6 @@
     </footer>
     <!-- End Footer -->
 
-    <!-- JS Script -->
-    <!--<script>
-        // Selecciona el checkbox con la etiqueta "Todas"
-        const checkAll = document.getElementById('checkAll');
-
-        // Selecciona todos los demás checkboxes
-        const checkboxes = document.querySelectorAll('.check');
-
-        // Agrega un event listener al checkbox "Todas"
-        checkAll.addEventListener('change', function() {
-        // Si "Todas" está marcado, marca todos los demás checkboxes
-        if (this.checked) {
-            checkboxes.forEach((checkbox) => {
-            checkbox.checked = true;
-            });
-        } else {
-            // Si "Todas" no está marcado, desmarca todos los demás checkboxes
-            checkboxes.forEach((checkbox) => {
-            checkbox.checked = false;
-            });
-        }
-        });
-
-        // Selecciona el checkbox con la etiqueta "Todas"
-        const checkAll2 = document.getElementById('checkAll2');
-
-        // Selecciona todos los demás checkboxes
-        const checkboxes2 = document.querySelectorAll('.check900');
-
-        // Agrega un event listener al checkbox "Todas"
-        checkAll2.addEventListener('change', function() {
-        // Si "Todas" está marcado, marca todos los demás checkboxes
-        if (this.checked) {
-            checkboxes2.forEach((checkbox) => {
-            checkbox.checked = true;
-            });
-        } else {
-            // Si "Todas" no está marcado, desmarca todos los demás checkboxes
-            checkboxes2.forEach((checkbox) => {
-            checkbox.checked = false;
-            });
-        }
-        });
-
-        // Selecciona el checkbox con la etiqueta "Todas"
-        const checkAll900 = document.getElementById('checkAll900');
-
-        // Selecciona todos los demás checkboxes
-        const checkboxes900 = document.querySelectorAll('.check900');
-
-        // Agrega un event listener al checkbox "Todas"
-        checkAll900.addEventListener('change', function() {
-        // Si "Todas" está marcado, marca todos los demás checkboxes
-        if (this.checked) {
-            checkboxes2.forEach((checkbox) => {
-            checkbox.checked = true;
-            });
-        } else {
-            // Si "Todas" no está marcado, desmarca todos los demás checkboxes
-            checkboxes2.forEach((checkbox) => {
-            checkbox.checked = false;
-            });
-        }
-        });
-        
-        function toggleMore() {
-            var moreOptions = document.getElementById("moreOptions");
-            if (moreOptions.style.display === "block") {
-                moreOptions.style.display = "none";
-            } else {
-                moreOptions.style.display = "block";
-            }
-        }
-
-        var boton = document.getElementById("button-popup");
-        var popup = document.getElementById("popup");
-        var cerrarPopup = document.getElementById("cerrarPopup");
-
-        boton.onclick = function() {
-            popup.style.display = "block";
-        }
-
-        cerrarPopup.onclick = function() {
-            popup.style.display = "none";
-        }
-    </script>-->
 
     <script type="text/javascript">  
         

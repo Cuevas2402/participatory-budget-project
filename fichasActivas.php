@@ -95,6 +95,7 @@
                     $sql = $pdo->prepare("SELECT COUNT(procesos.pid) FROM procesos, participaciones WHERE procesos.pid = ? AND procesos.pid = participaciones.pid");
                     $sql->execute([$id]);
                     $rows = $sql->fetch();
+                    $sql->closeCursor();
                     echo $rows['COUNT(procesos.pid)'];
                 ?>
             )</strong></h4>
@@ -103,6 +104,7 @@
             $sql = $pdo->prepare("SELECT * FROM procesos, fases WHERE procesos.pid = ? AND procesos.pid = fases.pid AND procesos.fase_actual = fases.n_fase");
             $sql->execute([$id]);
             $rows = $sql->fetch();
+            $sql->closeCursor();
             if($rows['tipo'] == 2){ 
         ?>
                 <div class="px-2">
@@ -110,7 +112,6 @@
                 </div>
         <?php
             }
-            $sql->closeCursor();
         ?>
     </div>
 
@@ -302,7 +303,7 @@
         });
 
         $(document).ready(function(){
-            $("#button-popup    ").click(function (){
+            $("#button-popup").click(function (){
                 let id = $('.id-proceso').data("value");
                 $.ajax({
                     url: "fetch/proposal.php",
@@ -319,7 +320,7 @@
                             if(response.condicion == 2){
                                 $("#hecho").modal("show");
                             }else{
-
+                            
                             }
                         }
                     }
