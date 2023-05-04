@@ -73,17 +73,15 @@
     <?php require 'components/search_bar.php'; ?>
     
     <!-- End search bar-->
-    <!-- End Navbar -->
+    <!-- End Navbar --> 
 
     <div>
-        <img src="img/h321px.jpg" class="img-fluid d-none d-md-block w-100">
-        <img src="img/h641px.jpg" class="img-fluid d-none d-sm-block d-md-none w-100">
-        <img src="img/h1920px.jpg" class="img-fluid d-block d-sm-none d-md-none w-100">
+        <img src="img/banner.jpg" class="img-fluid w-100">
     </div>
     <div style="border-bottom: 1px solid rgba(0, 0, 0, 0.25);">
         <div class="container">
             <div class="nav3">
-                <h5><a href="participa2.php?id=<?php echo $pid; ?>&token=<?php echo hash_hmac('sha1', $pid, KEY_TOKEN );?>">EL PROCESO</a></h5>
+                <h5><a id="pid" href="participa2.php?id=<?php echo $pid; ?>&token=<?php echo hash_hmac('sha1', $pid, KEY_TOKEN );?>" data-value="<?php echo $pid?>">EL PROCESO</a></h5>
                 <h5><a href="fases.php?id=<?php echo $pid; ?>&token=<?php echo hash_hmac('sha1', $pid, KEY_TOKEN );?>">FASES </a></h5>
                 <h5><a class="a-active"  href="fichasActivas.php?id=<?php echo $pid; ?>&token=<?php echo hash_hmac('sha1', $pid, KEY_TOKEN );?>">FICHAS ACTIVAS</a></h5>
             </div> 
@@ -99,7 +97,7 @@
     ?>
         <div class="container" style="margin-top: 5rem;">
             <a href="fichasActivas.php?id=<?php echo $pid; ?>&token=<?php echo hash_hmac('sha1', $pid, KEY_TOKEN);?>"><span><i class="fa-solid fa-chevron-left fa-2xs"></i> Volver al listado</span></a>
-            <h5 class="mt-3" style="font-weight: normal; font-size: 32px; font-weight: 400;"><?php echo $row['nombre']?></h5>
+            <a id="uid"class="process-filter-a-down-2" data-value="<?php echo $id; ?>"><h5 class="mt-3" style="font-weight: normal; font-size: 32px; font-weight: 400;"><?php echo $row['nombre']?></h5></a>
             <div class="d-flex">
                 <img src="img/avatar.png" alt="" style="width: 20px; height: 20px;">
                 <p class="ms-2"><?php echo $row['fecha']?></p>
@@ -141,20 +139,20 @@
                                 
                                 if($row['COUNT(voting)'] == 0 ){
                     ?>
-                                    <button type="button" id="seguir" class="follow-button process-featured-button-1" style="margin-left:10%; margin-bottom: 5%; width: 75%;"> <span id="following-text">Votar</span> </button>
+                                    <button type="button" id="seguir" class="voting-button process-featured-button-1" style="margin-left:10%; margin-bottom: 5%; width: 75%;"> <span id="following-text">Votar</span> </button>
 
                     <?php
                                 }else{
 
                     ?>
-                                    <button type="button" id="seguir" class="follow-button process-featured-button-2" style="margin-left:10%; margin-bottom: 5%; width: 75%;"> <span id="following-text">Votado</span> </button>
+                                    <button type="button" id="seguir" class="voting-button process-featured-button-2" style="margin-left:10%; margin-bottom: 5%; width: 75%;"> <span id="following-text">Votado</span> </button>
                     <?php
                                 }
                             }
                         }else{
 
                     ?>
-                                <button type="button" id="seguir" class="follow-button process-featured-button-1" style="margin-left:10%; margin-bottom: 5%; width: 75%;"><span id="following-text">Votar</span> </button>
+                                <button type="button" id="seguir" class="voting-button process-featured-button-1" style="margin-left:10%; margin-bottom: 5%; width: 75%;"><span id="following-text">Votar</span> </button>
                             
                             
                     <?php
@@ -174,6 +172,31 @@
 	<div class="container">
 		
 	</div>
+    <!-- MODALES -->
+
+        <!-- MODAL INICIA -->
+        <div class="modal fade" id="inicia" tabindex="-1" role="dialog" aria-labelledby="iniciaLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exitolLabel">Inicia Sesión</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Para poder seguir un usuario debes iniciar sesion
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- FIN MODAL INICIA-->
+
+    <!-- FIN MODALES -->
+
     
     <!-- Start Footer -->
     <footer style="margin-bottom: -5rem;">
@@ -193,8 +216,54 @@
     <!-- End Footer -->
 
 
-    <script type="text/javascript">  
+    <script>
+        $(document).ready(function(){
+                $(".voting-button").click(function (){
+                    let uid = $('#uid').data("value");
+                    let pid = $('#pid').data("value");
+                    if ($('#seguir').hasClass('process-featured-button-1')) {
+                        
+                        $.ajax({
+                            url: "fetch/vote.php",
+                            type: "POST",
+                            data: {
+                                uid:uid,
+                                pid:pid
+                            },
+                            success: function(response) {
+                                // Verificar si la condición se cumple
+                                if (!response.condicion) {
+                                // Mostrar el modal aquí
+                                    $("#inicia").modal("show");
+                                }else{
+                                    $(this).removeClass("process-featured-button-1").addClass("process-featured-button-2").css({'transition': '150ms ease-in-out'});
+                                    $('#following-text').text('Votado');
+                                    location.reload();
+                                }
+                            }
+
+                        });
+
+                    } else {
+                        
+                        $.ajax({
+                            url: "fetch/revert_vote.php",
+                            type: "POST",
+                            data: {
+                                uid:uid,
+                                pid:pid
+                            },
+                            success: function() {
+  
+                                $(this).removeClass("process-featured-button-2").addClass("process-featured-button-1").css({'transition': '150ms ease-in-out'});
+                                $('#following-text').text('Votar');
+                                location.reload();
         
+                            }
+                        });
+                    }
+                });
+            });
     </script>
 </body>
 </html>
