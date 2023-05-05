@@ -10,7 +10,7 @@
         $sql->closeCursor();
         
         if($row['COUNT(uid)'] == 0){
-            
+            $_SESSION['pid'] = $_POST['id'];
             header("Content-Type: application/json");
             echo json_encode(array("condicion" => 3));
         }else{

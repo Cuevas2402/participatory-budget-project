@@ -75,123 +75,124 @@
         <!-- End search bar-->
         
         <!-- End Navbar -->
-            
-        <div class="container" style="margin-top: 5rem; margin-bottom: 5rem;">
-            <div class="row row-cols-1 row-cols-md-2">
-                <div class="col col-md-3"></div>
-                <div class="col col-md-9  d-flex justify-content-around px-5">
-                    <a class="procesos-f process-filter-a-active" data-value="1"><h5>Actividad</h5></a>
-                    <a class="procesos-f process-filter-a-down" data-value="2"><h5>Procesos</h5></a>
-                    <a class="procesos-f process-filter-a-down" data-value="5"><h5>Votos</h5></a>
+        
+        <div style="min-height: 80vh;">
+            <div class="container" style="margin-top: 5rem; margin-bottom: 5rem;">
+                <div class="row row-cols-1 row-cols-md-2">
+                    <div class="col col-md-3"></div>
+                    <div class="col col-md-9  d-flex justify-content-around px-5">
+                        <a class="procesos-f process-filter-a-active" data-value="1"><h5>Actividad</h5></a>
+                        <a class="procesos-f process-filter-a-down" data-value="2"><h5>Procesos</h5></a>
+                        <a class="procesos-f process-filter-a-down" data-value="5"><h5>Votos</h5></a>
+                    </div>
                 </div>
-            </div>
-            <div class="row row-cols-1 row-cols-md-2">
-                <div class="col col-md-3 text-center px-sm-0 px-md-3 px-lg-5">
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            <img class="img-fluid" src="img/avatar.png" alt="perfil" style="border-radius: 3px 3px 0 0px;">
-                            <a class="uid process-filter-a-down-2" data-value="<?php echo $id; ?>"><h5 class="my-3 profile-name" style="font-weight: 500;">
-                                <?php
-                                    $sql = $pdo->prepare("SELECT nombre FROM usuarios WHERE uid = ?");
-                                    $sql->execute([$id]);
-                                    $row = $sql->fetch();
-                                    echo $row['nombre'];
-                                    $sql->closeCursor();
-                                     
-                                ?>
-
-                            </h5></a>
-                            <div class="row">
-                                <div class="col border-top">
-                                    <a class="procesos-f process-filter-a-down" data-value="3"><p class="follow-text">Seguidores</p></a>
-                                    <p class="follow-count">
-                                        <?php
-                                            $sql = $pdo->prepare("SELECT COUNT(followed) FROM seguir WHERE followed = ?");
-                                            $sql->execute([$id]);
-                                            $row = $sql->fetch();
-                                            echo $row['COUNT(followed)'];
-                                            $sql->closeCursor();
-                                        ?>
-                                    </p>
-                                </div>
-                                <div class="col border-top">
-                                    <a class="procesos-f process-filter-a-down" data-value="4"><p class="follow-text">Siguiendo</p></a>
-                                    <p class="follow-count">
+                <div class="row row-cols-1 row-cols-md-2">
+                    <div class="col col-md-3 text-center px-sm-0 px-md-3 px-lg-5">
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <img class="img-fluid" src="img/avatar.png" alt="perfil" style="border-radius: 3px 3px 0 0px;">
+                                <a class="uid process-filter-a-down-2" data-value="<?php echo $id; ?>"><h5 class="my-3 profile-name" style="font-weight: 500;">
                                     <?php
-                                            $sql = $pdo->prepare("SELECT COUNT(follow) FROM seguir WHERE follow = ?");
-                                            $sql->execute([$id]);
-                                            $row = $sql->fetch();
-                                            echo $row['COUNT(follow)'];
-                                            $sql->closeCursor();
-                                        ?>
-                                    </p>
+                                        $sql = $pdo->prepare("SELECT nombre FROM usuarios WHERE uid = ?");
+                                        $sql->execute([$id]);
+                                        $row = $sql->fetch();
+                                        echo $row['nombre'];
+                                        $sql->closeCursor();
+                                        
+                                    ?>
+
+                                </h5></a>
+                                <div class="row">
+                                    <div class="col border-top">
+                                        <a class="procesos-f process-filter-a-down" data-value="3"><p class="follow-text">Seguidores</p></a>
+                                        <p class="follow-count">
+                                            <?php
+                                                $sql = $pdo->prepare("SELECT COUNT(followed) FROM seguir WHERE followed = ?");
+                                                $sql->execute([$id]);
+                                                $row = $sql->fetch();
+                                                echo $row['COUNT(followed)'];
+                                                $sql->closeCursor();
+                                            ?>
+                                        </p>
+                                    </div>
+                                    <div class="col border-top">
+                                        <a class="procesos-f process-filter-a-down" data-value="4"><p class="follow-text">Siguiendo</p></a>
+                                        <p class="follow-count">
+                                        <?php
+                                                $sql = $pdo->prepare("SELECT COUNT(follow) FROM seguir WHERE follow = ?");
+                                                $sql->execute([$id]);
+                                                $row = $sql->fetch();
+                                                echo $row['COUNT(follow)'];
+                                                $sql->closeCursor();
+                                            ?>
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
-                    </ul>
+                            </li>
+                        </ul>
 
-                    <?php 
-                        if(isset($_SESSION['id'])){
-                
-                        
-                            if($id != $_SESSION['id']){
-                                
-
-                                $sql = $pdo->prepare("SELECT COUNT(follow) FROM seguir WHERE follow = ? AND followed = ? ");
-                                $sql->execute([$_SESSION['id'], $id]);
-                                $row = $sql->fetch();
-
-                                if($row['COUNT(follow)'] > 0){
-
-                    ?>
-                                    <div class="mt-4">
-                                        <button type="button" id="seguir" class="follow-button process-featured-button-2" style="margin-left:10%; margin-bottom: 5%; width: 75%;"><span style="position: relative; top: 5px;" class="material-symbols-outlined"> notifications </span> <span id="following-text">Siguiendo</span> </button>
-                                    </div>
-                    <?php
-                                }else{
+                        <?php 
+                            if(isset($_SESSION['id'])){
                     
-
-                    ?>
-                                    <div class="mt-4">
-                                        <button type="button" id="seguir" class="follow-button process-featured-button-1" style="margin-left:10%; margin-bottom: 5%; width: 75%;"><span style="position: relative; top: 5px;" class="material-symbols-outlined"> notifications </span> <span id="following-text">Seguir</span> </button>
-                                    </div>
-                    <?php
-                                }
-                            }
-                        }else{
-
-                    ?>
-                            <div class="mt-4">
-                                <button type="button" id="seguir" class="follow-button process-featured-button-1" style="margin-left:10%; margin-bottom: 5%; width: 75%;"><span style="position: relative; top: 5px;" class="material-symbols-outlined"> notifications </span> <span id="following-text">Seguir</span> </button>
-                            </div>
                             
-                    <?php
+                                if($id != $_SESSION['id']){
+                                    
 
-                        }
-                    ?>
-                </div>
-                <div class="col col-md-9">
-                    <div class="container text-center" style="margin-top: 1rem;">
-                        <!-- ACOMODO -->
-                        <div class="filter row row-cols-1 row-cols-md-2 row-cols-lg-3 d-flex align-items-stretch g-3">
-                            <!-- INSERTAR -->
-                            <?php
-                                $sql = $pdo->prepare("SELECT * FROM participaciones, usuarios, distritos WHERE usuarios.uid = ? AND  usuarios.uid = participaciones.uid and distritos.did = participaciones.did");
-                                $sql->execute([$id]);
-                                $rows = $sql->fetchAll();
-                                foreach($rows as $row){
+                                    $sql = $pdo->prepare("SELECT COUNT(follow) FROM seguir WHERE follow = ? AND followed = ? ");
+                                    $sql->execute([$_SESSION['id'], $id]);
+                                    $row = $sql->fetch();
 
-                                    require 'components/card_ficha.php';
+                                    if($row['COUNT(follow)'] > 0){
 
+                        ?>
+                                        <div class="mt-4">
+                                            <button type="button" id="seguir" class="follow-button process-featured-button-2" style="margin-left:10%; margin-bottom: 5%; width: 75%;"><span style="position: relative; top: 5px;" class="material-symbols-outlined"> notifications </span> <span id="following-text">Siguiendo</span> </button>
+                                        </div>
+                        <?php
+                                    }else{
+                        
+
+                        ?>
+                                        <div class="mt-4">
+                                            <button type="button" id="seguir" class="follow-button process-featured-button-1" style="margin-left:10%; margin-bottom: 5%; width: 75%;"><span style="position: relative; top: 5px;" class="material-symbols-outlined"> notifications </span> <span id="following-text">Seguir</span> </button>
+                                        </div>
+                        <?php
+                                    }
                                 }
-                                $sql->closeCursor();
-                            ?>
+                            }else{
+
+                        ?>
+                                <div class="mt-4">
+                                    <button type="button" id="seguir" class="follow-button process-featured-button-1" style="margin-left:10%; margin-bottom: 5%; width: 75%;"><span style="position: relative; top: 5px;" class="material-symbols-outlined"> notifications </span> <span id="following-text">Seguir</span> </button>
+                                </div>
+                                
+                        <?php
+
+                            }
+                        ?>
+                    </div>
+                    <div class="col col-md-9">
+                        <div class="container text-center" style="margin-top: 1rem;">
+                            <!-- ACOMODO -->
+                            <div class="filter row row-cols-1 row-cols-md-2 row-cols-lg-3 d-flex align-items-stretch g-3">
+                                <!-- INSERTAR -->
+                                <?php
+                                    $sql = $pdo->prepare("SELECT * FROM participaciones, usuarios, distritos WHERE usuarios.uid = ? AND  usuarios.uid = participaciones.uid and distritos.did = participaciones.did");
+                                    $sql->execute([$id]);
+                                    $rows = $sql->fetchAll();
+                                    foreach($rows as $row){
+
+                                        require 'components/card_ficha.php';
+
+                                    }
+                                    $sql->closeCursor();
+                                ?>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        
         <!-- Start Footer -->
         <footer style="margin-bottom: -5rem;">
             <div class="footer-content" >

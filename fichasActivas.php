@@ -9,8 +9,7 @@
         exit();
     }else{
         $token_tmp = hash_hmac('sha1', $id, KEY_TOKEN);
-        if($token == $token_tmp){
-            
+        if($token == $token_tmp){        
 ?>
 
 <!DOCTYPE html>
@@ -128,7 +127,7 @@
                     </li>
                     <li class="list-group-item" style="background-color: #EAD9D8;">
                         <div class="d-flex my-3 m-2">
-                            <input class="input-search form-control" type="search" placeholder="Buscar usuario, titulo, descripción ..." aria-label="Search">
+                            <input class="input-search form-control2" type="search" placeholder="Buscar usuario, titulo, descripción ..." aria-label="Search">
                             <button class="buscar-filtro btn buscar">
                                 <i class='fa-solid fa-magnifying-glass'></i>
                             </button>
@@ -320,7 +319,7 @@
                             if(response.condicion == 2){
                                 $("#hecho").modal("show");
                             }else{
-                            
+                                window.location.replace("registrarPropuesta.php?id=<?php echo $id; ?>&token=<?php echo hash_hmac('sha1', $id, KEY_TOKEN );?>");
                             }
                         }
                     }
@@ -337,6 +336,9 @@
             header("Location: /components/404.php");
             exit();
         }
+
+        header("Location: /components/404.php");
+        exit();
     }
         //$stmt->closeCursor();
 

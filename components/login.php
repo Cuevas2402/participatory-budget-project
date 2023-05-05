@@ -35,7 +35,7 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<h5 class="modal-title" id="cerrarlLabel">De verdad quieres cerrar sesion? 🥺 </h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<button type="button" id="close" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
@@ -71,6 +71,12 @@
                             window.location.href = "index.php";
                         }
                     });
+                });
+            });
+
+            $(document).ready(function() {
+                $('#close').click(function() {
+                    $('#cerrar').modal('hide');
                 });
             });
         </script>

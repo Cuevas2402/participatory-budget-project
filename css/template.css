@@ -78,6 +78,9 @@ button.inicia:hover {
 input.form-control {
     width: 600px;
 }
+input.form-control2 {
+    width: 600px;
+}
 
 button.buscar {
     position: relative;
@@ -214,6 +217,12 @@ footer p > a:hover {
     
 }
 
+@media screen and (max-width:990px) {
+    input.form-control2 {
+        width: 150px;
+    }
+}
+
 @media screen and (max-width:850px) {
     header {
         height: initial;
@@ -242,6 +251,12 @@ footer p > a:hover {
 
     input.form-control {
         width: 400px;
+    }
+}
+
+@media screen and (max-width:767px) {
+    input.form-control2 {
+        width: 600px;
     }
 }
 
