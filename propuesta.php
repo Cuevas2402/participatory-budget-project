@@ -107,10 +107,18 @@
         <div class="container" style="margin-bottom: 10rem;">
             <div class="row no-gutters">
                 <div class="col-12 col-sm-12 col-md-8 col-12" style="padding: 12px;">
-                    <p><?php echo $row['propuesta']?></p>
+                    <p><?php echo $row['propuesta']; ?></p>
 
                     <h2>imagen</h2>
-                    <!-- <img src="" alt=""> -->
+                    <?php
+
+                            if (!is_null($row['img'])) {
+                    ?>
+                                <img src="<?php echo $row['img']; ?>" >
+                    <?php
+                            } 
+                    ?>
+                    
                 </div>
                 
                 <div class="col-6 col-md-4 col-sm-12 col-12">
