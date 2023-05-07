@@ -209,50 +209,84 @@
     <!-- End Footer -->
     <!-- MODALES -->
 
-            <!-- MODAL INICIA -->
-            <div class="modal fade" id="inicia" tabindex="-1" role="dialog" aria-labelledby="iniciaLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exitolLabel">Inicia Sesión</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            Para poder seguir un usuario debes iniciar sesion
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                        </div>
+        <!-- MODAL INICIA -->
+        <div class="modal fade" id="inicia" tabindex="-1" role="dialog" aria-labelledby="iniciaLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exitolLabel">Inicia Sesión</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Para poder seguir un usuario debes iniciar sesion
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
             </div>
-            <!-- FIN MODAL INICIA-->
+        </div>
+        <!-- FIN MODAL INICIA-->
 
-            <!-- MODAL INICIA -->
-            <div class="modal fade" id="hecho" tabindex="-1" role="dialog" aria-labelledby="hechoLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="hecholLabel">Ya has particpado en este proceso</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            No puedes participar más de una vez en el mismo proceso
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                        </div>
+        <!-- MODAL INICIA -->
+        <div class="modal fade" id="hecho" tabindex="-1" role="dialog" aria-labelledby="hechoLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="hecholLabel">Ya has particpado en este proceso</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        No puedes participar más de una vez en el mismo proceso
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
             </div>
-            <!-- FIN MODAL INICIA-->
+        </div>
+        <!-- FIN MODAL INICIA-->
 
-	    <!-- FIN MODALES -->                
+        <!-- MODAL IMG -->
+        <div class="modal fade" id="completado" tabindex="-1" role="dialog" aria-labelledby="completadoLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="imgLabel">Registro completado</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Su registro de propuesta ha sido completado
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- FIN MODAL IMG-->
+
+    <!-- FIN MODALES -->                
    
+    <!-- CODIGO PARA DESPLEGAR MODALES -->
+	<?php
+		
+		if (isset($_GET['completado']) && $_GET['completado'] === 'true') {
+			?>
+				<script>
+					$(document).ready(function() {
+						$('#completado').modal('show');
+					});
+				</script>
+			<?php
+		}
+	?>
 
     <script type="text/javascript">  
         $(document).ready(function(){
@@ -333,12 +367,10 @@
 
 <?php
         }else{
-            header("Location: /components/404.php");
+            header("Location: components/404.php");
             exit();
         }
 
-        header("Location: /components/404.php");
-        exit();
     }
         //$stmt->closeCursor();
 

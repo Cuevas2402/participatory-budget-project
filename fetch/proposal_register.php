@@ -1,28 +1,61 @@
 <?php
+    // 1 - Validar que el titulo de propuesta no esta
+    // 2 - Validar el nombre de la imagen
+    // 3 - Validar formato de imagen
+    require '../config/db.php';
+    require '../config/config.php'; 
     session_start();
+    $pid = $_SESSION['pid'];
+    $temp = hash_hmac('sha1', $pid, KEY_TOKEN);
+
     if(isset($_SESSION['pid'])){
         if(isset($_POST['titulo']) && isset($_POST['distrito']) && isset($_POST['descripcion'])){
-            if(isset($_FILES['img'])){
+            $sql = $pdo->prepare("SELECT COUNT(uid) FROM participaciones WHERE titulo_registro = ?");
+            $sql->execute([$_POST['titulo']]);
+            $row = $sql->fetch();
+            $sql->closeCursor();
+            //Validar que no haya titulos iguales
+            if($row['COUNT(uid)'] > 0){
+                header("Location: ../registrarPropuesta.php?id=".$pid."&token=".$temp."&titulo=false");
+                exit();
+            }
+            
+            if($_FILES['img']['error'] !== UPLOAD_ERR_NO_FILE){
                 $errors= array();
-                $file_name = $_FILES['img']['name'];
-                $file_size =$_FILES['img']['size'];
-                $file_tmp =$_FILES['img']['tmp_name'];
-                $file_type=$_FILES['img']['type'];    
-                $file_ext=strtolower(end(explode('.',$_FILES['img']['name'])));
-
-                $extensions= array("jpeg","jpg","png");
-
-                if(in_array($file_ext,$extensions)=== false || $file_size > 5242880 ){
-                    header("Location: ../index.php?registrado=false");
-                    exit(); 
-                }else{
-                    $upload_dir = "../uploads/"; 
-                    $upload_path = $upload_dir . $file_name; 
+                $upload_dir = "uploads/"; 
+                $file_name = uniqid() . "_" . $_FILES['img']['name']; 
+                $file_size = $_FILES['img']['size'];
+                $file_tmp = $_FILES['img']['tmp_name'];
+                $file_type = $_FILES['img']['type'];    
+                $file_parts = explode('.', $_FILES['img']['name']);
+                $file_ext = strtolower(end($file_parts));
+            
+                $extensions = array("jpeg","jpg","png");
+            
+                if(in_array($file_ext,$extensions) === false || $file_size > 5242880 ){
+                    header("Location: ../registrarPropuesta.php?id=".$pid."&token=".$temp."&img=false");
+                    exit();
+                } else {
+                    $upload_path = "../".$upload_dir . $file_name; 
                     move_uploaded_file($file_tmp, $upload_path); 
-                    header("Location: ../index.php?registrado=true");
+                    $sql = $pdo->prepare("INSERT INTO participaciones (pid, uid, titulo_registro, propuesta, fecha_creacion, did) VALUES (?, ?, ?, ?, ?, ?)");
+                    $sql->execute([$_SESSION['pid'], $_SESSION['id'], $_POST['titulo'], $_POST['descripcion'], date('Y-m-d'), $_POST['distrito']]);
+                    $sql->closeCursor();
+                    unset($_SESSION['pid']);
+                    var_dump($_SESSION);
+                    header("Location: ../fichasActivas.php?id=".$pid."&token=".$temp."&completado=true");
                     exit(); 
                 }
             }
+
+            $sql = $pdo->prepare("INSERT INTO participaciones (pid, uid, titulo_registro, propuesta, fecha_creacion, did) VALUES (? , ? , ? , ? , ? , ? )");
+            $sql->execute([$_SESSION['pid'], $_SESSION['id'], $_POST['titulo'], $_POST['descripcion'], date('Y-m-d'), $_POST['distrito']]);
+            $sql->closeCursor();
+            unset($_SESSION['pid']);
+            var_dump($_SESSION);
+            header("Location: ../fichasActivas.php?id=".$pid."&token=".$temp."&completado=true");
+            exit();
+
         }else{
             header("Location: ../components/404.php");
             exit(); 

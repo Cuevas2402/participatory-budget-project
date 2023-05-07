@@ -51,10 +51,10 @@
 			<div class="collapse navbar-collapse mx-auto" id="navbarSupportedContent">
 				<ul class="navbar-nav me-auto mx-auto mb-2 mb-lg-0 text-center">
 				<li class="nav-item">
-					<a class="nav-link a-active" href="index.php">Inicio</a>
+					<a class="nav-link " href="index.php">Inicio</a>
 				</li>
 				<li class="nav-item mx-5">
-					<a class="nav-link" href="participa.php">Participa</a>
+					<a class="nav-link a-active" href="participa.php">Participa</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="ayuda.php">Ayuda</a>
@@ -72,8 +72,24 @@
 	<!-- End search bar-->
 
 	<!-- End Navbar -->
-	
-	<div class="container d-flex justify-content-center text-center" style="margin-top: 5%;">
+	<div>
+        <img src="img/banner.jpg" class="img-fluid w-100">
+    </div>
+    <div style="border-bottom: 1px solid rgba(0, 0, 0, 0.25);">
+        <div class="container">
+            <div class="nav3">
+                <h5><a id="pid" href="participa2.php?id=<?php echo $_SESSION['pid']; ?>&token=<?php echo hash_hmac('sha1', $_SESSION['pid'], KEY_TOKEN );?>" data-value="<?php echo $pid?>">EL PROCESO</a></h5>
+                <h5><a href="fases.php?id=<?php echo $_SESSION['pid']; ?>&token=<?php echo hash_hmac('sha1', $_SESSION['pid'], KEY_TOKEN );?>">FASES </a></h5>
+                <h5><a class="a-active"  href="fichasActivas.php?id=<?php echo $_SESSION['pid']; ?>&token=<?php echo hash_hmac('sha1', $_SESSION['pid'], KEY_TOKEN );?>">FICHAS ACTIVAS</a></h5>
+            </div> 
+        </div>
+    </div>
+    
+	<div class="container" style="margin-top: 2rem;">
+		<a href="fichasActivas.php?id=<?php echo $_SESSION['pid']; ?>&token=<?php echo hash_hmac('sha1', $_SESSION['pid'] , KEY_TOKEN);?>"><span><i class="fa-solid fa-chevron-left fa-2xs"></i> Volver al listado</span></a>
+	</div>
+
+	<div class="container d-flex justify-content-center text-center" style="margin-top: 2.5%;">
 		<h2 style="font-weight: 600;">Registra Propuesta</h2>
 	</div>
 
@@ -133,9 +149,10 @@
 						<label class="label-register">Imágen de la propuesta </label>
 						<br>
 						<div class="file-input">
-							<input type="file" name="img" id="file">
+							<input type="file" name="img" id="file" >
 							<label for="file">Elegir archivo</label>
 						</div>
+						<label for="file" id="file-label"></label>
 					</div>
 
 					<center><button class="process-featured-button-2-large mt-5" type="submit">Publicar</button></center>
@@ -163,18 +180,18 @@
 
 	<!-- MODALES -->
 
-		<!-- MODAL NOMBRE -->
-		<div class="modal fade" id="nombreEnUsoModal" tabindex="-1" role="dialog" aria-labelledby="nombreEnUsoModalLabel" aria-hidden="true">
+		<!-- MODAL IMG -->
+		<div class="modal fade" id="img" tabindex="-1" role="dialog" aria-labelledby="imgLabel" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="nombreEnUsoModalLabel">El nombre de usuario ya está en uso</h5>
+						<h5 class="modal-title" id="imgLabel">Imagen no permitida</h5>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
 					<div class="modal-body">
-						Por favor, elige otro nombre de usuario.
+						La imagen no cumple con los requerimientos indicados
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -182,20 +199,20 @@
 				</div>
 			</div>
 		</div>
-		<!-- FIN MODAL NOMBRE-->
+		<!-- FIN MODAL IMG-->
 
-		<!-- MODAL CORREO -->
-		<div class="modal fade" id="correoenUso" tabindex="-1" role="dialog" aria-labelledby="correoenUsoLabel" aria-hidden="true">
+		<!-- MODAL titulo -->
+		<div class="modal fade" id="titulo-modal" tabindex="-1" role="dialog" aria-labelledby="tituloLabel" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="correoenUsoModalLabel">El correo ya está en uso</h5>
+						<h5 class="modal-title" id="tituloLabel">Titulo en uso</h5>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
 					<div class="modal-body">
-						Por favor, elige otro correo.
+						Por favor, elige otro titulo, el que escribiste ya se encuentra en uso
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -203,47 +220,55 @@
 				</div>
 			</div>
 		</div>
-		<!-- FIN MODAL CORREO-->
-
-
-		<!-- MODAL EXITO -->
-		<div class="modal fade" id="exito" tabindex="-1" role="dialog" aria-labelledby="exitoLabel" aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="exitolLabel">Registro exitoso</h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						Puedes comenzar a participar en procesos y votar por propuestas 🥳
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- FIN MODAL EXITO-->
+		<!-- FIN MODAL TITULO-->
 
 	<!-- FIN MODALES -->
 
 	<!-- CODIGO PARA DESPLEGAR MODALES -->
+	<?php
+		
+		if (isset($_GET['img']) && $_GET['img'] === 'false') {
+			?>
+				<script>
+					$(document).ready(function() {
+						$('#img').modal('show');
+					});
+				</script>
+			<?php
+		}
+
+		if (isset($_GET['titulo']) && $_GET['titulo'] === 'false') {
+			?>
+				<script>
+					$(document).ready(function() {
+						$('#titulo-modal').modal('show');
+					});
+				</script>
+			<?php
+		}
+
+	?>
 	
 
 	<!-- FIN CODIGO PARA DESPLEGAR MODALES -->
 	<script src="js/script.js"></script>
+	<script>
+		$(document).ready(function(){
+			$('#file').change(function (){
+				var input = document.getElementById('file');
+				var label = document.getElementById('file-label');
+				label.innerHTML = input.value.split('\\').pop(); // obtiene solo el nombre del archivo y lo asigna al valor del label
+			});
+		});
+		
+	</script>
 </body>
 </html>
 <?php
         }else{
-            header("Location: /components/404.php");
+            header("Location: components/404.php");
             exit();
         }
-
-		header("Location: /components/404.php");
-        exit();
 		
     }
         //$stmt->closeCursor();
