@@ -90,7 +90,24 @@
                     <div class="col col-md-3 text-center px-sm-0 px-md-3 px-lg-5">
                         <ul class="list-group">
                             <li class="list-group-item">
-                                <img class="img-fluid" src="img/avatar.png" alt="perfil" style="border-radius: 3px 3px 0 0px;">
+                                <?php
+                                    $sql = $pdo->prepare("SELECT img FROM usuarios WHERE uid = ?");
+                                    $sql->execute([$id]);
+                                    $row = $sql->fetch();
+                                    $sql->closeCursor();
+
+                                    if (!is_null($row['img'])) {
+                                ?>
+                                    <img class="img-fluid"  src="<?php echo $row['img']; ?>" alt="perfil" style="border-radius: 3px 3px 0 0px;">
+                                <?php
+                                    }else{
+                                ?>
+                                    <img class="img-fluid" src="img/avatar.png" alt="perfil" style="border-radius: 3px 3px 0 0px;">
+                                <?php
+                                    } 
+                                ?>
+
+                                
                                 <a class="uid process-filter-a-down-2" data-value="<?php echo $id; ?>"><h5 class="my-3 profile-name" style="font-weight: 500;">
                                     <?php
                                         $sql = $pdo->prepare("SELECT nombre FROM usuarios WHERE uid = ?");

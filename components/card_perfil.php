@@ -1,7 +1,17 @@
 <!-- START INDIVIDUAL CARD -->
 <div class="col-12 text-center">
     <div class="card-profile">
-        <img src="img/avatar.png" style="width: 50px;">
+        <?php
+            if (!is_null($row['img'])) {
+        ?>
+            <img src="<?php echo $row['img']; ?>" alt="perfil" style="width: 50px;">
+        <?php
+            }else{
+        ?>
+            <img src="img/avatar.png" alt="perfil" style="width: 50px;">
+        <?php
+            } 
+        ?>
         <div class="col-12 col-md my-2" style="margin: 8px 0 0 0 !important;">
             <h5 class="mt-2 profile-name"><?php echo $row['nombre']; ?></h5>
             <p class="my-2"><small>Creado el: <?php echo $row['fecha_creacion']; ?></small></p>

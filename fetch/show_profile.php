@@ -60,7 +60,7 @@
         }
 
     }else{
-        header("Location: /components/404.php");
+        header("Location: ../components/404.php");
         exit();
     }
 

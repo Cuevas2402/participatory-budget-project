@@ -57,6 +57,7 @@
         }
         $sql->closeCursor();   
     }else{
-        
+        header("Location: ../components/404.php");
+        exit();
     }
 ?>

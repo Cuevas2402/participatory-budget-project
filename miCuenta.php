@@ -5,12 +5,13 @@
     $id = isset($_GET['id']) ? $_GET['id'] : '';
     $token = isset($_GET['token']) ? $_GET['token'] : '';
 
-    if($id == '' && $token == ''){
+    if($id == '' && $token == '' && $_SESSION['id']){
         header("Location: components/404.php");
         exit();
     }else{
         $token_tmp = hash_hmac('sha1', $id, KEY_PERFIL);
         if($token == $token_tmp){
+            
         
 ?>
 
@@ -78,7 +79,14 @@
         <!-- End search bar-->
         
         <!-- End Navbar -->
-        
+        <?php
+
+            $sql = $pdo->prepare("SELECT * FROM usuarios WHERE uid = ?");
+            $sql->execute([$_SESSION['id']]);
+            $row = $sql->fetch();
+            $sql->closeCursor();
+
+        ?>
         <div class="contenido">
             <center>    
                 <h1>Configuración de cuenta</h1>
@@ -92,7 +100,7 @@
                 </div>
                 <div class="info">
                     <div id="info1" class="tabcontent" style="display: block;">
-                        <form class="needs-validation" id="form" novalidate>
+                        
                             <div class="row row-cols-1 row-cols-md-1 row-cols-lg-2">
                                 <div class="col col-md-5 col-lg-4">
                                     <div>
@@ -106,11 +114,25 @@
                                         </ul>
                                     </div>
                                     <center>
+                                    <form class="needs-validation" id="form" action="fetch/update_profile.php" method="POST" enctype="multipart/form-data" novalidate>
                                     <div class="file-input">
-                                        <input type="file" name="file" id="fileInput" accept=".jpg,.jpeg,.gif,.png,.bmp,.ico" required>
+                                        <input type="file" name="file" id="fileInput" accept=".jpg,.jpeg,.gif,.png,.bmp,.ico">
                                         <label for="file">Elegir archivo</label>
                                     </div>
-                                    <div id="imageContainer" style="width: 200px; height: 200px; border: 1px solid black;"></div>
+
+                                    <div id="imageContainer" style="width: 200px; height: 200px; border: 1px solid black;">
+                                        <?php
+
+                                            if (!is_null($row['img'])) {
+
+                                        ?>
+                                                <img src="<?php echo $row['img']; ?>" >
+                                        <?php
+
+                                            } 
+
+                                        ?>
+                                    </div>
                                     <script>
                                         // Obtener el div contenedor de la imagen
                                         const imageContainer = document.getElementById('imageContainer');
@@ -151,16 +173,16 @@
                                     
                                         <p><small><i>* Los campos requeridos están marcados con un asterisco</i></small></p>
                                         <label class="label-register">Tu nombre *</label>
-                                        <input type="nombre" class="form-control w-100" id="nombre" placeholder="joseman" required>
+                                        <input type="nombre" class="form-control w-100" id="nombre" name="nombre" placeholder="joseman" value="<?php echo $row['nombre'];?>" required>
                                         <label class="label-register">Tu correo electrónico *</label>
-                                        <input type="email" class="form-control w-100" id="email" placeholder="jose.gallegos@udem.edu" required>
+                                        <input type="email" class="form-control w-100" id="email" name="correo" placeholder="jose.gallegos@udem.edu" value="<?php echo $row['correo'];?>" required>
                                         <label class="label-register">Número de Teléfono *</label>
-                                        <input type="phone" class="form-control w-100" id="telefono" placeholder="11111111111" required>
-                                        <center><button class="process-featured-button-2-large mt-5">Actualizar Cuenta</button></center>
-                                    
+                                        <input type="phone" class="form-control w-100" id="telefono" name="telefono" placeholder="11111111111" value="<?php echo $row['telefono']; ?>" required>
+                                        <center><button class="process-featured-button-2-large mt-5" type="submit">Actualizar Cuenta</button></center>
+                                        </form>
                                 </div>
                             </div>
-                        </form>
+                        
                     </div>
                     <div id="info2" class="tabcontent">
                         <div class="row">
