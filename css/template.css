@@ -807,7 +807,6 @@ button#myBtn {
 
 /* Profile Card */
 .profile-name {
-    text-transform: capitalize;
     font-weight: 400;
 }
 
@@ -868,8 +867,4 @@ button#myBtn {
 .follow-count {
     padding: 0;
     margin: 0;
-}
-
-.profile-name {
-    text-transform: capitalize;
 }

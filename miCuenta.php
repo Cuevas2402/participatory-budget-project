@@ -115,71 +115,71 @@
                                     </div>
                                     <center>
                                     <form class="needs-validation" id="form" action="fetch/update_profile.php" method="POST" enctype="multipart/form-data" novalidate>
-                                    <div class="file-input">
-                                        <input type="file" name="file" id="fileInput" accept=".jpg,.jpeg,.gif,.png,.bmp,.ico">
-                                        <label for="file">Elegir archivo</label>
-                                    </div>
+                                        <div class="file-input">
+                                            <input type="file" name="file" id="fileInput" accept=".jpg,.jpeg,.gif,.png,.bmp,.ico">
+                                            <label for="file">Elegir archivo</label>
+                                        </div>
 
-                                    <div id="imageContainer" style="width: 200px; height: 200px; border: 1px solid black;">
-                                        <?php
+                                        <div id="imageContainer" style="width: 200px; height: 200px; border: 1px solid black;">
+                                            <?php
 
-                                            if (!is_null($row['img'])) {
+                                                if (!is_null($row['img'])) {
 
-                                        ?>
-                                                <img src="<?php echo $row['img']; ?>" >
-                                        <?php
+                                            ?>
+                                                    <img src="<?php echo $row['img']; ?>" >
+                                            <?php
 
-                                            } 
+                                                } 
 
-                                        ?>
-                                    </div>
-                                    <script>
-                                        // Obtener el div contenedor de la imagen
-                                        const imageContainer = document.getElementById('imageContainer');
+                                            ?>
+                                        </div>
+                                        <script>
+                                            // Obtener el div contenedor de la imagen
+                                            const imageContainer = document.getElementById('imageContainer');
 
-                                        // Agregar un evento de cambio al input del archivo
-                                        fileInput.addEventListener('change', () => {
-                                        // Leer el archivo seleccionado por el usuario
-                                        const file = fileInput.files[0];
-                                        const reader = new FileReader();
-                                        reader.readAsDataURL(file);
+                                            // Agregar un evento de cambio al input del archivo
+                                            fileInput.addEventListener('change', () => {
+                                            // Leer el archivo seleccionado por el usuario
+                                            const file = fileInput.files[0];
+                                            const reader = new FileReader();
+                                            reader.readAsDataURL(file);
 
-                                            // Agregar un evento de carga al lector de archivos
-                                            reader.addEventListener('load', () => {
-                                                // Crear una etiqueta img para mostrar la imagen
-                                                const img = document.createElement('img');
-                                                img.src = reader.result;
-                                                img.style.maxWidth = '100%';
-                                                img.style.maxHeight = '100%';
+                                                // Agregar un evento de carga al lector de archivos
+                                                reader.addEventListener('load', () => {
+                                                    // Crear una etiqueta img para mostrar la imagen
+                                                    const img = document.createElement('img');
+                                                    img.src = reader.result;
+                                                    img.style.maxWidth = '100%';
+                                                    img.style.maxHeight = '100%';
 
-                                                // Agregar la etiqueta img al contenedor de imagen
-                                                imageContainer.innerHTML = '';
-                                                imageContainer.appendChild(img);
-
-                                                // Verificar si la imagen tiene el tamaño correcto
-                                                if (img.naturalWidth !== 200 || img.naturalHeight !== 200) {
-                                                    // Si la imagen no tiene el tamaño correcto, mostrar un mensaje de error
-                                                    alert('La imagen debe tener un tamaño de 200x200 píxeles');
+                                                    // Agregar la etiqueta img al contenedor de imagen
                                                     imageContainer.innerHTML = '';
-                                                    fileInput.value = '';
-                                                }
+                                                    imageContainer.appendChild(img);
+
+                                                    // Verificar si la imagen tiene el tamaño correcto
+                                                    if (img.naturalWidth !== 200 && img.naturalHeight !== 200) {
+                                                        // Si la imagen no tiene el tamaño correcto, mostrar un mensaje de error
+                                                        alert('La imagen debe tener un tamaño de 200x200 píxeles');
+                                                        imageContainer.innerHTML = '';
+                                                        fileInput.value = '';
+                                                    }
+                                                });
                                             });
-                                        });
-                                    </script>
-                                    </center>
-                                    <img src="" alt="">
+                                        </script>
+                                        </center>
+                                        <img src="" alt="">
                                 </div>
                                 <div class="col-md-7 col-lg-8">
                                     
                                         <p><small><i>* Los campos requeridos están marcados con un asterisco</i></small></p>
                                         <label class="label-register">Tu nombre *</label>
-                                        <input type="nombre" class="form-control w-100" id="nombre" name="nombre" placeholder="joseman" value="<?php echo $row['nombre'];?>" required>
+                                        <input type="nombre" class="form-control w-100" id="nombre" name="nombre" maxlength="50" value="<?php echo $row['nombre'];?>" required>
                                         <label class="label-register">Tu correo electrónico *</label>
-                                        <input type="email" class="form-control w-100" id="email" name="correo" placeholder="jose.gallegos@udem.edu" value="<?php echo $row['correo'];?>" required>
+                                        <input type="email" class="form-control w-100" id="email" name="correo" value="<?php echo $row['correo'];?>" required>
                                         <label class="label-register">Número de Teléfono *</label>
-                                        <input type="phone" class="form-control w-100" id="telefono" name="telefono" placeholder="11111111111" value="<?php echo $row['telefono']; ?>" required>
+                                        <input type="phone" class="form-control w-100" id="telefono" name="telefono" maxlength="10" value="<?php echo $row['telefono']; ?>" required>
                                         <center><button class="process-featured-button-2-large mt-5" type="submit">Actualizar Cuenta</button></center>
-                                        </form>
+                                    </form>
                                 </div>
                             </div>
                         
@@ -314,7 +314,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
-                            <button type="button" id="borrar-cuenta" class="si btn btn-secondary" data-dismiss="modal">Si</button>
+                            <button type="button" id="borrar-cuenta" class="btn btn-secondary" data-dismiss="modal">Si</button>
                         </div>
                     </div>
                 </div>
