@@ -52,7 +52,7 @@
                 header("Location: ../miCuenta.php?id=".$_SESSION['id']."&token=".$temp."&completado=true");
                 exit(); 
             }
-
+        }else{
             $sql = $pdo->prepare("UPDATE usuarios SET nombre=?, correo=?, telefono=? WHERE uid=?");
             $sql->execute([$_POST['nombre'], $_POST['correo'], $_POST['telefono'], $_SESSION['id']]);
             $sql->closeCursor();
