@@ -171,18 +171,20 @@
                     </div>
                     <!-- start cards nuevo -->
                     <div class="container text-center" style="margin-top: 1rem;">
-                        <div class="filter row row-cols-1 row-cols-md-2 row-cols-lg-2 d-flex align-items-stretch g-3">
-                            <?php
-                                $sql = $pdo->prepare("SELECT * FROM procesos, participaciones, usuarios, distritos WHERE procesos.pid = '$id' and procesos.pid = participaciones.pid AND usuarios.uid = participaciones.uid and distritos.did = participaciones.did");
-                                $sql->execute();
-                                $rows = $sql->fetchAll();
-                                foreach($rows as $row){
+                        <div class="ficha-card-scroll-2">
+                            <div class="filter row row-cols-1 row-cols-md-2 row-cols-lg-2 d-flex align-items-stretch g-3">
+                                <?php
+                                    $sql = $pdo->prepare("SELECT * FROM procesos, participaciones, usuarios, distritos WHERE procesos.pid = '$id' and procesos.pid = participaciones.pid AND usuarios.uid = participaciones.uid and distritos.did = participaciones.did");
+                                    $sql->execute();
+                                    $rows = $sql->fetchAll();
+                                    foreach($rows as $row){
 
-                                    require 'components/card_ficha.php';
+                                        require 'components/card_ficha.php';
 
-                                }
-                                $sql->closeCursor();
-                            ?>
+                                    }
+                                    $sql->closeCursor();
+                                ?>
+                            </div>
                         </div>
                     </div>
                     <!-- end cards nuevo -->
