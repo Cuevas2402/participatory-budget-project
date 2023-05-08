@@ -196,7 +196,7 @@
                                 </ul>
                                 <h5 style="text-align: left !important;">Por favor, cuéntanos el motivo por el que deseas eliminar tu cuenta (opcional).</h5>
                                 <textarea name="" id="" rows="5" style="width: 100%;"></textarea>
-                                <center><button class="process-featured-button-2-large mt-5">Eliminar mi cuenta</button></center>
+                                <center><button class="borrar-btn process-featured-button-2-large mt-5">Eliminar mi cuenta</button></center>
                             </div>
                         </div>
                     </div>
@@ -233,7 +233,151 @@
                 document.getElementById(categoria).style.display = "block";
                 evt.currentTarget.className += " active";
             }
-        </script>                           
+        </script>   
+        
+        
+        <!-- MODALES -->
+
+            <!-- MODAL CORREO  -->
+            <div class="modal fade" id="correo-modal" tabindex="-1" role="dialog" aria-labelledby="Label" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="Label">Correo en Uso</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            El correo que introdujo ya se encuentra en uso
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- FIN MODAL CORREO-->
+
+            <!-- MODAL NOMBRE -->
+            <div class="modal fade" id="nombre-modal" tabindex="-1" role="dialog" aria-labelledby="Label" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="Label">Nombre en uso</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            El nombre que ingreso ya se encuentra en uso
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- FIN MODAL NOMBRE-->
+
+
+            <!-- MODAL COMPLETO -->
+            <div class="modal fade" id="completo-modal" tabindex="-1" role="dialog" aria-labelledby="Label" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="Label">Perfil actualizado</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Su perfil ha sido actualizado correctamente
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- FIN MODAL COMPLETO-->
+
+            <!-- MODAL BORRAR -->
+            <div class="modal fade" id="borrar" tabindex="-1" role="dialog" aria-labelledby="Label" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="Label">De verdad quieres eliminar tu cuenta? 🥺 </h5>
+                            <button type="button" id="close" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
+                            <button type="button" id="borrar-cuenta" class="si btn btn-secondary" data-dismiss="modal">Si</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- FIN MODAL BORRAR --> 
+
+        <!-- FIN MODALES -->
+
+        <!-- CODIGO PARA DESPLEGAR MODALES -->
+        <?php
+            
+            if (isset($_GET['nombre']) && $_GET['nombre'] === 'true') {
+                ?>
+                    <script>
+                        $(document).ready(function() {
+                            $('#nombre-modal').modal('show');
+                        });
+                    </script>
+                <?php
+            }
+
+            if (isset($_GET['correo']) && $_GET['correo'] === 'true') {
+                ?>
+                    <script>
+                        $(document).ready(function() {
+                            $('#correo-modal').modal('show');
+                        });
+                    </script>
+                <?php
+            }
+
+            if (isset($_GET['completado']) && $_GET['completado'] === 'true') {
+                ?>
+                    <script>
+                        $(document).ready(function() {
+                            $('#completo-modal').modal('show');
+                        });
+                    </script>
+                <?php
+            }
+
+        ?>
+
+        <script>
+            $(document).ready(function(){
+                $('.borrar-btn').click(function(){
+                    $('#borrar').modal('show');
+                });
+            });
+
+            $(document).ready(function(){
+                $('#borrar-cuenta').click(function(){
+                    $.ajax({
+                        url: "fetch/delete_account.php",
+                        type: "POST",
+                        success:function(){
+                            window.location.replace("index.php");
+                        }
+                    });
+                });
+            });
+            
+        </script>
     </body>
 </html>
 
