@@ -96,6 +96,9 @@
 
     ?>
         <div class="container" style="margin-top: 5rem;">
+            <div style="text-align: center; font-weight: normal; font-size: 32px; font-weight: bold;">
+                <h2><?php echo $row['titulo_registro']; ?></h2>
+            </div>
             <a href="fichasActivas.php?id=<?php echo $pid; ?>&token=<?php echo hash_hmac('sha1', $pid, KEY_TOKEN);?>"><span><i class="fa-solid fa-chevron-left fa-2xs"></i> Volver al listado</span></a>
             <a id="uid"class="process-filter-a-down-2" data-value="<?php echo $id; ?>"><h5 class="mt-3" style="font-weight: normal; font-size: 32px; font-weight: 400;"><?php echo $row['nombre']?></h5></a>
             <div class="d-flex">
@@ -109,12 +112,11 @@
                 <div class="col-12 col-sm-12 col-md-8 col-12" style="padding: 12px;">
                     <p><?php echo $row['propuesta']; ?></p>
 
-                    <h2>imagen</h2>
                     <?php
 
                             if (!is_null($row['img'])) {
                     ?>
-                                <img src="<?php echo $row['img']; ?>" >
+                                <img class="img-fluid" src="<?php echo $row['img']; ?>" >
                     <?php
                             } 
                     ?>
