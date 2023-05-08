@@ -88,26 +88,28 @@
 
         <!-- START CARDS NUEVO -->
         <div class="container text-center" style="margin-top: 4rem; margin-bottom: 8rem;">
-            <div class="filter row row-cols-1 row-cols-md-2 row-cols-lg-4 d-flex align-items-stretch g-3">
-                <!-- START INDIVIDUAL CARD -->
-                <?php
-                    if($count > 0){
-                        foreach($rows as $row){
+            <div class="process-card-scroll">
+                <div class="filter row row-cols-1 row-cols-md-2 row-cols-lg-4 d-flex align-items-stretch g-3">
+                    <!-- START INDIVIDUAL CARD -->
+                    <?php
+                        if($count > 0){
+                            foreach($rows as $row){
 
-                            require 'components/card_proceso.php';
+                                require 'components/card_proceso.php';
 
+                            }
+                        }else{
+                            ?>
+                                <div class="container" style="margin-top:5%">
+                                    <h1 class="text-center">No se encontró ninguna búsqueda con esos valores 😰</h1>
+                                </div>
+                            <?php
                         }
-                    }else{
-                        ?>
-                            <div class="container" style="margin-top:5%">
-                                <h1 class="text-center">No se encontró ninguna búsqueda con esos valores 😰</h1>
-                            </div>
-                        <?php
-                    }
-                    $sql->closeCursor();
-                ?>
-                <!-- END INDIVIDUAL CARD--> 
-            </div>  
+                        $sql->closeCursor();
+                    ?>
+                    <!-- END INDIVIDUAL CARD--> 
+                </div>  
+            </div>
         </div>
         <!-- END CARDS -->                        
         
@@ -132,23 +134,25 @@
 
         <!-- START CARDS NUEVO -->
         <div class="container text-center" style="margin-top: 4rem; margin-bottom: 8rem;">
-            <div class="filter row row-cols-1 row-cols-md-2 row-cols-lg-4 d-flex align-items-stretch g-3">
-                <!-- START INDIVIDUAL CARD -->
-                <?php
-                    if($count > 0){
-                        foreach($rows as $row){
-                            require 'components/card_ficha.php';
+            <div class="ficha-card-scroll">
+                <div class="filter row row-cols-1 row-cols-md-2 row-cols-lg-4 d-flex align-items-stretch g-3">
+                    <!-- START INDIVIDUAL CARD -->
+                    <?php
+                        if($count > 0){
+                            foreach($rows as $row){
+                                require 'components/card_ficha.php';
+                            }
+                        }else{
+                            ?>
+                                <div class="container" style="margin-top:5%">
+                                    <h1 class="text-center">No se encontró ninguna búsqueda con esos valores 😰</h1>
+                                </div>
+                            <?php
                         }
-                    }else{
-                        ?>
-                            <div class="container" style="margin-top:5%">
-                                <h1 class="text-center">No se encontró ninguna búsqueda con esos valores 😰</h1>
-                            </div>
-                        <?php
-                    }
-                    $sql->closeCursor();
-                ?>
-                <!-- END INDIVIDUAL CARD--> 
+                        $sql->closeCursor();
+                    ?>
+                    <!-- END INDIVIDUAL CARD--> 
+                </div>
             </div>
         </div>
         <!-- END CARDS -->                        
@@ -173,26 +177,28 @@
 
         <!-- START CARDS NUEVO -->
         <div class="container" style="margin-top: 4rem; margin-bottom: 8rem;">
-            <div class="filter row row-cols-1 row-cols-md-2 row-cols-lg-4 d-flex align-items-stretch g-3">
-                <!-- START INDIVIDUAL CARD -->
-                <?php 
-                    if($count > 0){
-                        
-                        foreach($rows as $row){
+            <div class="user-card-scroll">                
+                <div class="filter row row-cols-1 row-cols-md-2 row-cols-lg-4 d-flex align-items-stretch g-3">
+                    <!-- START INDIVIDUAL CARD -->
+                    <?php 
+                        if($count > 0){
                             
-                            require 'components/card_perfil.php';
+                            foreach($rows as $row){
+                                
+                                require 'components/card_perfil.php';
 
+                            }
+                        }else{
+                            ?>
+                                <div class="container" style="margin-top:5%">
+                                    <h1 class="text-center">No se encontró ninguna búsqueda con esos valores 😰</h1>
+                                </div>
+                            <?php
                         }
-                    }else{
-                        ?>
-                            <div class="container" style="margin-top:5%">
-                                <h1 class="text-center">No se encontró ninguna búsqueda con esos valores 😰</h1>
-                            </div>
-                        <?php
-                    }
-                    $sql->closeCursor();
-                ?>
-                <!-- END INDIVIDUAL CARD--> 
+                        $sql->closeCursor();
+                    ?>
+                    <!-- END INDIVIDUAL CARD--> 
+                </div>
             </div>
         </div>
         <!-- END CARDS -->           

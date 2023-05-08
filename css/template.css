@@ -880,3 +880,22 @@ button#myBtn {
     padding: 0;
     margin: 0;
 }
+
+/* Scroll Y */
+.user-card-scroll {
+    height: 325px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.ficha-card-scroll {
+    height: 520px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.process-card-scroll {
+    height: 580px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
