@@ -202,20 +202,22 @@
 
         <!-- START CARDS NUEVO -->
         <div class="container text-center" style="margin-top: 4rem; margin-bottom: 8rem;">
-            <div class="filter row row-cols-1 row-cols-md-2 row-cols-lg-4 d-flex align-items-stretch g-3">
-                <!-- START INDIVIDUAL CARD -->
-                <?php
-                    $stmt = $pdo->prepare("CALL get_process_card()");
-                    $stmt->execute();
-                    $rows = $stmt->fetchAll();
-                    foreach($rows as $row){
+            <div class="process-card-scroll">
+                <div class="filter row row-cols-1 row-cols-md-2 row-cols-lg-4 d-flex align-items-stretch g-3">
+                    <!-- START INDIVIDUAL CARD -->
+                    <?php
+                        $stmt = $pdo->prepare("CALL get_process_card()");
+                        $stmt->execute();
+                        $rows = $stmt->fetchAll();
+                        foreach($rows as $row){
 
-                        require 'components/card_proceso.php';
-                
-                    }
-                    $stmt->closeCursor();
-                ?>
-                <!-- END INDIVIDUAL CARD--> 
+                            require 'components/card_proceso.php';
+                    
+                        }
+                        $stmt->closeCursor();
+                    ?>
+                    <!-- END INDIVIDUAL CARD--> 
+                </div>
             </div>
         </div>
         <!-- END CARDS -->                        
