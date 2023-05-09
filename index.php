@@ -59,6 +59,9 @@
 				<li class="nav-item">
 					<a class="nav-link" href="ayuda.php">Ayuda</a>
 				</li>
+				<li class=" mx-5 nav-item">
+					<a class="nav-link" href="calendario.php">Calendario</a>
+				</li>
 				</ul>
 				<!-- (Iniciar Sesión / Registrarse) o Sesion Inicada -->
 				<?php require 'components/login.php' ?>
@@ -91,7 +94,7 @@
 							- Monterrey
 						</h1>
 						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, illum.</p>
-						<button class="process-featured-button-2-large mt-4">Ver procesos</button>
+						<a href="participa.php"><button class="process-featured-button-2-large mt-4">Ver procesos</button></a>
 					</div>
 					
 				</div>

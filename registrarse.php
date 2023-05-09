@@ -54,6 +54,9 @@
 				<li class="nav-item">
 					<a class="nav-link" href="ayuda.php">Ayuda</a>
 				</li>
+				<li class=" mx-5 nav-item">
+					<a class="nav-link" href="calendario.php">Calendario</a>
+				</li>
 				</ul>
 				<div class="text-center">
                     <a href="registrarse.php"><button class="btn me-3 my-3 registra">Regístrate</button></a>

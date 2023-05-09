@@ -51,6 +51,9 @@
                     <li class="nav-item">
                         <a class="nav-link a-active" href="ayuda.php">Ayuda</a>
                     </li>
+                    <li class=" mx-5 nav-item">
+                        <a class="nav-link" href="calendario.php">Calendario</a>
+                    </li>
                 </ul>
                 <!-- (Iniciar Sesión / Registrarse) o Sesion Inicada -->
                 <?php require 'components/login.php' ?>
