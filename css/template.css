@@ -398,6 +398,17 @@ footer p > a:hover {
     transition: 300ms ease-in;
 }
 
+.process-featured-button-3-large:hover {
+    padding: 10px 16px;
+    font-weight: bold;
+    width: 250px;
+    color: white;
+    background-color: #894B5D;
+    border: 1px solid #894B5D;
+    border-radius: 6px;
+    transition: 300ms ease-in;
+}
+
 /* Procesos */
 .process-filter {
     display: flex; 
