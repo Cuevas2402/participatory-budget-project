@@ -293,7 +293,7 @@
 		}
 	?>
 
-    <script type="text/javascript">  
+    <script>  
         $(document).ready(function(){
             $('input[type="checkbox"]').on('change', function() { // Cada que haya un cambio en un checkbox salta el evento
                 var valores = $('input[type="checkbox"]:checked').map(function() { return $(this).val(); }).get();  // Almacena los valores de los checkbox marcados y los mete en un arreglo
@@ -320,7 +320,6 @@
             $('.buscar-filtro').on('click', function() { // Cada que le den click a buscar
                 $('input[type="checkbox"]:checked').prop('checked', false);
                 var valor = $('.input-search').val(); // Almacena el valor a buscar
-                console.log(valor);
                 var did = "<?php echo $id; ?>";
                 $.ajax({
                     url: "fetch/search_fichas.php",
