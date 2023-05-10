@@ -127,26 +127,13 @@ footer {
     color: #252525;
 }
 
-.socials {
-    list-style: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1.2rem;
-}
-
-.socials li {
-    margin: 5px 2rem -1.5rem;
-}
-
 .socials a {
     text-decoration: none;
     color: rgba(37, 37, 37, 0.85);
 }
 
 .socials a i {
-    font-size: 35px;
-    width: 20px;
+    font-size: 28px;
     transition: color .4s ease;
 }
 
@@ -164,6 +151,7 @@ footer {
     font-weight: 400;
     font-size: 16px;
     padding: 1rem 5rem;
+    margin-bottom: 0;
 }
 
 footer p > a {
@@ -405,6 +393,17 @@ footer p > a:hover {
     width: 250px;
     color: #894B5D;
     background-color: white;
+    border: 1px solid #894B5D;
+    border-radius: 6px;
+    transition: 300ms ease-in;
+}
+
+.process-featured-button-3-large:hover {
+    padding: 10px 16px;
+    font-weight: bold;
+    width: 250px;
+    color: white;
+    background-color: #894B5D;
     border: 1px solid #894B5D;
     border-radius: 6px;
     transition: 300ms ease-in;

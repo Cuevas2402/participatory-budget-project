@@ -197,21 +197,9 @@
     </div> 
     
     <!-- Start Footer -->
-    <footer style="margin-bottom: -5rem;">
-        <div class="footer-content" >
-            <ul class="socials">
-                <li><a href="#"><i class="fa fa-twitter-square"></i></a></li>
-                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                <li><a href="#"><i class="fa fa-facebook-square"></i></a></li>
-            </ul>
-            <p><a href="http://" target="_blank">Términos y condiciones</a></p>
-            <p><a href="http://" target="_blank">Descargar ficheros de datos abiertos</a></p>
-        </div>
-        <div class="footer-bottom">
-            <p>Este programa es público, ajeno a cualquier partido político. Queda prohibido el uso para fines distintos a los establecidos en el Programa.</p>
-        </div>
-    </footer>
+    <?php require 'components/footer.php'; ?>
     <!-- End Footer -->
+    
     <!-- MODALES -->
 
         <!-- MODAL INICIA -->
