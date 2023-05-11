@@ -60,7 +60,7 @@
     </div>
 
     <!-- Start Footer -->
-    <?php require '/footer.php'; ?>
+    <?php require 'footer.php'; ?>
     <!-- End Footer -->
 </body>
 </html>

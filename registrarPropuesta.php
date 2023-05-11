@@ -96,8 +96,9 @@
 		<h2 style="font-weight: 600;">Registra Propuesta</h2>
 	</div>
 
-	<div class="container  mensaje mt-5">
+	<div class="container  mensaje mt-5"> 
 		<div class=" container form-div d-flex justify-content-center" style="margin-top: 3%; width: 70%;">
+			<!-- INICIO FORMS --> 
 			<form class="form-r needs-validation" style="width: 75%;"  action="fetch/proposal_register.php" method="POST" id="form" enctype="multipart/form-data" novalidate>
 				<div class="form-group f-register"  >
 					<i><p style="font-weight: 500; color: #894B5D;"> * Los campos requeridos están marcados con un asterisco</p></i>
@@ -161,6 +162,7 @@
 					<center><button class="process-featured-button-2-large mt-5" type="submit">Publicar</button></center>
 				</div>
 			</form>
+			<!-- FIN FORMS --> 
 		</div>
 	</div>
 
@@ -241,6 +243,7 @@
 	
 
 	<!-- FIN CODIGO PARA DESPLEGAR MODALES -->
+	<script src= "js/validateProp.js"></script>
 	<script src="js/script.js"></script>
 	<script>
 		$(document).ready(function(){

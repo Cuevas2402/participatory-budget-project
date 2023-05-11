@@ -1,11 +1,29 @@
 <?php
     require '../config/config.php';
     require '../config/db.php';
+    if(empty($_POST['datos']) && empty($_POST['datos2'])){
+        $id = $_POST['id'];
+        if (isset($_POST['select'])) {
+            $query = "SELECT *, participaciones.img as imagen FROM participaciones, usuarios, distritos WHERE participaciones.pid = ? AND usuarios.uid = participaciones.uid and distritos.did = participaciones.did";
+            if ($_POST['select'] == 2) {
+                $query .= " ORDER BY participaciones.fecha_creacion ASC";
+            }
+            if ($_POST['select'] == 3) {
+                $query = "SELECT *, participaciones.img as imagen FROM participaciones, usuarios, distritos, votos WHERE votos.pid = participaciones.pid AND votos.voted = participaciones.uid AND participaciones.pid = ? AND usuarios.uid = participaciones.uid and distritos.did = participaciones.did GROUP BY participaciones.pid, participaciones.uid ORDER BY COUNT(voted) DESC";
+            }
+            $sql = $pdo->prepare($query);
+            $sql->execute([$id]);
+            $rows = $sql->fetchAll();
+            foreach ($rows as $row) {
+                require '../components/card_ficha.php';
+            }
+        }
+    }
     if(isset($_POST['datos']) ){
         $datos = $_POST['datos'];
 
         $placeholders = implode(',', array_fill(0, count($datos), '?'));
-        $query = "SELECT * FROM participaciones, usuarios, distritos WHERE usuarios.uid = participaciones.uid and distritos.did = participaciones.did AND participaciones.did IN ($placeholders)";
+        $query = "SELECT *, participaciones.img as imagen FROM participaciones, usuarios, distritos WHERE usuarios.uid = participaciones.uid and distritos.did = participaciones.did AND participaciones.did IN ($placeholders)";
         $params = $datos;
 
         $sql = $pdo->prepare($query);
@@ -18,17 +36,5 @@
         
 
         
-    }else{
-        $id = $_POST['id'];
-        $sql = $pdo->prepare("SELECT * FROM participaciones, usuarios, distritos WHERE participaciones.pid = '$id' AND usuarios.uid = participaciones.uid and distritos.did = participaciones.did");
-        $sql->execute();
-        $rows = $sql->fetchAll();
-        foreach($rows as $row){
-
-            require '../components/card_ficha.php';
-
-        }
-
-                                    
     }
 ?>

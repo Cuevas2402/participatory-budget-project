@@ -155,6 +155,14 @@
                             ?>
                         </div>
                     </li>
+                    <li class="list-group-item" style="background-color: #EAD9D8;">
+                        <div class="m-2">
+                            <p><b>Estado</b></p>
+                            <p><input type="checkbox" class="check2"> Aceptado</p>
+                            <p><input type="checkbox" class="check2"> Pendiente </p>
+                            <p><input type="checkbox" class="check2"> Rechazado</p>
+                        </div>
+                    </li>
                 </ul>
             </div>
             <div class="col-12 col-sm-12 col-md-8">
@@ -162,12 +170,9 @@
                     <div class="row ">
                         <div class="col gx-5">
                             <p>Ordernar propuestas por: <select  class="process-select-2" type="text">
-                                <option>Aleatorio</option>
-                                <option>Reciente</option>
-                                <option>Con más adhesiones</option>
-                                <option>Más comentadas</option>
-                                <option>Con más seguidoras</option>
-                                <option>Con más autoras</option>
+                                <option value="1">Aleatorio</option>
+                                <option value="2">Reciente</option>
+                                <option value="3">Con más votos</option>
                             </select></p>
                         </div>
                         
@@ -177,7 +182,7 @@
                         <div class="ficha-card-scroll-2">
                             <div class="filter row row-cols-1 row-cols-md-2 row-cols-lg-2 d-flex align-items-stretch g-3">
                                 <?php
-                                    $sql = $pdo->prepare("SELECT * FROM procesos, participaciones, usuarios, distritos WHERE procesos.pid = '$id' and procesos.pid = participaciones.pid AND usuarios.uid = participaciones.uid and distritos.did = participaciones.did");
+                                    $sql = $pdo->prepare("SELECT *, participaciones.img as imagen FROM procesos, participaciones, usuarios, distritos WHERE procesos.pid = '$id' and procesos.pid = participaciones.pid AND usuarios.uid = participaciones.uid and distritos.did = participaciones.did");
                                     $sql->execute();
                                     $rows = $sql->fetchAll();
                                     foreach($rows as $row){
@@ -283,14 +288,18 @@
 
     <script>  
         $(document).ready(function(){
-            $('input[type="checkbox"]').on('change', function() { // Cada que haya un cambio en un checkbox salta el evento
-                var valores = $('input[type="checkbox"]:checked').map(function() { return $(this).val(); }).get();  // Almacena los valores de los checkbox marcados y los mete en un arreglo
+            $('input[type="checkbox"], .process-select-2').on('change', function() { // Cada que haya un cambio en un checkbox salta el evento
+                var valores = $('.check[type="checkbox"]:checked').map(function() { return $(this).val(); }).get();  // Almacena los valores de los checkbox marcados y los mete en un arreglo
+                var valores2 = $('.check2[type="checkbox"]:checked').map(function() { return $(this).val(); }).get();  // Almacena los valores de los checkbox marcados y los mete en un arreglo
+                var select = $('.process-select-2').val();
                 var did = "<?php echo $id; ?>";
                 $.ajax({
                     url: "fetch/filter_fichas.php",
                     type: "POST",
                     data: {
                         datos: valores,
+                        datos2: valores2,
+                        select: select,
                         id: did
                     }, 
                     beforeSend:() =>{

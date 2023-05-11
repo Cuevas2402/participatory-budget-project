@@ -6,7 +6,7 @@
         
         if($_POST['dato'] == 1){
 
-            $sql = $pdo->prepare("SELECT * FROM participaciones, usuarios, distritos WHERE usuarios.uid = ? AND  usuarios.uid = participaciones.uid and distritos.did = participaciones.did");
+            $sql = $pdo->prepare("SELECT *, participaciones.img as imagen FROM participaciones, usuarios, distritos WHERE usuarios.uid = ? AND  usuarios.uid = participaciones.uid and distritos.did = participaciones.did");
             $sql->execute([$_POST['id']]);
             $rows = $sql->fetchAll();
             foreach($rows as $row){
@@ -43,7 +43,7 @@
                 }else{
                     
                     if($_POST['dato'] == 5){
-                        $sql = $pdo->prepare("SELECT * FROM votos, usuarios, participaciones, distritos WHERE votos.voted = usuarios.uid AND votos.voting = ? AND votos.pid = participaciones.pid AND votos.voted = participaciones.uid and distritos.did = participaciones.did");
+                        $sql = $pdo->prepare("SELECT *, participaciones.img as imagen FROM votos, usuarios, participaciones, distritos WHERE votos.voted = usuarios.uid AND votos.voting = ? AND votos.pid = participaciones.pid AND votos.voted = participaciones.uid and distritos.did = participaciones.did");
                         $sql->execute([$_POST['id']]);
                         $rows = $sql->fetchAll();
                         $sql->closeCursor();

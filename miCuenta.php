@@ -199,7 +199,7 @@
                                 </ul>
                                 <h5 style="text-align: left !important;">Por favor, cuéntanos el motivo por el que deseas eliminar tu cuenta (opcional).</h5>
                                 <textarea name="" id="" rows="5" style="width: 100%;"></textarea>
-                                <center><button class="borrar-btn process-featured-button-2-large mt-5">Eliminar mi cuenta</button></center>
+                                <center><button class="borrar-btn process-featured-button-2-large mt-5">Eliminar Mi Cuenta</button></center>
                             </div>
                         </div>
                     </div>

@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Icono Redes Sociales -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
+	
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <!-- JQuery -->
     <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
@@ -86,7 +86,7 @@
 					<div>
 						<label class="label-register">Tu nombre *</label>
 						<small><i><small><p>Nombre público que aparecera en la pagina</p></small></i></small>
-						<input type="nombre" class="nombre form-control w-100" name="nombre" id="nombre" placeholder="joseman" required>
+						<input type="nombre" class="nombre form-control w-100" name="nombre" id="nombre" placeholder="joseman" maxlength="50" required>
 						<div class="valid-feedback">
 							Todo bien
 						</div>
@@ -108,7 +108,7 @@
 
 					<div>
 						<label class="label-register">Número de Teléfono *</label>
-						<input type="phone" class="telefono form-control w-100" name="telefono" id="telefono" placeholder="11111111111" required>
+						<input type="phone" pattern="[0-9]{10}" class="telefono form-control w-100" name="telefono" id="telefono" placeholder="11111111111" required>
 						<div class="valid-feedback">
 							Todo bien
 						</div>
@@ -120,13 +120,15 @@
 					<div>
 						<label class="label-register">Contraseña *</label>
 						<small><i><small><p>  Minimo 10 caracteres</p></small></i></small>
-						<input type="password" class=" contrasena form-control w-100" name="contrasena" id="contrasena" placeholder="contraseña" required>
-						<div class="valid-feedback">
-							Todo bien
+						<div class="prueba">
+							<input type="password" class=" contrasena form-control w-100" name="contrasena" id="password" placeholder="contraseña" maxlength="15" required>
+							<div class="strengthMeter" id="strengthMeter" style="position: center; botton: 0; left: 0; width: 0%; height: 3px; background: #333;"></div>
+                      		<div id="valid-feedback-password" class="valid-feedback">
 						</div>
-						<div class="invalid-feedback">
-							Campo Obligatorio
-						</div>
+						<div class="valid-feedback">Todo bien</div>
+						<div class="invalid-feedback">Campo Obligatorio</div>
+						<input type="checkbox" id="show-password" onclick="showPassword()">
+                      	<label for="show-password">Mostrar contraseña</label>
 					</div>
 					
 					<p class="mt-2"><input type="checkbox"> Aceptar los Términos de Uso</p>
@@ -135,7 +137,7 @@
 					<p class="mt-2"><input type="checkbox"> Aceptar Permiso de Contacto</p>
 					<small><i><small><p> Al marcar esta opción aceptas que recibiras un boletín ocasional con información relevante.</p></small></i></small>
 
-					<center><button class="process-featured-button-2-large mt-5" type="submit"> REGISTRARTE</button></center>
+					<center><button onclick="validateEmail2(); validateTel2(); evaluatePassword2()" class="process-featured-button-2-large mt-5" type="submit"> Registrarte</button></center>
 
 					<div class="container mt-4">
 						<center><p style="font-weight: 300;">¿Ya tienes una cuenta? <a href="">Iniciar Sesión</a></p></center>
@@ -254,5 +256,6 @@
 
 	<!-- FIN CODIGO PARA DESPLEGAR MODALES -->
 	<script src="js/script.js"></script>
+	<script src="js/validate.js"></script>
 </body>
 </html>

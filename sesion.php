@@ -83,7 +83,7 @@
 				<div class="form-group f-register"  >
 					<div>
 						<label class="label-register">Correo Electrónico *</label>
-						<input type="email" class="form-control w-100" name="email" id="email" placeholder="jose.gallegos@udem.edu" required>
+						<input type="email" class="form-control w-100" name="email" id="email" placeholder="jose.gallegos@udem.edu" maxlength="50" required>
 						<div class="valid-feedback">
 							Todo bien
 						</div>
@@ -93,17 +93,19 @@
 						</div>
 
 						<div>
-						<label class="label-register">Contraseña *</label>
-						<input type="password" class="form-control w-100" name="password" id="password" placeholder="Contraseña" required>
-						<div class="valid-feedback">
-							Todo bien
+							<label class="label-register">Contraseña *</label>
+							<input type="password" class="form-control w-100" name="password" id="password" placeholder="Contraseña" maxlength="15" required>
+							<div class="valid-feedback">
+								Todo bien
+							</div>
+							<div class="invalid-feedback">
+								Campo Obligatorio
+							</div>
+							<input type="checkbox" id="show-password" onclick="showPassword()">
+                          	<label for="show-password">Mostrar contraseña</label>
 						</div>
-						<div class="invalid-feedback">
-							Campo Obligatorio
-						</div>
-						</div>
-						<p class="mt-2"><input type="checkbox"> Recuérdame </p>
-						<center><button class="process-featured-button-2-large mt-4" type="submit">INICIAR SESIÓN</button></center>
+						
+						<center><button class="process-featured-button-2-large mt-4" type="submit">Iniciar Sesión</button></center>
 
 						<div class="container mt-4">
 							<center><p style="font-weight: 300;">¿Olvidaste tu contraseña?</p>

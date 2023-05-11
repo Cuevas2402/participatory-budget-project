@@ -2,7 +2,26 @@
 <div class="col">
     <div class="card h-100">
         <div class="card-header" style="background-color: #894B5D"></div>
-        <img src="http://drive.google.com/uc?export=view&id=1Bw22s4t6l_H6e9r6f_A7y0jIuGYEeRy0" class="card-img-top" alt="...">
+        <?php
+
+            if (!is_null($row['imagen'])) {
+
+        ?>
+                <img src="<?php echo $row['imagen']; ?>" class="object-fit-cover" alt="..." style="height:150px; border-radius: 0">
+        <?php
+
+            } else {
+
+        ?>
+            <img src="uploads/6458151a4cb75_sea (1).jpg" class="object-fit-cover" alt="..." style="height:150px; border-radius: 0">
+            
+            
+        <?php
+
+            } 
+
+        ?>
+        
         <div class="card-body" style="padding: 0;">
             <ul class="list-group list-group-flush">
                 <li class="list-group-item d-flex justify-content-center align-items-center" style="height: 100px">

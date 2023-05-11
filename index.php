@@ -94,7 +94,7 @@
 							- Monterrey
 						</h1>
 						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, illum.</p>
-						<a href="participa.php"><button class="process-featured-button-2-large mt-4">Ver procesos</button></a>
+						<a href="participa.php"><button class="process-featured-button-2-large mt-4">Ver Procesos</button></a>
 					</div>
 					
 				</div>
@@ -193,8 +193,8 @@
 							//  }
 						?>
 						<center>
-							<a href="participa2.php?id=<?php echo $row['pid']; ?>&token=<?php echo hash_hmac('sha1', $row['pid'], KEY_TOKEN );?>" ><button class="process-featured-button-1">Más información</button></a>
-							<button class="process-featured-button-2">PARTICIPAR</button>
+							<a href="participa2.php?id=<?php echo $row['pid']; ?>&token=<?php echo hash_hmac('sha1', $row['pid'], KEY_TOKEN );?>" ><button class="process-featured-button-1">Más Información</button></a>
+							<button class="process-featured-button-2">Participar</button>
 						</center>
 				</div>
 			</div>
