@@ -225,6 +225,7 @@
     <!-- End Footer -->
 	
       <script src="js/script.js"></script>
+	  <script src="js/validateLogin.js"></script>
     </body>
 </html>
   
