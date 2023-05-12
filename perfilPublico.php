@@ -79,7 +79,7 @@
         
         <!-- End Navbar -->
         
-        <div style="min-height: 80vh;">
+        <div style="min-height: 60vh;">
             <div class="container" style="margin-top: 5rem; margin-bottom: 5rem;">
                 <div class="row row-cols-1 row-cols-md-2">
                     <div class="col col-md-3"></div>
@@ -148,6 +148,23 @@
                                             </p>
                                         </div>
                                     </div>
+                                    
+                                        
+                                    <?php 
+                                        if(!isset($_SESSION['id']) OR $_SESSION['id'] != $id){
+                                    ?>
+                                            <!-- Botón para reportar -->
+                                            <div class="row border-top">
+                                    <?php
+                                                require 'components/reportar.php'; 
+                                    
+                                    ?>
+                                            </div>
+                                    <?php
+                                        }
+                                        
+                                    ?>
+                                    
                                 </li>
                             </ul>
 
@@ -194,7 +211,7 @@
                         <div class="col col-md-9">
                             <div class="container text-center" style="margin-top: 1rem;">
                                 <!-- ACOMODO -->
-                            <div class="ficha-card-scroll">
+                            <div class="ficha-card-scroll-3">
                                 <div class="filter row row-cols-1 row-cols-md-2 row-cols-lg-3 d-flex align-items-stretch g-3">
                                     <!-- INSERTAR -->
                                     <?php

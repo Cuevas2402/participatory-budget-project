@@ -90,7 +90,7 @@
             $sql->closeCursor();
 
         ?>
-        <div class="contenido">
+        <div class="container contenido">
             <center>    
                 <h1>Configuración de cuenta</h1>
             </center>
@@ -123,13 +123,13 @@
                                             <label for="file">Elegir archivo</label>
                                         </div>
 
-                                        <div id="imageContainer" style="width: 200px; height: 200px; border: 1px solid black;">
+                                        <div class="img-fluid" id="imageContainer" style="width: 200px; border: 1px solid black;">
                                             <?php
 
                                                 if (!is_null($row['img'])) {
 
                                             ?>
-                                                    <img src="<?php echo $row['img']; ?>" >
+                                                    <img src="<?php echo $row['img']; ?>" class="img-fluid">
                                             <?php
 
                                                 } 

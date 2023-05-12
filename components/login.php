@@ -30,6 +30,21 @@
         </center>
 
 		<!-- MODAL EXITO -->
+        <!-- <div class="modal cerrar fade" id="cerrar" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">De verdad quieres cerrar sesion? 🥺</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="cerrar" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="cerrar">No</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="cerrar">Si</button>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
 		<div class="modal fade" id="cerrar" tabindex="-1" role="dialog" aria-labelledby="cerrarLabel" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered" role="document">
 				<div class="modal-content">
@@ -46,6 +61,7 @@
 				</div>
 			</div>
 		</div>
+        
 		<!-- FIN MODAL EXITO-->
 
         <!-- CODIGO PARA DESPLEGAR MODALES -->

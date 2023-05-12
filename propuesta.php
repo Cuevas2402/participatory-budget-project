@@ -173,6 +173,11 @@
                         }
                     ?>
                 </div>
+                <div class="col-6 col-md-4 col-sm-12 col-12">
+                    <?php
+                        require 'components/reportar_propuesta.php'; 
+                    ?>
+                </div>
             </div>
         </div> 
     

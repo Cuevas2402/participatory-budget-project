@@ -68,7 +68,7 @@
 
     <!-- End Navbar -->
     
-    <div class="contenido">
+    <div class="container contenido">
         <center>    
             <h1>Ayuda</h1>
             <p>En esta sección podrás resolver tus dudas y encontrar distintos recursos para participar en la plataforma.</p>

@@ -265,5 +265,23 @@
 	
 	<script src="js/map.js"></script>
 
+	<script>
+		let text = "Lamentablemente, actualmente nuestra página web no cuenta con funciones de accesibilidad para personas con discapacidad. Nos disculpamos por cualquier inconveniente que esto pueda causar. Sin embargo, estamos trabajando para mejorar nuestra plataforma y brindar una experiencia de usuario inclusiva para todos. Agradecemos su comprensión y esperamos poder implementar estas funciones en el futuro cercano.";
+
+		// Verificar si la API de síntesis de voz está disponible
+		if ('speechSynthesis' in window) {
+			// Crear objeto SpeechSynthesisUtterance
+			var utterance = new SpeechSynthesisUtterance(text);
+			
+			// Configurar opciones de síntesis de voz (opcional)
+			utterance.lang = 'es-ES'; // idioma
+			utterance.pitch = 1.5; // tono de voz
+			utterance.rate = 1.0; // velocidad
+			
+			// Enviar texto a la API de síntesis de voz
+			speechSynthesis.speak(utterance);
+		}
+	</script>
+
 </body>
 </html>

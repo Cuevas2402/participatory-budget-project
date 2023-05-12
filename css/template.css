@@ -899,6 +899,12 @@ button#myBtn {
     overflow-x: hidden;
 }
 
+.ficha-card-scroll-3 {
+    height: 565px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
 .process-card-scroll {
     height: 580px;
     overflow-y: scroll;
