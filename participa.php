@@ -36,7 +36,7 @@
     <!-- Start Navbar -->
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand" href="#"><img src="img/logo.png" style="width: 200px;" alt="LOGO"></a>
+            <a class="navbar-brand" href="#"><img src="img/logo.png" style="width: 200px;" alt="Logo del Gobierno de Monterrey"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -69,7 +69,7 @@
 
     <!-- Start Featured Process -->
     <div class="container process-featured">
-        <h4 style="color: #252525; font-weight: 600;"><i class="fa fa-square" aria-hidden="true"></i> PROCESOS DESTACADOS</h4>
+        <h4 style="color: #252525; font-weight: 600;"><i class="fa fa-square" aria-hidden="true"></i> Procesos Destacados</h4>
     </div>
     
     <?php
@@ -131,19 +131,19 @@
                 $stmt->execute();
                 $rows = $stmt->fetch();
             ?>
-            <h4 style="color: #252525; font-weight: 600;"><i class="fa fa-square" aria-hidden="true"></i> PROCESOS (<?php echo $rows['count(pid)']; ?>)</h4>
+            <h4 style="color: #252525; font-weight: 600;"><i class="fa fa-square" aria-hidden="true"></i> Procesos (<?php echo $rows['count(pid)']; ?>)</h4>
             <?php
                 $stmt->closeCursor();
             ?>
-            <h4 class="see-process">VER</h4>
-            <h4><a class="procesos-f process-filter-a-active" data-value="1" >TODOS</a></h4>
+            <h4 class="see-process">Ver</h4>
+            <h4><a class="procesos-f process-filter-a-active" data-value="1" >Todos</a></h4>
 
             <?php
                 $stmt = $pdo->prepare("CALL count_process_active()");
                 $stmt->execute();
                 $rows = $stmt->fetch();
             ?>
-            <h4><a class="procesos-f process-filter-a-down" data-value="2">ACTIVOS (<?php echo $rows['count(pid)']; ?>)</a></h4>
+            <h4><a class="procesos-f process-filter-a-down" data-value="2">Activos (<?php echo $rows['count(pid)']; ?>)</a></h4>
             <?php
                 $stmt->closeCursor();
             ?>
@@ -153,7 +153,7 @@
                 $stmt->execute();
                 $rows = $stmt->fetch();
             ?>
-            <h4><a class="procesos-f process-filter-a-down" data-value="3">PASADOS (<?php echo $rows['count(pid)']; ?>)</a></h4>
+            <h4><a class="procesos-f process-filter-a-down" data-value="3">Pasados (<?php echo $rows['count(pid)']; ?>)</a></h4>
             <?php
                 $stmt->closeCursor();
             ?>
@@ -164,7 +164,7 @@
     <div class="container process-content">
         <div class="row text-center">
             <div class="col">
-                <p>ÁMBITOS 
+                <p>Ámbitos 
                     <select  id="ambitos"  name="ambitos" class="process-select" type="text">
                         <option value="0" selected>Todos</option>
                         <?php
@@ -183,7 +183,7 @@
                 </p>
             </div>
             <div class="col">
-                <p>MUNICIPIOS 
+                <p>Municipios 
                     <select  id="municipios" name="municipios" class="process-select" type="text">
                         <option value="0" selected>Todos</option>
                         <?php

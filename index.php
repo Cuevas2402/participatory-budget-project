@@ -44,7 +44,7 @@
 	<!-- Start Navbar -->
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-			<a class="navbar-brand" href="#"><img src="img/logo.png" style="width: 200px;" alt="LOGO"></a>
+			<a class="navbar-brand" href="#"><img src="img/logo.png" style="width: 200px;" alt="Logo del Gobierno de Monterrey"></a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
@@ -93,7 +93,7 @@
 							Presupuesto Participativo <br>
 							- Monterrey
 						</h1>
-						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, illum.</p>
+						<p>¡Tu voz y voto importan! Participa en el presupuesto participativo del Gobierno de Monterrey para hacer la diferencia en tu comunidad.</p>
 						<a href="participa.php"><button class="process-featured-button-2-large mt-4">Ver Procesos</button></a>
 					</div>
 					
@@ -147,9 +147,7 @@
 			<div class="header-body">
 				<div class="text">
 					<div>
-						<h1>¡Descubre tu municipio!</h1>
-						<br>
-						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, illum.</p>
+						<h1>¡Descubre el distrito al que perteneces y conoce mejor tu comunidad!</h1>
 					</div>
 		
 				</div>
@@ -165,7 +163,7 @@
 	<!-- Start featured proceses-->
 	<div class="w-100" style="padding-top: 4rem; padding-bottom: 5rem;">
 		<div class="container process-featured">
-		<h4><strong><i class="fa fa-square" aria-hidden="true"></i> PROCESOS DESTACADOS</strong></h4>
+		<h4><strong><i class="fa fa-square" aria-hidden="true"></i> Procesos Destacados</strong></h4>
 		</div>
 		<div class="container process-featured-container">
 		<div class="row row-cols-1 row-cols-md-1 row-cols-lg-2">
@@ -259,28 +257,38 @@
 		}
 	?>
 
+	<button id="audio-button" style="position: fixed; bottom: 10px; right: 10px; background-color: #fff; border: none; border-radius: 50%; padding: 10px; box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);"><i class="fas fa-volume-up"></i></button>
+	
     <!-- Start Footer -->
     <?php require 'components/footer.php'; ?>
     <!-- End Footer -->
 	
 	<script src="js/map.js"></script>
 
-	<script>
-		let text = "Lamentablemente, actualmente nuestra página web no cuenta con funciones de accesibilidad para personas con discapacidad. Nos disculpamos por cualquier inconveniente que esto pueda causar. Sin embargo, estamos trabajando para mejorar nuestra plataforma y brindar una experiencia de usuario inclusiva para todos. Agradecemos su comprensión y esperamos poder implementar estas funciones en el futuro cercano.";
+    <script>
+		let text = "Lamentablemente, no contamos con funciones de accesibilidad para personas con discapacidad en este momento. Estamos trabajando para mejorar esto. ¡Gracias por su comprensión!";
 
-		// Verificar si la API de síntesis de voz está disponible
-		if ('speechSynthesis' in window) {
-			// Crear objeto SpeechSynthesisUtterance
-			var utterance = new SpeechSynthesisUtterance(text);
+        var btn = document.getElementById('audio-button');
+
+        var voices = speechSynthesis.getVoices();
+
+        // Crear objeto SpeechSynthesisUtterance
+        var utterance = new SpeechSynthesisUtterance(text);
+        
+        // Configurar opciones de síntesis de voz (opcional)
+        var voice = voices.find(function(voice) {
+            return voice.lang === 'es-ES' && voice.name === 'Google español';
+        });
+        utterance.voice = voice;
+        utterance.pitch = 1.5; // tono de voz
+        utterance.rate = 1.2; // velocidad
+        utterance.volume = 0.8; // volumen
 			
-			// Configurar opciones de síntesis de voz (opcional)
-			utterance.lang = 'es-ES'; // idioma
-			utterance.pitch = 1.5; // tono de voz
-			utterance.rate = 1.0; // velocidad
+		function leerTexto() {
+            speechSynthesis.speak(utterance);
+        }
 			
-			// Enviar texto a la API de síntesis de voz
-			speechSynthesis.speak(utterance);
-		}
+        btn.addEventListener('mouseover', leerTexto);
 	</script>
 
 </body>

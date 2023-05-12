@@ -11,8 +11,12 @@
 </svg>
 
 <div class="container alert alert-warning d-flex align-items-center" role="alert" style="margin: 1rem auto; width: 90%;">
-    <svg class="bi flex-shrink-0 me-2" style="height:50%" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
-    <div>
-        <h1 class="text-center" style="font-weight: 400;">No se encontró ninguna búsqueda con esos valores 😰</h1>
+    <div class="row">
+        <div class="col col-3 p-5">
+            <svg class="bi flex-shrink-0 me-2" style="height:30%" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+        </div>
+        <div class="col col-9 p-5">
+            <h2 class="text-center" style="font-weight: 400;">No se encontró ninguna búsqueda con esos valores 😰</h2>
+        </div>
     </div>
 </div>

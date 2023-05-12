@@ -21,22 +21,42 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Reportar</h5>
+                <h5 class="modal-title">Reportar Propuesta</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body text-start">
-                <label for="" class="pb-2">Motivo por el cual reportar la propuesta</label>
+                <label for="" class="pb-2">Motivo por el cual reportar esta propuesta</label>
                 <form action="">
                     <textarea id="comentario-reporte" rows="10" style="width: 100%;"></textarea>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="enviar btn btn-primary" type="submit">Enviar</button>
+                <button type="button" class="close btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="send btn btn-primary">Enviar</button>
             </div>
         </div>
     </div>
 </div>
+<!-- MODAL INICIA -->
+<div class="modal fade" id="completado" tabindex="-1" role="dialog" aria-labelledby="iniciaLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exitolLabel">Reporte Completado</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Su reporte se ha enviado exitosamente, gracias por mantener segura esta comunidad
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="close btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- FIN MODAL INICIA-->
 
 <script>
     $(document).ready(function () {
@@ -46,20 +66,33 @@
     });
     
     $(document).ready(function(){
-        $('.enviar').click(function(){
-            let id = $('.uid').data("value");
-            let reporte = $('#comentario-reporte').data("value");
+        $('.send').click(function(){
+            let uid = $('#uid').data("value");
+            let pid = $('#pid').data("value");
+            let reporte = $('#comentario-reporte').val();
             $.ajax({
-                url: "fetch/report_user.php",
+                url: "fetch/report_proposal.php",
                 type: "POST",
                 data:{
-                    id=id,
-                    reporte = reporte
+                    uid : uid,
+                    pid : pid,
+                    reporte : reporte
                 },
-                success:function(){
-                    window.location.replace("index.php");
+                success:function(response){
+                    if(response.condicion){
+                        $('#modal').modal('hide');
+                        $('#completado').modal('show');
+
+                    }
                 }
             });
+        });
+    });
+
+    $(document).ready(function(){
+        $('.close').click(function(){
+            $('#completado').modal('hide');
+            location.reload();
         });
     });
     

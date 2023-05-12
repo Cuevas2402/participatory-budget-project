@@ -51,7 +51,7 @@
         <!-- Start Navbar -->
         <nav class="navbar navbar-expand-lg">
             <div class="container">
-                <a class="navbar-brand" href="#"><img src="img/logo.png" style="width: 200px;" alt="LOGO"></a>
+                <a class="navbar-brand" href="#"><img src="img/logo.png" style="width: 200px;" alt="Logo del Gobierno de Monterrey"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -123,16 +123,20 @@
                                             <label for="file">Elegir archivo</label>
                                         </div>
 
-                                        <div class="img-fluid" id="imageContainer" style="width: 200px; border: 1px solid black;">
+                                        <div class="img-fluid" id="imageContainer" style="width: 200px; border: 1px solid black;" alt="Imagen de la cuenta">
                                             <?php
 
                                                 if (!is_null($row['img'])) {
 
                                             ?>
-                                                    <img src="<?php echo $row['img']; ?>" class="img-fluid">
+                                                    <img src="<?php echo $row['img']; ?>" class="img-fluid" alt="Imagen de la cuenta de perfil">
                                             <?php
 
-                                                } 
+                                                }else{
+                                            ?>
+                                                    <img src="img/avatar.png" class="img-fluid" alt="Imagen de la cuenta de perfil">
+                                            <?php
+                                                }
 
                                             ?>
                                         </div>
@@ -162,7 +166,7 @@
                                                     // Verificar si la imagen tiene el tamaño correcto
                                                     if (img.naturalWidth !== 200 && img.naturalHeight !== 200) {
                                                         // Si la imagen no tiene el tamaño correcto, mostrar un mensaje de error
-                                                        alert('La imagen debe tener un tamaño de 200x200 píxeles');
+                                                        // alert('La imagen debe tener un tamaño de 200x200 píxeles');
                                                         imageContainer.innerHTML = '';
                                                         fileInput.value = '';
                                                     }
@@ -170,7 +174,6 @@
                                             });
                                         </script>
                                         </center>
-                                        <img src="" alt="">
                                 </div>
                                 <div class="col-md-7 col-lg-8">
                                     

@@ -2,6 +2,9 @@
     require '../config/db.php';
     require '../config/config.php';
     session_start();
+    if(!isset($_SESSION['usr'])){
+        header('Location: login.php');
+    }
     $usuario = $_SESSION['usr'];
 
     $db = new Database();

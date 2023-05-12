@@ -38,8 +38,8 @@
                 } else {
                     $upload_path = "../".$upload_dir . $file_name; 
                     move_uploaded_file($file_tmp, $upload_path); 
-                    $sql = $pdo->prepare("INSERT INTO participaciones (pid, uid, titulo_registro, propuesta, fecha_creacion, did, img) VALUES (?, ?, ?, ?, ?, ?, ?)");
-                    $sql->execute([$_SESSION['pid'], $_SESSION['id'], $_POST['titulo'], $_POST['descripcion'], date('Y-m-d'), $_POST['distrito'], $upload_dir . $file_name]);
+                    $sql = $pdo->prepare("INSERT INTO participaciones (pid, uid, titulo_registro, propuesta, fecha_creacion, did, img, estatus) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+                    $sql->execute([$_SESSION['pid'], $_SESSION['id'], $_POST['titulo'], $_POST['descripcion'], date('Y-m-d'), $_POST['distrito'], $upload_dir . $file_name, 'Pendiente']);
                     $sql->closeCursor();
                     unset($_SESSION['pid']);
                     var_dump($_SESSION);
@@ -48,8 +48,8 @@
                 }
             }
 
-            $sql = $pdo->prepare("INSERT INTO participaciones (pid, uid, titulo_registro, propuesta, fecha_creacion, did) VALUES (? , ? , ? , ? , ? , ? )");
-            $sql->execute([$_SESSION['pid'], $_SESSION['id'], $_POST['titulo'], $_POST['descripcion'], date('Y-m-d'), $_POST['distrito']]);
+            $sql = $pdo->prepare("INSERT INTO participaciones (pid, uid, titulo_registro, propuesta, fecha_creacion, did, estatus) VALUES (? , ? , ? , ? , ? , ?, ?)");
+            $sql->execute([$_SESSION['pid'], $_SESSION['id'], $_POST['titulo'], $_POST['descripcion'], date('Y-m-d'), $_POST['distrito'], 'Pendiente']);
             $sql->closeCursor();
             unset($_SESSION['pid']);
             var_dump($_SESSION);

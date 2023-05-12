@@ -38,7 +38,7 @@
     <!-- Start Navbar -->
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-			<a class="navbar-brand" href="#"><img src="img/logo.png" style="width: 200px;" alt="LOGO"></a>
+			<a class="navbar-brand" href="#"><img src="img/logo.png" style="width: 200px;" alt="Logo del Gobierno de Monterrey"></a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
@@ -138,7 +138,6 @@
 		</div>
 		<!-- FIN MODAL EXITO-->
 
-
 		<!-- MODAL CREDENCIALES -->
 		<div class="modal fade" id="credenciales" tabindex="-1" role="dialog" aria-labelledby="credencialesLabel" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered" role="document">
@@ -160,7 +159,6 @@
 		</div>
 		<!-- FIN MODAL CREDENCIALES-->
 
-
 		<!-- MODAL CORREO -->
 		<div class="modal fade" id="correo" tabindex="-1" role="dialog" aria-labelledby="correoLabel" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered" role="document">
@@ -181,7 +179,6 @@
 			</div>
 		</div>
 		<!-- FIN MODAL CORREO-->
-
 
 	<!-- FIN MODALES -->
 

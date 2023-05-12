@@ -1,7 +1,7 @@
 <div class="col">
     <div class="card h-100">
         <div class="card-header" style="background-color: #894B5D"></div>
-        <img src="http://drive.google.com/uc?export=view&id=1Bw22s4t6l_H6e9r6f_A7y0jIuGYEeRy0" class="card-img-top" alt="...">
+        <img src="img/Distrito Sur.jpg" class="card-img-top" alt="Imagen del Distrito">
         <div class="card-body" style="padding: 0; background-color: #ead9d8">
             <ul class="list-group list-group-flush">
                 <li class="list-group-item d-flex align-items-center" style="height: 100px; background-color: white;">

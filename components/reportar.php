@@ -80,10 +80,17 @@
                     if(response.condicion){
                         $('#modal').modal('hide');
                         $('#completado').modal('show');
-                        location.reload();
+
                     }
                 }
             });
+        });
+    });
+
+    $(document).ready(function(){
+        $('.close').click(function(){
+            $('#completado').modal('hide');
+            location.reload();
         });
     });
     

@@ -47,7 +47,7 @@
        <!-- Start Navbar -->
         <nav class="navbar navbar-expand-lg">
             <div class="container">
-                <a class="navbar-brand" href="#"><img src="img/logo.png" style="width: 200px;" alt="LOGO"></a>
+                <a class="navbar-brand" href="#"><img src="img/logo.png" style="width: 200px;" alt="Logo del Gobierno de Monterrey"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -101,11 +101,11 @@
 
                                         if (!is_null($row['img'])) {
                                     ?>
-                                        <img class="img-fluid"  src="<?php echo $row['img']; ?>" alt="perfil" style="border-radius: 3px 3px 0 0px;">
+                                        <img class="img-fluid"  src="<?php echo $row['img']; ?>" alt="Imagen de la cuenta" style="border-radius: 3px 3px 0 0px;">
                                     <?php
                                         }else{
                                     ?>
-                                        <img class="img-fluid" src="img/avatar.png" alt="perfil" style="border-radius: 3px 3px 0 0px;">
+                                        <img class="img-fluid" src="img/avatar.png" alt="Imagen de la cuenta" style="border-radius: 3px 3px 0 0px;">
                                     <?php
                                         } 
                                     ?>
@@ -215,6 +215,7 @@
                                 <div class="filter row row-cols-1 row-cols-md-2 row-cols-lg-3 d-flex align-items-stretch g-3">
                                     <!-- INSERTAR -->
                                     <?php
+
                                         $sql = $pdo->prepare("SELECT *, participaciones.img as imagen FROM participaciones, usuarios, distritos WHERE usuarios.uid = ? AND  usuarios.uid = participaciones.uid and distritos.did = participaciones.did");
                                         $sql->execute([$id]);
                                         $rows = $sql->fetchAll();
@@ -234,7 +235,7 @@
                                                 </symbol>
                                                 </svg>
 
-                                                <div class="container alert alert-warning d-flex align-items-center" role="alert" style="margin: 2rem auto; width: 90%;">
+                                                <div class="container alert alert-warning d-flex align-items-center" role="alert" style="margin: 1rem auto; width: 90%;">
                                                     <svg class="bi flex-shrink-0 me-2" style="height:50%" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
                                                     <div>
                                                         <h1 class="text-center" style="font-weight: 400;">No se encontró ninguna búsqueda con esos valores 😰</h1>
