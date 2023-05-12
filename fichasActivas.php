@@ -158,9 +158,9 @@
                     <li class="list-group-item" style="background-color: #EAD9D8;">
                         <div class="m-2">
                             <p><b>Estado</b></p>
-                            <p><input type="checkbox" class="check2"> Aceptado</p>
-                            <p><input type="checkbox" class="check2"> Pendiente </p>
-                            <p><input type="checkbox" class="check2"> Rechazado</p>
+                            <p><input type="checkbox" class="check2" value="Aceptado"> Aceptado</p>
+                            <p><input type="checkbox" class="check2" value="Pendiente"> Pendiente </p>
+                            <p><input type="checkbox" class="check2" value="Rechazado"> Rechazado</p>
                         </div>
                     </li>
                 </ul>

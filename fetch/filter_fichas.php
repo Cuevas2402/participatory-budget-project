@@ -29,17 +29,17 @@
         if(!empty($_POST['datos'])){
             $datos = $_POST['datos'];
             $placeholders = implode(',', array_fill(0, count($datos), '?'));
-            $query .= " AND participaciones.did IN ($placeholders) GROUP BY participaciones.pid, participaciones.uid";
+            $query .= " AND participaciones.did IN ($placeholders)";
             $params = array_merge($params, $datos);
         }
 
         if(!empty($_POST['datos2'])){
             $datos2 = $_POST['datos2'];
             $placeholders = implode(',', array_fill(0, count($datos2), '?'));
-            $query .= " AND participaciones.estatus IN ($placeholders) GROUP BY participaciones.pid, participaciones.uid";
+            $query .= " AND participaciones.estatus IN ($placeholders)";
             $params = array_merge($params, $datos2);
         }
-
+        $query .= " GROUP BY participaciones.pid, participaciones.uid";
         if ($_POST['select'] == 2) {
             $query .= " ORDER BY participaciones.fecha_creacion ASC ";
         }

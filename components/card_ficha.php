@@ -20,7 +20,7 @@
                     <p class="process-content-card"><strong>Fecha de creación: </strong><?php echo $row['fecha_creacion']; ?></p>
                 </li>
                 <li class="list-group-item">
-                    <p class="process-content-card"><strong>Status: </strong><?php echo $row['fecha_creacion']; ?></p>
+                    <p class="process-content-card"><strong>Status: </strong><?php echo $row['estatus']; ?></p>
                 </li>
                 <li class="list-group-item d-flex flex-column" style="background-color: #ead9d8">
                     <a href="propuesta.php?id=<?php echo $row['uid'].'|'.$row['pid']; ?>&token=<?php echo hash_hmac('sha1', $row['uid'].'|'.$row['pid'] , KEY_PRO ); ?>"><button class="process-button-card"><strong>Más información</strong></button></a>
