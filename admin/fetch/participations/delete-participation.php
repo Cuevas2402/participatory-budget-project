@@ -2,24 +2,43 @@
     require '../../../config/db.php';
     require '../../../config/config.php';
     
-    $db = new Database();
-    $pdo = $db -> connect();
+    
 
-    $proceso = $_GET['process'];
-    $usuario = $_GET['user'];
-
-    if (filter_var($proceso, FILTER_VALIDATE_INT) === false) {
-        exit("Invalid input");
-    }
-    if (filter_var($usuario, FILTER_VALIDATE_INT) === false) {
-        exit("Invalid input");
-    }
-
-    $sql = $pdo->prepare("DELETE FROM participaciones WHERE pid = ? AND uid = ?");
+    /*$sql = $pdo->prepare("DELETE FROM participaciones WHERE pid = ? AND uid = ?");
     $sql->execute([$proceso,$usuario]);
 
     $sql->closeCursor();
 
     header("Location: ../../participaciones.php");
-    exit();
+    exit();*/
+
+    if(isset($_GET['process']) && isset($_GET['user'])){
+        $pid = $_GET['process'];
+        $uid = $_GET['user'];
+        
+        if (filter_var($pid, FILTER_VALIDATE_INT) === false) {
+            exit("Invalid input");
+        }
+        if (filter_var($uid, FILTER_VALIDATE_INT) === false) {
+            exit("Invalid input");
+        }
+        //Eliminar votos
+        
+        $sql = $pdo->prepare("DELETE FROM votos WHERE voted = ? AND pid = ? ");
+        $sql->execute([$uid, $pid]);
+        $sql->closeCursor();
+
+        //Eliminar reporte
+        $sql = $pdo->prepare("DELETE FROM report_proposal WHERE uid = ? AND pid = ?");
+        $sql->execute([$uid, $pid]);
+        $sql->closeCursor();
+
+        //Eliminar participaciones
+        $sql = $pdo->prepare("DELETE FROM participaciones WHERE uid = ? AND pid = ? ");
+        $sql->execute([$uid , $pid]);
+        $sql->closeCursor();
+
+        header("Location: ../../participaciones.php");
+        exit();
+    }
 ?>

@@ -3,46 +3,30 @@
     require '../../../config/config.php';
     
 
-    if(isset($_GET['delete'])){
-        $id = $_GET['delete'];
-
-        if (filter_var($id, FILTER_VALIDATE_INT) === false) {
+    if(isset($_GET['uid']) && isset($_GET['pid'])){
+        $pid = $_GET['uid'];
+        $uid = $_GET['pid'];
+        
+        if (filter_var($uid, FILTER_VALIDATE_INT) === false &&  filter_var($pid, FILTER_VALIDATE_INT) === false ) {
             exit("Invalid input");
         }
         //Eliminar votos
         
-        $sql = $pdo->prepare("DELETE FROM votos WHERE voting = ? OR voted = ? ");
-        $sql->execute([$id, $id]);
-        $sql->closeCursor();
-
-
-        //Eliminar participaciones
-        $sql = $pdo->prepare("DELETE FROM participaciones WHERE uid = ?");
-        $sql->execute([$id]);
-        $sql->closeCursor();
-
-
-        //Eliminar favoritos
-        $sql = $pdo->prepare("DELETE FROM favoritos WHERE uid = ?");
-        $sql->execute([$id]);
-        $sql->closeCursor();
-
-        //Eliminar Seguir
-        $sql = $pdo->prepare("DELETE FROM seguir WHERE follow = ? OR followed = ?");
-        $sql->execute([$id, $id]);
+        $sql = $pdo->prepare("DELETE FROM votos WHERE voted = ? AND pid = ? ");
+        $sql->execute([$uid, $pid]);
         $sql->closeCursor();
 
         //Eliminar reporte
-        $sql = $pdo->prepare("DELETE FROM report_user WHERE uid = ?");
-        $sql->execute([$id]);
+        $sql = $pdo->prepare("DELETE FROM report_proposal WHERE uid = ? AND pid = ?");
+        $sql->execute([$uid, $pid]);
         $sql->closeCursor();
 
-        //Elimina Cuenta 
-        $sql = $pdo->prepare("DELETE FROM usuarios WHERE uid = ?");
-        $sql->execute([$id]);
+        //Eliminar participaciones
+        $sql = $pdo->prepare("DELETE FROM participaciones WHERE uid = ? AND pid = ? ");
+        $sql->execute([$uid , $pid]);
         $sql->closeCursor();
 
-        header("Location: ../../usuarios.php");
+        header("Location: ../../report_proposals.php");
         exit();
     }
 ?>

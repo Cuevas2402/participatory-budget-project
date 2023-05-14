@@ -2,7 +2,7 @@
     require '../../../config/db.php';
     require '../../../config/config.php';
     
-
+    
     if(isset($_GET['delete'])){
         $id = $_GET['delete'];
 
