@@ -139,37 +139,44 @@
                         </b></span></p></span>
                     </div>
                     <?php 
+                        $sql = $pdo->prepare("SELECT tipo FROM procesos, fases WHERE procesos.pid = ? AND procesos.pid=fases.pid AND n_fase = fase_actual");
+                        $sql->execute([$pid]);
+                        $row = $sql->fetch();
+                        $sql->closeCursor();
+                        if($row['tipo'] == 3){
 
-                        if(isset($_SESSION['id'])){
+                        
+                            if(isset($_SESSION['id'])){
                             
                             
-                            if($_SESSION['id'] != $uid){
+                                if($_SESSION['id'] != $uid){
 
-                                $sql = $pdo->prepare("SELECT COUNT(voting) FROM votos WHERE voting = ? AND voted = ? AND pid = ?");
-                                $sql->execute([$_SESSION['id'], $uid, $pid]);
-                                $row = $sql->fetch();
-                                $sql->closeCursor();
+                                    $sql = $pdo->prepare("SELECT COUNT(voting) FROM votos WHERE voting = ? AND voted = ? AND pid = ?");
+                                    $sql->execute([$_SESSION['id'], $uid, $pid]);
+                                    $row = $sql->fetch();
+                                    $sql->closeCursor();
                                 
-                                if($row['COUNT(voting)'] == 0 ){
+                                    if($row['COUNT(voting)'] == 0 ){
                     ?>
-                                    <button type="button" id="seguir" class="voting-button process-featured-button-1" style="margin-left:10%; margin-bottom: 5%; width: 75%;"> <span id="following-text">Votar</span> </button>
+                                        <button type="button" id="seguir" class="voting-button process-featured-button-1" style="margin-left:10%; margin-bottom: 5%; width: 75%;"> <span id="following-text">Votar</span> </button>
 
                     <?php
-                                }else{
+                                    }else{
 
                     ?>
-                                    <button type="button" id="seguir" class="voting-button process-featured-button-2" style="margin-left:10%; margin-bottom: 5%; width: 75%;"> <span id="following-text">Votado</span> </button>
+                                        <button type="button" id="seguir" class="voting-button process-featured-button-2" style="margin-left:10%; margin-bottom: 5%; width: 75%;"> <span id="following-text">Votado</span> </button>
                     <?php
+                                    }
                                 }
-                            }
-                        }else{
+                            }else{
 
                     ?>
-                                <button type="button" id="seguir" class="voting-button process-featured-button-1" style="margin-left:10%; margin-bottom: 5%; width: 75%;"><span id="following-text">Votar</span> </button>
+                                    <button type="button" id="seguir" class="voting-button process-featured-button-1" style="margin-left:10%; margin-bottom: 5%; width: 75%;"><span id="following-text">Votar</span> </button>
                             
                             
                     <?php
 
+                            }
                         }
                     ?>
                     <div class="text-center">
