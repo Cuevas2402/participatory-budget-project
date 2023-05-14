@@ -50,6 +50,8 @@
                     <li class="list-group-item p-0"><a class="nav-link p-3" href="participaciones.php">Participaciones</a></li>
                     <li class="list-group-item p-0"><a class="nav-link p-3" href="proceso.php">Procesos</a></li>
                     <li class="list-group-item p-0"><a class="active nav-link p-3" aria-current="page">Usuarios</a></li>
+                    <li class="list-group-item p-0"><a class="nav-link p-3" href="report_users.php">Reportes Usuarios</a></li>
+                    <li class="list-group-item p-0"><a class="nav-link p-3" href="report_proposals.php">Reportes Propuestas</a></li>
                 </ul>
             </center>
             <form action="logout.php">
