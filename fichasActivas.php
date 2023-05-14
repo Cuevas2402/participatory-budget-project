@@ -238,7 +238,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exitolLabel">Inicia Sesión</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" class="inicia-cerrar close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -246,7 +246,7 @@
                         Para poder seguir un usuario debes iniciar sesion
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="inicia-cerrar btn btn-secondary" data-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
             </div>
@@ -259,7 +259,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="hecholLabel">Ya has particpado en este proceso</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" class="hecho-cerrar close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -267,7 +267,7 @@
                         No puedes participar más de una vez en el mismo proceso
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="hecho-cerrar btn btn-secondary" data-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
             </div>
@@ -280,7 +280,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="imgLabel">Registro completado</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" class="completado-cerrar close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -288,14 +288,35 @@
                         Su registro de propuesta ha sido completado
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="completado-cerrar btn btn-secondary" data-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
             </div>
         </div>
         <!-- FIN MODAL IMG-->
 
-    <!-- FIN MODALES -->                
+    <!-- FIN MODALES -->  
+    
+    <script>
+        $(document).ready(function(){
+            $('.inicia-cerrar').click(function(){
+                $('#inicia').modal('hide');
+            });
+        });
+
+        $(document).ready(function(){
+            $('.hecho-cerrar').click(function(){
+                $('#hecho').modal('hide');
+            });
+        });
+
+        $(document).ready(function(){
+            $('.comletado-cerrar').click(function(){
+                $('#completado').modal('hide');
+            });
+        });
+
+	</script>
    
     <!-- CODIGO PARA DESPLEGAR MODALES -->
 	<?php

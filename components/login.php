@@ -55,7 +55,7 @@
 						</button>
 					</div>
 					<div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
+                        <button type="button" id="close2" class="btn btn-primary" data-dismiss="modal">No</button>
 						<button type="button" class="si btn btn-secondary" data-dismiss="modal">Si</button>
 					</div>
 				</div>
@@ -91,7 +91,7 @@
             });
 
             $(document).ready(function() {
-                $('#close').click(function() {
+                $('#close, #close2').click(function() {
                     $('#cerrar').modal('hide');
                 });
             });

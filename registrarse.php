@@ -74,10 +74,10 @@
 	<!-- End Navbar -->
 	
 	<div class="container d-flex justify-content-center text-center" style="margin-top: 5%;">
-		<h2 style="font-weight: 600;">REGISTRATE </h2>
+		<h2 style="font-weight: 600;">Registrate </h2>
 	</div>
 
-	<div class="container  mensaje mt-5">
+	<div class="container mensaje mt-5">
 		<div class=" container form-div d-flex justify-content-center" style="margin-top: 3%; width: 70%;">
 			<form class="form-r needs-validation" style="width: 75%;"  action="fetch/registrar.php" method="POST" id="form" novalidate>
 				<div class="form-group f-register"  >
@@ -131,7 +131,7 @@
                       	<label for="show-password">Mostrar contraseña</label>
 					</div>
 					
-					<p class="mt-2"><input type="checkbox"> Aceptar los Términos de Uso</p>
+					<p class="mt-5"><input type="checkbox"> Aceptar los Términos de Uso</p>
 					<small><i><small><p> Al registrarte aceptas los Términos y Condiciones de Uso. <a href="/"> Puedes revisar el aviso de privacidad integral aqui. </a></p></small></i></small>
 
 					<p class="mt-2"><input type="checkbox"> Aceptar Permiso de Contacto</p>
@@ -148,7 +148,7 @@
 			</form>
 		</div>
 	</div>
-
+</div>
     <!-- Start Footer -->
     <?php require 'components/footer.php'; ?>
     <!-- End Footer -->
@@ -161,7 +161,7 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<h5 class="modal-title" id="nombreEnUsoModalLabel">El nombre de usuario ya está en uso</h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<button type="button" class="nombre-cerrar close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
@@ -169,7 +169,7 @@
 						Por favor, elige otro nombre de usuario.
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+						<button type="button" class="nombre-cerrar btn btn-secondary" data-dismiss="modal">Cerrar</button>
 					</div>
 				</div>
 			</div>
@@ -182,7 +182,7 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<h5 class="modal-title" id="correoenUsoModalLabel">El correo ya está en uso</h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<button type="button" class="correo-cerrar close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
@@ -190,7 +190,7 @@
 						Por favor, elige otro correo.
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+						<button type="button" class="correo-cerrar btn btn-secondary" data-dismiss="modal">Cerrar</button>
 					</div>
 				</div>
 			</div>
@@ -204,7 +204,7 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<h5 class="modal-title" id="exitolLabel">Registro exitoso</h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<button type="button" class="exito-cerrar close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
@@ -212,7 +212,7 @@
 						Puedes comenzar a participar en procesos y votar por propuestas 🥳
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+						<button type="button" class="exito-cerrar btn btn-secondary" data-dismiss="modal">Cerrar</button>
 					</div>
 				</div>
 			</div>
@@ -257,5 +257,23 @@
 	<!-- FIN CODIGO PARA DESPLEGAR MODALES -->
 	<script src="js/script.js"></script>
 	<script src="js/validate.js"></script>
+	<script>
+		$(document).ready(function(){
+			$('.nombre-cerrar').on('click', function() {
+				$('#nombreEnUsoModal').modal('hide');
+			});
+		});
+
+		$(document).ready(function(){
+			$('.correo-cerrar').click(function(){
+				$('#correoenUso').modal('hide');
+			});
+		});
+		$(document).ready(function(){
+			$('.exito-cerrar').click(function(){
+				$('#exito').modal('hide');
+			});
+		});
+	</script>
 </body>
 </html>

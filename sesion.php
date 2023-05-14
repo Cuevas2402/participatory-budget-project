@@ -32,6 +32,8 @@
       <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
 	  <!-- JQuery -->
 	  <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.3/umd/popper.min.js" integrity="sha512-XLo6bQe08irJObCc86rFEKQdcFYbGGIHVXcfMsxpbvF8ompmd1SNJjqVY5hmjQ01Ts0UmmSQGfqpt3fGjm6pGA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 
   </head>
   <body style="font-family: Roboto;">
@@ -74,7 +76,7 @@
 	<!-- End Navbar -->
       
 	<div class="container d-flex justify-content-center text-center" style="margin-top: 5%;">
-		<h2 style="font-weight: 600;">INICIAR SESIÓN </h2>
+		<h2 style="font-weight: 600;">Inciar Sesión </h2>
 	</div>
 
 	<div class="container mt-5">
@@ -123,7 +125,7 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<h5 class="modal-title" id="exitolLabel">Registro exitoso</h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<button type="button" class="exito-cerrar close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
@@ -131,7 +133,7 @@
 						Puedes comenzar a participar en procesos y votar por propuestas 🥳
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+						<button type="button" class="exit-cerrar btn btn-secondary" data-dismiss="modal">Cerrar</button>
 					</div>
 				</div>
 			</div>
@@ -144,7 +146,7 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<h5 class="modal-title" id="credencialeslLabel">Credenciales Incorrectas </h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<button type="button" class="credenciales-cerrar close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
@@ -152,7 +154,7 @@
 						Los datos que ingresaste no concuerdan 😰
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+						<button type="button" class="credenciales-cerrar btn btn-secondary" data-dismiss="modal">Cerrar</button>
 					</div>
 				</div>
 			</div>
@@ -165,7 +167,7 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<h5 class="modal-title" id="correoLabel">Correo no registrado</h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<button type="button" class="cerrar-modal close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
@@ -173,7 +175,7 @@
 						El correo que ingreso no se encuentra registrado en la pagina 😬
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+						<button type="button" class="cerrar-modal btn btn-secondary" data-dismiss="modal">Cerrar</button>
 					</div>
 				</div>
 			</div>
@@ -211,6 +213,7 @@
 					$(document).ready(function() {
 						$('#correo').modal('show');
 					});
+					
 				</script>
 			<?php
 		}
@@ -221,8 +224,26 @@
     <?php require 'components/footer.php'; ?>
     <!-- End Footer -->
 	
-      <script src="js/script.js"></script>
-	  <script src="js/validateLogin.js"></script>
+		<script src="js/script.js"></script>
+		<script src="js/validateLogin.js"></script>
+		<script>
+			$(document).ready(function(){
+				$('.cerrar-modal').on('click', function() {
+					$('#correo').modal('hide');
+				});
+			});
+
+			$(document).ready(function(){
+				$('credenciales-cerrar').click(function(){
+					$('#credenciales').modal('hide');
+				});
+			});
+			$(document).ready(function(){
+				$('.exito-cerrar').click(function(){
+					$('#exito').modal('hide');
+				});
+			});
+	  	</script>
     </body>
 </html>
   

@@ -198,7 +198,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exitolLabel">Inicia Sesión</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" class="inicia-cerrar close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -206,7 +206,7 @@
                         Para poder seguir un usuario debes iniciar sesion
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="inicia-cerrar btn btn-secondary" data-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
             </div>
@@ -214,7 +214,16 @@
         <!-- FIN MODAL INICIA-->
 
     <!-- FIN MODALES -->
+    <script>
+        $(document).ready(function(){
+            $('.inicia-cerrar').click(function(){
+                $('#inicia').modal('hide');
+            });
+        });
 
+        
+
+	</script>
     
     <!-- Start Footer -->
     <?php require 'components/footer.php'; ?>

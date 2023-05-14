@@ -240,7 +240,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="Label">Correo en Uso</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <button type="button" class="correo-cerrar close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
@@ -248,7 +248,7 @@
                             El correo que introdujo ya se encuentra en uso
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            <button type="button" class="correo-cerrar btn btn-secondary" data-dismiss="modal">Cerrar</button>
                         </div>
                     </div>
                 </div>
@@ -261,7 +261,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="Label">Nombre en uso</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <button type="button" class="nombre-cerrar close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
@@ -269,7 +269,7 @@
                             El nombre que ingreso ya se encuentra en uso
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            <button type="button" class="nombre-cerrar btn btn-secondary" data-dismiss="modal">Cerrar</button>
                         </div>
                     </div>
                 </div>
@@ -283,7 +283,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="Label">Perfil actualizado</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <button type="button" class="comletado-cerrar close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
@@ -291,7 +291,7 @@
                             Su perfil ha sido actualizado correctamente
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            <button type="button" class="comletado-cerrar btn btn-secondary" data-dismiss="modal">Cerrar</button>
                         </div>
                     </div>
                 </div>
@@ -304,12 +304,12 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="Label">De verdad quieres eliminar tu cuenta? 🥺 </h5>
-                            <button type="button" id="close" class="close" data-dismiss="modal" aria-label="Close">
+                            <button type="button" id="close" class="hecho-cerrar close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
+                            <button type="button" class="hecho-cerrar btn btn-primary" data-dismiss="modal">No</button>
                             <button type="button" id="borrar-cuenta" class="btn btn-secondary" data-dismiss="modal">Si</button>
                         </div>
                     </div>
@@ -318,7 +318,32 @@
             <!-- FIN MODAL BORRAR --> 
 
         <!-- FIN MODALES -->
+        <script>
+            $(document).ready(function(){
+                $('.nombre-cerrar').click(function(){
+                    $('#nombre-modal').modal('hide');
+                });
+            });
 
+            $(document).ready(function(){
+                $('.correo-cerrar').click(function(){
+                    $('#correo-modal').modal('hide');
+                });
+            });
+
+            $(document).ready(function(){
+                $('.hecho-cerrar').click(function(){
+                    $('#borrar').modal('hide');
+                });
+            });
+
+            $(document).ready(function(){
+                $('.comletado-cerrar').click(function(){
+                    $('#completo-modal').modal('hide');
+                });
+            });
+
+        </script>
         <!-- CODIGO PARA DESPLEGAR MODALES -->
         <?php
             

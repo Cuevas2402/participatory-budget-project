@@ -183,7 +183,7 @@
 
                             ?>
                                             <div class="mt-4">
-                                                <button type="button" id="seguir" class="follow-button process-featured-button-2" style="margin-left:10%; margin-bottom: 5%; width: 75%;"><span style="position: relative; top: 5px;" class="material-symbols-outlined"> notifications </span> <span id="following-text">Siguiendo</span> </button>
+                                                <button type="button" id="seguir" class="follow-button process-featured-button-2" style="margin-left:auto; margin-right:auto; margin-bottom: 5%; width: 75%;"><span style="position: relative; top: 5px;" class="material-symbols-outlined"> notifications </span> <span id="following-text">Siguiendo</span> </button>
                                             </div>
                             <?php
                                         }else{
@@ -191,7 +191,7 @@
 
                             ?>
                                             <div class="mt-4">
-                                                <button type="button" id="seguir" class="follow-button process-featured-button-1" style="margin-left:10%; margin-bottom: 5%; width: 75%;"><span style="position: relative; top: 5px;" class="material-symbols-outlined"> notifications </span> <span id="following-text">Seguir</span> </button>
+                                                <button type="button" id="seguir" class="follow-button process-featured-button-1" style="margin-left:auto; margin-right:auto; margin-bottom: 5%; width: 75%;"><span style="position: relative; top: 5px;" class="material-symbols-outlined"> notifications </span> <span id="following-text">Seguir</span> </button>
                                             </div>
                             <?php
                                         }
@@ -200,7 +200,7 @@
 
                             ?>
                                     <div class="mt-4">
-                                        <button type="button" id="seguir" class="follow-button process-featured-button-1" style="margin-left:10%; margin-bottom: 5%; width: 75%;"><span style="position: relative; top: 5px;" class="material-symbols-outlined"> notifications </span> <span id="following-text">Seguir</span> </button>
+                                        <button type="button" id="seguir" class="follow-button process-featured-button-1" style="margin-left:auto; margin-right:auto; margin-bottom: 5%; width: 75%;"><span style="position: relative; top: 5px;" class="material-symbols-outlined"> notifications </span> <span id="following-text">Seguir</span> </button>
                                     </div>
                                     
                             <?php

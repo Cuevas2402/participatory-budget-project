@@ -197,28 +197,36 @@
 
     <!-- MODALES -->
 
-            <!-- MODAL INICIA -->
-            <div class="modal fade" id="inicia" tabindex="-1" role="dialog" aria-labelledby="iniciaLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exitolLabel">Inicia Sesión</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            Para poder seguir un Proceso debes iniciar sesion
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                        </div>
+        <!-- MODAL INICIA -->
+        <div class="modal fade" id="inicia" tabindex="-1" role="dialog" aria-labelledby="iniciaLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exitolLabel">Inicia Sesión</h5>
+                        <button type="button" class="inicia-cerrar close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Para poder seguir un Proceso debes iniciar sesion
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="inicia-cerrar btn btn-secondary" data-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
             </div>
-            <!-- FIN MODAL INICIA-->
+        </div>
+        <!-- FIN MODAL INICIA-->
 
-	    <!-- FIN MODALES -->
+    <!-- FIN MODALES -->
+    <script>
+        $(document).ready(function(){
+            $('.inicia-cerrar').click(function(){
+                $('#inicia').modal('hide');
+            });
+        });
+
+	</script>
     <script>
         $(document).ready(function(){
                 $(".follow-button").click(function (){

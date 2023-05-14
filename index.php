@@ -215,7 +215,7 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<h5 class="modal-title" id="exitolLabel">Registro exitoso</h5>
-						<button type="button" id="close" class="close" data-dismiss="modal" aria-label="Close">
+						<button type="button" id="close" class="exito-cerrar close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
@@ -223,7 +223,7 @@
 						Puedes comenzar a participar en procesos y votar por propuestas 🥳
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+						<button type="button" class="exito-cerrar btn btn-secondary" data-dismiss="modal">Cerrar</button>
 					</div>
 				</div>
 			</div>
@@ -257,6 +257,13 @@
 		}
 	?>
 
+	<script>
+		$(document).ready(function(){
+			$('.exito-cerrar').click(function(){
+				$('#exito').modal('hide');
+			});
+		});
+	</script>
 	<button id="audio-button" style="position: fixed; bottom: 10px; right: 10px; background-color: #fff; border: none; border-radius: 50%; padding: 10px; box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);"><i class="fas fa-volume-up"></i></button>
 	
     <!-- Start Footer -->

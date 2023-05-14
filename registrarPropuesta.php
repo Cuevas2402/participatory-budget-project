@@ -179,7 +179,7 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<h5 class="modal-title" id="imgLabel">Imagen no permitida</h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<button type="button" class="img-cerrar close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
@@ -187,7 +187,7 @@
 						La imagen no cumple con los requerimientos indicados
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+						<button type="button" class="img-cerrar btn btn-secondary" data-dismiss="modal">Cerrar</button>
 					</div>
 				</div>
 			</div>
@@ -200,7 +200,7 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<h5 class="modal-title" id="tituloLabel">Titulo en uso</h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<button type="button" class="titulo-cerrar close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
@@ -208,7 +208,7 @@
 						Por favor, elige otro titulo, el que escribiste ya se encuentra en uso
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+						<button type="button" class="titulo-cerrar btn btn-secondary" data-dismiss="modal">Cerrar</button>
 					</div>
 				</div>
 			</div>
@@ -255,6 +255,20 @@
 			});
 		});
 		
+	</script>
+
+	<script>
+		$(document).ready(function(){
+			$('.titulo-cerrar').click(function(){
+				$('#titulo-modal').modal('hide');
+			});
+		});
+
+		$(document).ready(function(){
+			$('.img-cerrar').click(function(){
+				$('#img').modal('hide');
+			});
+		});
 	</script>
 </body>
 </html>
