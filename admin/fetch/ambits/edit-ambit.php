@@ -1,3 +1,11 @@
+<?php
+    session_start();
+    if(!isset($_SESSION['usr'])){
+        header('Location: login.php');
+    }
+
+?>
+
 <html>
     <head>
         <meta charset="UTF-8">
