@@ -45,11 +45,11 @@
         }
     }else{
 
-       
-    
-        $query = "SELECT *, participaciones.img as imagen FROM participaciones, usuarios, distritos WHERE usuarios.uid = participaciones.uid and distritos.did = participaciones.did";
+        $id = $_POST['id'];
 
-        $params = array();
+        $query = "SELECT *, participaciones.img as imagen FROM participaciones, usuarios, distritos WHERE participaciones.pid = '$id' AND usuarios.uid = participaciones.uid and distritos.did = participaciones.did";
+
+        $params = array(); // Inicializa $params como un arreglo vacío
 
         if(!empty($_POST['datos'])){
             $datos = $_POST['datos'];
@@ -64,12 +64,12 @@
             $query .= " AND participaciones.estatus IN ($placeholders)";
             $params = array_merge($params, $datos2);
         }
-        
+
         if ($_POST['select'] == 2) {
             $query .= " ORDER BY participaciones.fecha_creacion ASC ";
         }
 
-    
+
         $sql = $pdo->prepare($query);
         $sql->execute($params);
 
