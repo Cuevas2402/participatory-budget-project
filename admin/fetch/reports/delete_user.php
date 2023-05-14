@@ -2,9 +2,8 @@
     require '../../../config/db.php';
     require '../../../config/config.php';
     
-
-    if(isset($_GET['delete'])){
-        $id = $_GET['delete'];
+    if(isset($_GET['id'])){
+        $id = $_GET['id'];
 
         if (filter_var($id, FILTER_VALIDATE_INT) === false) {
             exit("Invalid input");
@@ -42,7 +41,7 @@
         $sql->execute([$id]);
         $sql->closeCursor();
 
-        header("Location: ../../usuarios.php");
+        header("Location: ../../report_users.php");
         exit();
     }
 ?>

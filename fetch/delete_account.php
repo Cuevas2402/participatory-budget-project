@@ -4,7 +4,6 @@
     session_start();
     if(isset($_SESSION['id'])) {
         $id = $_SESSION['id'];
-        session_destroy();
         //Eliminar votos
         
         $sql = $pdo->prepare("DELETE FROM votos WHERE voting = ? OR voted = ? ");
@@ -27,6 +26,12 @@
         $sql = $pdo->prepare("DELETE FROM seguir WHERE follow = ? OR followed = ?");
         $sql->execute([$id, $id]);
         $sql->closeCursor();
+
+        //Eliminar reporte
+        $sql = $pdo->prepare("DELETE FROM report_user WHERE uid = ?");
+        $sql->execute([$id]);
+        $sql->closeCursor();
+
 
         //Elimina Cuenta 
         $sql = $pdo->prepare("DELETE FROM usuarios WHERE uid = ?");

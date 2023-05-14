@@ -90,25 +90,7 @@
             return this.animate({ opacity: 'toggle', height: 'toggle' }, 'fast', easing, callback);
         };
 
-        function deselectAdd(e){
-            $('.add').slideFadeToggle(function(){
-                e.removeClass('selected');
-            });
-        }
-        $(function(){
-            $('#add').on('click',function(){
-                if ($(this).hasClass('selected')){
-                    deselectAdd($(this));
-                } else {
-                    $(this).addClass('selected');
-                    $('.add').slideFadeToggle();
-                }
-                return false;
-            });
-            $('.cancel').on('click',function(){
-                deselectAdd($('#add'));
-                return false;
-            });
-        });
+        
+        
     </script>
 </html>
