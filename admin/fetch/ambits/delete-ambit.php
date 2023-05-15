@@ -5,7 +5,7 @@
     if(isset($_GET['delete'])){
         $aid = $_GET['delete'];
 
-        if (filter_var($id, FILTER_VALIDATE_INT) === false) {
+        if (filter_var($aid, FILTER_VALIDATE_INT) === false) {
             exit("Invalid input");
         }
 
