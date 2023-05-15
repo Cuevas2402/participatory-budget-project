@@ -4,9 +4,9 @@
 
         
 ?>
-        <div class="text-center">
-            <a href="registrarse.php"><button class="btn me-3 my-3 registra">Regístrate</button></a>
-            <a href="sesion.php"><button class="btn ms-3 my-3 inicia">Inicia Sesión</button></a>
+        <div class="text-center d-flex justify-content-center">
+            <a href="registrarse.php"><button class="btn registra me-2">Regístrate</button></a>
+            <a href="sesion.php"><button class="btn inicia ms-2">Inicia Sesión</button></a>
         </div>
 
 <?php

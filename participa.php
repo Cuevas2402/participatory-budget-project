@@ -41,17 +41,17 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse mx-auto" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mx-auto mb-2 mb-lg-0 text-center">
+                <ul class="navbar-nav d-flex justify-content-around w-100 text-center">
                 <li class="nav-item">
                     <a class="nav-link" href="index.php">Inicio</a>
                 </li>
-                <li class="nav-item mx-5">
+                <li class="nav-item">
                     <a class="nav-link a-active" href="participa.php">Participa</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="ayuda.php">Ayuda</a>
                 </li>
-                <li class=" mx-5 nav-item">
+                <li class="nav-item">
                     <a class="nav-link" href="calendario.php">Calendario</a>
                 </li>
                 </ul>
@@ -125,7 +125,7 @@
 
     <!-- Process -->
     <div class="container process-featured">
-        <div class="process-filter">
+        <div class="mb-5">
             <?php
                 $stmt = $pdo->prepare("CALL count_process()");
                 $stmt->execute();
@@ -135,6 +135,9 @@
             <?php
                 $stmt->closeCursor();
             ?>
+            
+        </div> 
+        <div class="process-filter">
             <h4 class="see-process">Ver</h4>
             <h4><a class="procesos-f process-filter-a-active" data-value="1" >Todos</a></h4>
 
@@ -157,11 +160,11 @@
             <?php
                 $stmt->closeCursor();
             ?>
-        </div> 
+        </div>
     </div>
 
     <!-- Start First Content -->
-    <div class="container process-content">
+    <div class="container process-content" style="margin-top: 2rem;">
         <div class="row text-center">
             <div class="col">
                 <p>Ámbitos 

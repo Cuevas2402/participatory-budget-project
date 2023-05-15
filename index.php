@@ -49,17 +49,17 @@
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse mx-auto" id="navbarSupportedContent">
-				<ul class="navbar-nav me-auto mx-auto mb-2 mb-lg-0 text-center">
+				<ul class="navbar-nav d-flex justify-content-around w-100 text-center">
 				<li class="nav-item">
 					<a class="nav-link a-active" href="index.php">Inicio</a>
 				</li>
-				<li class="nav-item mx-5">
+				<li class="nav-item">
 					<a class="nav-link" href="participa.php">Participa</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="ayuda.php">Ayuda</a>
 				</li>
-				<li class=" mx-5 nav-item">
+				<li class="nav-item">
 					<a class="nav-link" href="calendario.php">Calendario</a>
 				</li>
 				</ul>
@@ -84,7 +84,7 @@
 					<div class="decoration-left anim"></div>
 					<div class="decoration-right anim"></div>
 					<div class="overlay anim"></div>
-					<img src="./img/img2.jpg" alt="img" class="slider-img">
+					<img src="./img/monterrey.jpg" alt="img" class="slider-img">
 		
 				</div>
 				<div class="text">
