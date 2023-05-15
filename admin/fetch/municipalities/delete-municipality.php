@@ -64,7 +64,16 @@
         $sql6->execute([$mid]);
         $sql7->execute([$mid]);
        
+        $sql1->closeCursor();
+        $sql2->closeCursor();
+        $sql3->closeCursor();
+        $sql4->closeCursor();
+        $sql5->closeCursor();
+        $sql6->closeCursor();
+        $sql7->closeCursor();
+        $sql8->closeCursor();
 
+        
         header("Location: ../../municipios.php");
         exit();
     }
