@@ -201,7 +201,7 @@
 			</div>
 		</div>
 		</div>
-		<center><button class="process-featured-button-3-large">Ver todos los procesos</button></center>
+		<center><a href="participa.php"><button class="process-featured-button-3-large">Ver todos los procesos</button></a></center>
 	</div>
 	<!-- End featured proceses-->
 	<?php
