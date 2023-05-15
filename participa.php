@@ -103,7 +103,7 @@
                             ?>
                         <center>
                             <a href="participa2.php?id=<?php echo $row['pid']; ?>&token=<?php echo hash_hmac('sha1', $row['pid'], KEY_TOKEN );?>" ><button class="process-featured-button-1">Más Información</button></a>
-                            <button class="process-featured-button-2">Participar</button>
+                            <a href="fichasActivas.php?id=<?php echo $row['pid']; ?>&token=<?php echo hash_hmac('sha1', $row['pid'], KEY_TOKEN );?>" ><button class="process-featured-button-2">Participar</button></a>
                         </center>
                     </div>
                 </div>
