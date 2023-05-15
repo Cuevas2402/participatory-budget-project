@@ -32,7 +32,7 @@
             
                 $extensions = array("jpeg","jpg","png");
             
-                if(in_array($file_ext,$extensions) === false || $file_size > 5242880 ){
+                if(in_array($file_ext,$extensions) === false || $file_size > 5242880 || !getimagesize($file_tmp)){
                     header("Location: ../registrarPropuesta.php?id=".$pid."&token=".$temp."&img=false");
                     exit();
                 } else {
