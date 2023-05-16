@@ -20,7 +20,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fichas Activas</title>
+    <title>Propuesta</title>
 
     <!-- Stylesheet CSS -->
     <link rel="stylesheet" href="css/template.css">
@@ -86,7 +86,7 @@
             <div class="nav3">
                 <h5><a id="pid" href="participa2.php?id=<?php echo $pid; ?>&token=<?php echo hash_hmac('sha1', $pid, KEY_TOKEN );?>" data-value="<?php echo $pid?>">EL PROCESO</a></h5>
                 <h5><a href="fases.php?id=<?php echo $pid; ?>&token=<?php echo hash_hmac('sha1', $pid, KEY_TOKEN );?>">FASES </a></h5>
-                <h5><a class="a-active"  href="fichasActivas.php?id=<?php echo $pid; ?>&token=<?php echo hash_hmac('sha1', $pid, KEY_TOKEN );?>">FICHAS ACTIVAS</a></h5>
+                <h5><a class="a-active"  href="fichasActivas.php?id=<?php echo $pid; ?>&token=<?php echo hash_hmac('sha1', $pid, KEY_TOKEN );?>">PROPUESTAS</a></h5>
             </div> 
         </div>
     </div>
