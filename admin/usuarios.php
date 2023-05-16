@@ -30,17 +30,12 @@
         <!-- JQuery -->
         <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
     </head>
-    <style>
-        body {
-            margin-top: 2.5% !important;
-            margin-left: 22% !important;
-            margin-right: 2% !important;
-        }
-    </style>
-
     <body>
         <div class="nav-bar">
-            <center><h6>Sesión iniciada como:<br><?php echo $usuario ?></h6></center>
+            <div class="pt-5 pb-4">
+                <center><h6 class="p-0">Sesión iniciada como:</h6></center>
+                <center><p><?php echo $usuario ?></p>
+            </div>
             
             <center>
                 <ul class="list-group list-group-flush mb-5">
@@ -49,9 +44,9 @@
                     <li class="list-group-item p-0"><a class="nav-link p-3" href="municipios.php">Municipios</a></li>
                     <li class="list-group-item p-0"><a class="nav-link p-3" href="participaciones.php">Participaciones</a></li>
                     <li class="list-group-item p-0"><a class="nav-link p-3" href="proceso.php">Procesos</a></li>
-                    <li class="list-group-item p-0"><a class="active nav-link p-3" aria-current="page">Usuarios</a></li>
-                    <li class="list-group-item p-0"><a class="nav-link p-3" href="report_users.php">Reportes Usuarios</a></li>
                     <li class="list-group-item p-0"><a class="nav-link p-3" href="report_proposals.php">Reportes Propuestas</a></li>
+                    <li class="list-group-item p-0"><a class="nav-link p-3" href="report_users.php">Reportes Usuarios</a></li>
+                    <li class="list-group-item p-0"><a class="active nav-link p-3" aria-current="page">Usuarios</a></li>
                 </ul>
             </center>
             <form action="logout.php">
@@ -59,10 +54,9 @@
             </form>
         </div>
 
-        <center><h4>Usuarios</h4></center>
-        <br>
+        <center><h4 class="mb-5">Usuarios</h4></center>
 
-        <button type="button" class="btn btn-success float-end" id="add">Añadir</button>
+        <button type="button" class="btn btn-success float-end col-2 mx-auto" id="add">Añadir</button>
         <br><br>
         
         <div class="add">
@@ -95,7 +89,7 @@
             </form>
         </div>
 
-        <table class="table table-striped">
+        <table class="table table-bordered table-striped w-max">
             <tr>
                 <th>ID de usuario</th>
                 <th>Nombre</th>
@@ -113,13 +107,13 @@
                 <td><?php echo $row ['telefono'];?></td>
                 <td><?php if ($row['permiso'] == 1) echo 'Si'; else echo 'No';?></td>
                 <td><?php echo $row ['correo'];?></td>
-                <td>
+                <td class="align-middle">
                     <form action="fetch/users/edit-user.php?edit=<?=$row['uid'];?>" method="POST" class="d-inline">
-                        <button type="submit" class="edit btn btn-primary" id="edit" value="<?=$row['uid'];?>">Modificar</button>
+                        <button type="submit" class="edit btn btn-primary col-12 mx-auto" id="edit" value="<?=$row['uid'];?>">Modificar</button>
                     </form>
-                    
+                    <br><br>
                     <form action="fetch/users/delete-user.php?delete=<?=$row['uid'];?>" method="POST" class="d-inline" onsubmit="return confirm('Eliminar este usuario también eliminará todas sus participaciones. ¿Desea continuar?');">
-                        <button type="submit" class="delete btn btn-danger">Eliminar</button>
+                        <button type="submit" class="delete btn btn-danger col-12 mx-auto">Eliminar</button>
                     </form>
                 </td>
             </tr>
