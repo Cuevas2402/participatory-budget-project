@@ -12,6 +12,9 @@
         exit("Invalid input");
     }
 
+    $sql = $pdo->prepare("DELETE votos, participaciones FROM votos JOIN participaciones ON votos.pid = participaciones.pid WHERE participaciones.did = ?");
+    $sql->execute([$id]);
+
     $sql = $pdo->prepare("DELETE FROM participaciones WHERE did = ?");
     $sql->execute([$id]);
 

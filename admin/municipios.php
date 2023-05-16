@@ -31,17 +31,12 @@
         <!-- JQuery -->
         <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
     </head>
-    <style>
-        body {
-            margin-top: 2.5% !important;
-            margin-left: 32% !important;
-            margin-right: 12% !important;
-        }
-    </style>
-
     <body>
         <div class="nav-bar">
-            <center><h6>Sesión iniciada como:<br><?php echo $usuario ?></h6></center>
+            <div class="pt-5 pb-4">
+                <center><h6 class="p-0">Sesión iniciada como:</h6></center>
+                <center><p><?php echo $usuario ?></p>
+            </div> 
             
             <center>
                 <ul class="list-group list-group-flush mb-5">
@@ -50,9 +45,9 @@
                     <li class="list-group-item p-0"><a class="active nav-link p-3" aria-current="page">Municipios</a></li>
                     <li class="list-group-item p-0"><a class="nav-link p-3" href="participaciones.php">Participaciones</a></li>
                     <li class="list-group-item p-0"><a class="nav-link p-3" href="proceso.php">Procesos</a></li>
-                    <li class="list-group-item p-0"><a class="nav-link p-3" href="usuarios.php">Usuarios</a></li>
-                    <li class="list-group-item p-0"><a class="nav-link p-3" href="report_users.php">Reportes Usuarios</a></li>
                     <li class="list-group-item p-0"><a class="nav-link p-3" href="report_proposals.php">Reportes Propuestas</a></li>
+                    <li class="list-group-item p-0"><a class="nav-link p-3" href="report_users.php">Reportes Usuarios</a></li>
+                    <li class="list-group-item p-0"><a class="nav-link p-3" href="usuarios.php">Usuarios</a></li>
                 </ul>
             </center>
             <form action="logout.php">
@@ -60,10 +55,9 @@
             </form>
         </div>
 
-        <center><h4>Municipios</h4></center>
-        <br>
+        <center><h4 class="mb-5">Municipios</h4></center>
 
-        <button type="button" class="btn btn-success float-end" id="add">Añadir</button>
+        <button type="button" class="btn btn-success float-end col-2 mx-auto" id="add">Añadir</button>
         <br><br>
         
         <div class="add">
@@ -81,7 +75,7 @@
             </form>
         </div>
 
-        <table class="table table-striped">
+        <table class="table table-bordered table-striped">
             <tr>
                 <th>ID</th>
                 <th>Nombre</th>
@@ -89,15 +83,15 @@
             </tr>
             <?php foreach ($rows as $row){ ?>
             <tr>
-                <td><?php echo $row ['mid'];?></td>
-                <td><?php echo $row ['nombre_municipio'];?></td>
-                <td>
+                <td class="col-md-4"><?php echo $row ['mid'];?></td>
+                <td class="col-md-4"><?php echo $row ['nombre_municipio'];?></td>
+                <td class="col-md-4 text-center">
                     <form action="fetch/municipalities/edit-municipality.php?edit=<?=$row['mid'];?>" method="POST" class="d-inline">
-                        <button type="submit" class="edit btn btn-primary" id="edit" value="<?=$row['mid'];?>">Modificar</button>
+                        <button type="submit" class="edit btn btn-primary col-4 mx-auto" id="edit" value="<?=$row['mid'];?>">Modificar</button>
                     </form>
                     
                     <form action="fetch/municipalities/delete-municipality.php?delete=<?=$row['mid'];?>" method="POST" class="d-inline" onsubmit="return confirm('Eliminar este municipio también eliminará todos sus procesos y distritos. ¿Desea continuar?');">
-                        <button type="submit" class="delete btn btn-danger">Eliminar</button>
+                        <button type="submit" class="delete btn btn-danger col-4 mx-auto">Eliminar</button>
                     </form>
                 </td>
             </tr>

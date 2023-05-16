@@ -1,9 +1,7 @@
-/* body {
-    background-color: pink;
-} */
-
-h6 {
-    padding: 15%;
+body {
+    margin-top: 3.5% !important;
+    margin-left: 25% !important;
+    margin-right: 5% !important;
 }
 
 .login {
@@ -18,7 +16,7 @@ h6 {
     height: 100%;
     position: fixed;
     top: 0%;
-    left: 0%;
+    left: 0% !important;
 }
 
 .nav-link {
@@ -51,11 +49,6 @@ a:hover {
     font-weight: bold;
 }
 
-#add {
-    margin-right: 6.5%;
-    width: 15.5%;
-}
-
 .add {
     background-color: white;
     display: none;
@@ -67,4 +60,9 @@ a:hover {
     margin-left: 13%;
     margin-right: 20%
     /* filter: blur(2px); */
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
 }
