@@ -46,10 +46,10 @@
 					<a class="nav-link " href="index.php">Inicio</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link a-active" href="participa.php">Participa</a>
+					<a class="nav-link" href="participa.php">Participa</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="ayuda.php">Ayuda</a>
+					<a class="nav-link a-active" href="ayuda.php">Ayuda</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="calendario.php">Calendario</a>
